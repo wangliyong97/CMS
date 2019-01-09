@@ -15,12 +15,13 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <aop:aspectj-autoproxy/>
-
-    <context:property-placeholder location="classpath:datasource.properties"/>   <!-- 用于将datasource配置文件中注入的属性显示出来 -->
+    <context:property-placeholder location="classpath:datasource.properties"/>
+    <!-- 用于将datasource配置文件中注入的属性显示出来 -->
     <task:annotation-driven/>
 
+    <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.cms.dao"/>
+    </bean>
 
     <import resource="applicationContext-datasource.xml"/>
-
 </beans>
