@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cms.dao.VisitMapper" >
+  <resultMap id="BaseResultMap" type="com.cms.pojo.Visit" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userAgent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="browserType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="platformType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ip, userAgent, city, url, browserType, platformType, time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from visit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from visit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cms.pojo.Visit" >
+    insert into visit (id, ip, userAgent, 
+      city, url, browserType, 
+      platformType, time)
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{useragent,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{browsertype,jdbcType=VARCHAR}, 
+      #{platformtype,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cms.pojo.Visit" >
+    insert into visit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="useragent != null" >
+        userAgent,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="browsertype != null" >
+        browserType,
+      </if>
+      <if test="platformtype != null" >
+        platformType,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="useragent != null" >
+        #{useragent,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="browsertype != null" >
+        #{browsertype,jdbcType=VARCHAR},
+      </if>
+      <if test="platformtype != null" >
+        #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cms.pojo.Visit" >
+    update visit
+    <set >
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="useragent != null" >
+        userAgent = #{useragent,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="browsertype != null" >
+        browserType = #{browsertype,jdbcType=VARCHAR},
+      </if>
+      <if test="platformtype != null" >
+        platformType = #{platformtype,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cms.pojo.Visit" >
+    update visit
+    set ip = #{ip,jdbcType=VARCHAR},
+      userAgent = #{useragent,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      browserType = #{browsertype,jdbcType=VARCHAR},
+      platformType = #{platformtype,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

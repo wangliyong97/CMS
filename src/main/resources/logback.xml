@@ -10,11 +10,11 @@
         </filter>
     </appender>
 
-    <appender name="activity" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="cms" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!--<File>d:/activityManagementlog/activityManagement.log</File>-->
         <File>d:/apache-tomcat-8.5.31/logs/activityManagement.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>d:/apache-tomcat-8.5.31/logs/activityManagement.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <fileNamePattern>d:/apache-tomcat-8.5.31/logs/cms.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
             <maxHistory>10</maxHistory>
         </rollingPolicy>
@@ -43,7 +43,7 @@
         </filter>
     </appender>
 
-    <logger name="com.activity" additivity="false" level="INFO" >
+    <logger name="com.cms" additivity="false" level="INFO" >
         <appender-ref ref="activity" />
         <appender-ref ref="console"/>
     </logger>
@@ -52,7 +52,7 @@
 
     <!-- mybatis log 日志 -->
 
-    <logger name="com.activity.dao" level="DEBUG"/>
+    <logger name="com.cms.dao" level="DEBUG"/>
 
     <!--<logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG" >-->
         <!--<appender-ref ref="console"/>-->
