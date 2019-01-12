@@ -12,7 +12,7 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-<!--加载静态资源 -->
+    <!--加载静态资源 -->
     <mvc:default-servlet-handler />
 
     <!-- 将spring和springMVc扫描的包进行隔离 只扫描controller注解的 将默认全部扫描关闭 细化扫描的包为com.cms.controller-->
@@ -28,7 +28,7 @@
         <!-- 国际化操作拦截器 如果采用基于（请求/Session/Cookie）则必需配置 -->
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
         <!-- 如果不定义 mvc:mapping path 将拦截所有的URL请求 -->
-        <!--<bean class="com.cms.interceptor.AccessInterceptor"></bean>-->
+        <bean class="com.cms.interceptor.AccessInterceptor"></bean>
     </mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -78,6 +78,8 @@
     <!-- 启动对@AspectJ注解的支持  -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
+    <!-- 自动扫描包路径  -->
+    <context:component-scan base-package="com.cms.aop" />
 
     <!--视图解析器 -->
     <!-- 需要配置解析jsp的视图解析器 jsp解析，默认使用jstl标签解析 -->

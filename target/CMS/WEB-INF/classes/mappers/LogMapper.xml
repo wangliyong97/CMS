@@ -105,4 +105,35 @@
       addTime = #{addtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectLogListByDate" resultType="map" parameterType="Map">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM log
+    <where>
+      <if test="startTime!=null and startTime!=''">
+        and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+      </if>
+      <if test="ip!=null and ip!=''">
+        and ( ip like CONCAT(CONCAT('%', #{ip}), '%') or userType like CONCAT(CONCAT('%', #{userType}), '%') or description like CONCAT(CONCAT('%', #{description}), '%'))
+      </if>
+    </where>
+    order by addTime desc
+  </select>
+  <select id="selectUserLogByDate" resultType="map"  parameterType="Map">
+    SELECT
+    addTime,
+    COUNT(*) AS count
+    FROM log
+    <where>
+      <if test="startTime!=null and startTime!=''">
+        and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+      </if>
+      <if test="userType!=null and userType!=''">
+        and userType=#{userType}
+      </if>
+    </where>
+    GROUP BY DATE_FORMAT(addTime,'%Y-%m-%d')
+
+  </select>
+    <select id=""/>
 </mapper>
