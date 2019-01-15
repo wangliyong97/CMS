@@ -374,9 +374,7 @@ footer a {
 }
 /*banner*/
 .banbox {
-  width: 68.5%;
   overflow: hidden;
-  float: left;
   border-radius: 3px;
   margin-bottom: 20px
 }

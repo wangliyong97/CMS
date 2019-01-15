@@ -1,13 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
-<link rel="shortcut icon"
-  href="${pageContext.request.contextPath}/images/favicon.ico">
- <link href="${pageContext.request.contextPath}/css/font-awesome.css"
-  rel="stylesheet">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+ <link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
- <link href="${pageContext.request.contextPath}/css/index.css"
-  rel="stylesheet"> 
+ <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/m.css" rel="stylesheet">
  <script
     src="https://hm.baidu.com/hm.js?f655f558c510211e38805f6b586e6b15"></script>
@@ -30,7 +27,7 @@ a {
       <span class="navicon"></span>
     </h2>
     <div class="logo">
-      <a href="/">山有木兮 | <font class="font16">只要还有明天，今天就永远是起跑线</font></a>
+      <a href="/">活动管理系统   <font class="font16"></font></a>
     </div>
     <nav>
       <ul id="starlist">

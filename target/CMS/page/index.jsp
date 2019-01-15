@@ -4,38 +4,25 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="baidu-site-verification" content="Eg9tVrHSEK" />
-<title>首页_个人博客 - 一个在Java道路上的技术员个人博客网站</title>
+<title>活动管理系统</title>
 <link rel="shortcut icon"
   href="${pageContext.request.contextPath}/images/favicon.ico">
-<meta name="keywords" content="个人博客,罗廷方个人博客,罗廷方" />
-<meta name="description" content="罗廷方个人博客，是一个在Java道路上的技术员个人博客网站" />
+<meta name="keywords" content="活动管理系统" />
+<meta name="description" content="活动管理系统，一个基于ssm框架的活动分享" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-  rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/loaders.css"
-  rel="stylesheet">
-<link
-  href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css"
-  rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/loaders.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <style type="text/css">
-.loader-inner>div {
-  background-color: #907f819e
-}
+    .loader-inner>div {
+      background-color: #907f819e
+    }
 </style>
 </head>
-<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll;z-index:-2">
+<%--style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll;z-index:-2"--%>
+<body>
   <%@ include file="top.jsp"%>
   <article style="opacity:0">
-    <!-- <div class="pics ">
-			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-			</ul>
-		</div> -->
-
     <div class="lbox ">
       <div class="banbox">
         <div class="banner">
@@ -62,35 +49,8 @@
           </div>
         </div>
       </div>
-      <div class="headline">
-        <ul>
-          <li><a href="find/20400.html"
-            title="【2019届校园招聘】如何准备互联网校招？"><img
-              src="${pageContext.request.contextPath}/images/3ee0644472fa8556562ab3d8716b5316.jpg"
-              alt="【2019届校园招聘】【2019届校园招聘】如何准备互联网校招？"><span>【2019届校园招聘】<br> 该如何准备互联网校招？</span></a></li>
-          <li><a href="find/19873.html"
-            title="【匆匆校园招聘季】总结校招经历的这几个月…"><img
-              src="${pageContext.request.contextPath}/images/3f0b6da48a6fd4e626a021ff7bd0d74f.jpg"
-              alt="【匆匆校园招聘季】总结校招经历的这几个月…"><span>【匆匆校园招聘季】<br>总结校招经历的这几个月</span></a></li>
-        </ul>
-      </div>
 
       <div class="clearblank"></div>
-
-      <div class="tab_box whitebg">
-
-        <div class="tab_buttons">
-          <ul>
-            <li class=""></li>
-            <li class=""></li>
-          </ul>
-        </div>
-        <div class="newstab">
-          
-        </div>
-
-
-      </div>
 
       <div class="zhuanti whitebg">
         <h2 class="htitle">特别推荐</h2>
