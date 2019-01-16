@@ -14,4 +14,6 @@ public interface ActivityTypeMapper {
     int updateByPrimaryKeySelective(ActivityType record);
 
     int updateByPrimaryKey(ActivityType record);
+
+    ActivityType selectActivityTypeById(Integer id);
 }

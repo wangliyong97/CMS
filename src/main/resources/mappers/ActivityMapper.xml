@@ -2,42 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cms.dao.ActivityMapper" >
   <resultMap id="BaseResultMap" type="com.cms.pojo.Activity" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="images" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="clickNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="commentNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="agreeNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="isTop" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="isRecommend" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="addTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-    </constructor>
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="title" jdbcType="VARCHAR" property="title" />
+      <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+      <result column="keyword" jdbcType="VARCHAR" property="keyword" />
+      <result column="images" jdbcType="VARCHAR" property="images" />
+      <result column="clickNum" jdbcType="INTEGER" property="clicknum" />
+      <result column="commentNum" jdbcType="INTEGER" property="commentnum" />
+      <result column="agreeNum" jdbcType="INTEGER" property="agreenum" />
+      <result column="isTop" jdbcType="INTEGER" property="istop" />
+      <result column="isRecommend" jdbcType="INTEGER" property="isrecommend" />
+      <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+      <result column="addTime" jdbcType="TIMESTAMP" property="addtime" />
+      <result column="status" jdbcType="INTEGER" property="status" />
+      <!-- 配置 多对一 关联关系 -->
+      <association property="typeId" column="type_id"
+                   javaType="com.cms.pojo.ActivityType" select="com.cms.dao.ActivityTypeMapper.selectActivityTypeById">
+      </association>
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.cms.pojo.Activity" >
-    <constructor >
-      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="introduction" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="keyword" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="images" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="clickNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="commentNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="agreeNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="isTop" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="isRecommend" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="addTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="status" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="type_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
-    </constructor>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+             type="com.cms.pojo.Activity">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, title, introduction, keyword, images, clickNum, commentNum, agreeNum, isTop, 
     isRecommend, updateTime, addTime, status, type_id
@@ -45,210 +32,36 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
+
+
+  <select id="selectGroupLikeActivityListByPage" parameterType="Map" resultMap="ResultMapWithBLOBs">
+    select <include refid="Base_Column_List" />
     from activity
-    where id = #{id,jdbcType=INTEGER}
+    <where>
+      <if test="isTop!=null and isTop!=''">
+        and isTop=#{isTop}
+      </if>
+      <if test="type_id!=null and type_id!=''">
+        and type_id=#{type_id}
+      </if>
+      <if test="status!=null and status!=''">
+        and status=#{status}
+      </if>
+      <if test="isRecommend!=null and isRecommend!=''">
+        and isRecommend=#{isRecommend}
+      </if>
+      <if test="addTime!=null and addTime!=''">
+        and DATE_FORMAT(addTime,'%Y-%m-%d')=#{addTime}
+      </if>
+      <if test="title!=null and title!=''">
+        and ( title like CONCAT(CONCAT('%', #{title}), '%') or keyword like
+        CONCAT(CONCAT('%', #{keyword}), '%'))
+      </if>
+    </where>
+    ORDER BY
+    <if test="sort!=null and sort!=''">
+      #{sort}
+    </if>
+    DESC
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from activity
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.cms.pojo.Activity" >
-    insert into activity (id, title, introduction, 
-      keyword, images, clickNum, 
-      commentNum, agreeNum, isTop, 
-      isRecommend, updateTime, addTime, 
-      status, type_id, content
-      )
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{introduction,jdbcType=VARCHAR}, 
-      #{keyword,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, #{clicknum,jdbcType=INTEGER}, 
-      #{commentnum,jdbcType=INTEGER}, #{agreenum,jdbcType=INTEGER}, #{istop,jdbcType=INTEGER}, 
-      #{isrecommend,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{addtime,jdbcType=TIMESTAMP}, 
-      #{status,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.cms.pojo.Activity" >
-    insert into activity
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="introduction != null" >
-        introduction,
-      </if>
-      <if test="keyword != null" >
-        keyword,
-      </if>
-      <if test="images != null" >
-        images,
-      </if>
-      <if test="clicknum != null" >
-        clickNum,
-      </if>
-      <if test="commentnum != null" >
-        commentNum,
-      </if>
-      <if test="agreenum != null" >
-        agreeNum,
-      </if>
-      <if test="istop != null" >
-        isTop,
-      </if>
-      <if test="isrecommend != null" >
-        isRecommend,
-      </if>
-      <if test="updatetime != null" >
-        updateTime,
-      </if>
-      <if test="addtime != null" >
-        addTime,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="typeId != null" >
-        type_id,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="images != null" >
-        #{images,jdbcType=VARCHAR},
-      </if>
-      <if test="clicknum != null" >
-        #{clicknum,jdbcType=INTEGER},
-      </if>
-      <if test="commentnum != null" >
-        #{commentnum,jdbcType=INTEGER},
-      </if>
-      <if test="agreenum != null" >
-        #{agreenum,jdbcType=INTEGER},
-      </if>
-      <if test="istop != null" >
-        #{istop,jdbcType=INTEGER},
-      </if>
-      <if test="isrecommend != null" >
-        #{isrecommend,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="addtime != null" >
-        #{addtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null" >
-        #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cms.pojo.Activity" >
-    update activity
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="introduction != null" >
-        introduction = #{introduction,jdbcType=VARCHAR},
-      </if>
-      <if test="keyword != null" >
-        keyword = #{keyword,jdbcType=VARCHAR},
-      </if>
-      <if test="images != null" >
-        images = #{images,jdbcType=VARCHAR},
-      </if>
-      <if test="clicknum != null" >
-        clickNum = #{clicknum,jdbcType=INTEGER},
-      </if>
-      <if test="commentnum != null" >
-        commentNum = #{commentnum,jdbcType=INTEGER},
-      </if>
-      <if test="agreenum != null" >
-        agreeNum = #{agreenum,jdbcType=INTEGER},
-      </if>
-      <if test="istop != null" >
-        isTop = #{istop,jdbcType=INTEGER},
-      </if>
-      <if test="isrecommend != null" >
-        isRecommend = #{isrecommend,jdbcType=INTEGER},
-      </if>
-      <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="addtime != null" >
-        addTime = #{addtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="typeId != null" >
-        type_id = #{typeId,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.cms.pojo.Activity" >
-    update activity
-    set title = #{title,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR},
-      keyword = #{keyword,jdbcType=VARCHAR},
-      images = #{images,jdbcType=VARCHAR},
-      clickNum = #{clicknum,jdbcType=INTEGER},
-      commentNum = #{commentnum,jdbcType=INTEGER},
-      agreeNum = #{agreenum,jdbcType=INTEGER},
-      isTop = #{istop,jdbcType=INTEGER},
-      isRecommend = #{isrecommend,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      addTime = #{addtime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cms.pojo.Activity" >
-    update activity
-    set title = #{title,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=VARCHAR},
-      keyword = #{keyword,jdbcType=VARCHAR},
-      images = #{images,jdbcType=VARCHAR},
-      clickNum = #{clicknum,jdbcType=INTEGER},
-      commentNum = #{commentnum,jdbcType=INTEGER},
-      agreeNum = #{agreenum,jdbcType=INTEGER},
-      isTop = #{istop,jdbcType=INTEGER},
-      isRecommend = #{isrecommend,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      addTime = #{addtime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER},
-      type_id = #{typeId,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>

@@ -15,7 +15,6 @@
 * {
   cursor: url('${pageContext.request.contextPath}/images/ani/a.cur'), auto;
 }
-
 a {
   cursor: url('${pageContext.request.contextPath}/images/ani/b.cur'), auto;
 }
@@ -34,9 +33,9 @@ a {
         <li><a href="${pageContext.request.contextPath}/index" title="首页" >网站首页</a></li>
         <li><a href="${pageContext.request.contextPath}/list">技术博客</a></li>
         <li class="menu"><a href="${pageContext.request.contextPath}/result?keyboard=type_1">技术专栏</a>
-          <ul class="sub">
-            <li></li>
-          </ul> <span></span></li>
+        <ul class="sub">
+          <li></li>
+        </ul> <span></span></li>
         <li><a href="${pageContext.request.contextPath}/resource">资源分享</a></li>
         <li><a href="${pageContext.request.contextPath}/find/13015.html">网站介绍</a></li>
         <li><a href="${pageContext.request.contextPath}/about">关于我</a></li>

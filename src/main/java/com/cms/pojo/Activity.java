@@ -1,5 +1,7 @@
 package com.cms.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Activity {
@@ -23,17 +25,21 @@ public class Activity {
 
     private Integer isrecommend;
 
+    /**  */
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Date updatetime;
 
+    /**  */
+    @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
     private Date addtime;
 
     private Integer status;
 
-    private Integer typeId;
+    private ActivityType typeId;
 
     private String content;
 
-    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, Integer typeId, String content) {
+    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, ActivityType typeId, String content) {
         this.id = id;
         this.title = title;
         this.introduction = introduction;
@@ -52,7 +58,6 @@ public class Activity {
     }
 
     public Activity() {
-        super();
     }
 
     public Integer getId() {
@@ -68,7 +73,7 @@ public class Activity {
     }
 
     public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
+        this.title = title;
     }
 
     public String getIntroduction() {
@@ -76,7 +81,7 @@ public class Activity {
     }
 
     public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
+        this.introduction = introduction;
     }
 
     public String getKeyword() {
@@ -84,7 +89,7 @@ public class Activity {
     }
 
     public void setKeyword(String keyword) {
-        this.keyword = keyword == null ? null : keyword.trim();
+        this.keyword = keyword;
     }
 
     public String getImages() {
@@ -92,7 +97,7 @@ public class Activity {
     }
 
     public void setImages(String images) {
-        this.images = images == null ? null : images.trim();
+        this.images = images;
     }
 
     public Integer getClicknum() {
@@ -159,11 +164,11 @@ public class Activity {
         this.status = status;
     }
 
-    public Integer getTypeId() {
+    public ActivityType getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(Integer typeId) {
+    public void setTypeId(ActivityType typeId) {
         this.typeId = typeId;
     }
 
@@ -172,6 +177,6 @@ public class Activity {
     }
 
     public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+        this.content = content;
     }
 }
