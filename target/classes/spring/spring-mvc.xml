@@ -83,8 +83,7 @@
 
     <!--视图解析器 -->
     <!-- 需要配置解析jsp的视图解析器 jsp解析，默认使用jstl标签解析 -->
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--拼接视图地址的前缀和后缀 -->
         <property name="prefix" value="/" />
         <property name="suffix" value=".jsp" />

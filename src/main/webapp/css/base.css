@@ -565,28 +565,28 @@ footer a {
   animation: animations2 5s ease-in-out 5s;
 }
 
-.linkmore {
-  margin: 15px
-}
+/*.linkmore {*/
+  /*margin: 15px*/
+/*}*/
 
-.linkmore li {
-  width: 25%;
-  float: left
-}
+/*.linkmore li {*/
+  /*width: 25%;*/
+  /*float: left*/
+/*}*/
 
-.linkmore li a {
-  height: 53px;
-  display: block;
-  overflow: hidden;
-  box-shadow: 0px 1px 0px rgba(255, 255, 255, .1), inset 0px 1px 1px
-    rgba(0, 0, 0, .7);
-  border-radius: 50%;
-  margin: 0 5px;
-}
+/*.linkmore li a {*/
+  /*height: 53px;*/
+  /*display: block;*/
+  /*overflow: hidden;*/
+  /*box-shadow: 0px 1px 0px rgba(255, 255, 255, .1), inset 0px 1px 1px*/
+    /*rgba(0, 0, 0, .7);*/
+  /*border-radius: 50%;*/
+  /*margin: 0 5px;*/
+/*}*/
 
-.linkmore li a:hover {
-  opacity: 0.5;
-}
+/*.linkmore li a:hover {*/
+  /*opacity: 0.5;*/
+/*}*/
 
 .iconfont {
   font-family: "iconfont" !important;
@@ -656,25 +656,25 @@ a.iconfont.icon-weixin {
   color: #07AF12;
 }
 
-#weixin {
-  position: relative
-}
+/*#weixin {*/
+  /*position: relative*/
+/*}*/
 
-#weixin i {
-  display: block;
-  position: absolute;
-  bottom: 55px;
-  right: 0
-}
+/*#weixin i {*/
+  /*display: block;*/
+  /*position: absolute;*/
+  /*bottom: 55px;*/
+  /*right: 0*/
+/*}*/
 
-#weixin i img {
-  height: 100px;
-  display: none
-}
+/*#weixin i img {*/
+  /*height: 100px;*/
+  /*display: none*/
+/*}*/
 
-#weixin:hover i img {
-  display: block
-}
+/*#weixin:hover i img {*/
+  /*display: block*/
+/*}*/
 
 .fixed-menu-list {
   display: none;

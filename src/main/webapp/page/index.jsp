@@ -66,7 +66,7 @@
 
       <div class="newblogs bloglist whitebg animated fadeIn"
         style="display:none;animation-delay:0.3s">
-        <h2 class="htitle">最新文章</h2>
+        <h2 class="htitle">最新活动</h2>
         <ul class="animated ">
 
         </ul>
@@ -77,7 +77,6 @@
       </div>
 
     </div>
-
 
     <div class="rbox">
       <div class="card">
@@ -101,64 +100,23 @@
         </ul>
       </div>
 
-    <div class="whitebg notice">
-      <h2 class="htitle">热门文章</h2>
-      <ul>
-      
-     </ul>
-    </div>
+      <div class="whitebg notice">
+      <h2 class="htitle">热门活动</h2>
+         <ul>
+         </ul>
+      </div>
 
-      <div class="dj paihang animated fadeIn"
-        style="animation-delay:0.3s">
+      <div class="dj paihang animated fadeIn" style="animation-delay:0.3s">
         <h2 class="htitle">点击排行</h2>
         <ul class="">
 
         </ul>
       </div>
-      <div class="git whitebg links animated fadeIn"
-        style="display:none;animation-delay:0.3s">
-        <h2 class="htitle">开源地址</h2>
-        <ul class="animated fadeIn">
-          <li><a href="https://gitee.com/luotf/Art_Blog" target="_blank">Gitee&nbsp;&nbsp;</a></li>
-          <li><a href="https://github.com/luotf/Art_Blog" target="_blank">Github</a></li>
-        </ul>
-      </div>
-      <div class="weixin whitebg animated fadeIn"
-        style="display:none;animation-delay:0.3s">
-        <h2 class="htitle">公众号</h2>
-        <ul class="animated fadeIn">
-          <img src="${pageContext.request.contextPath}/images/wx.jpg">
-        </ul>
-      </div>
-      <div class="link links whitebg animated fadeIn"
-        style="display:none;animation-delay:0.3s">
-        <h2 class="htitle">友情链接</h2>
-        <ul class="animated fadeIn">
-
-        </ul>
-        <div class="msg"
-          style="clear: both;text-align: center;margin: 25px 0px 15px;">
-          <a href="javascript:void(0)"></a>
-        </div>
-      </div>
-
-      <div class="guanzhu gd whitebg animated fadeIn"
-        style="display:none" id="follow-us">
-        <h2 class="cloud_hometitle">来波关注</h2>
-        <ul>
-          <li class="qq"><a href="javascript:void(0)"
-            target="_blank"><span>QQ号</span>849673404</a></li>
-          <li class="email"><a href="javascript:void(0)"
-            target="_blank"><span>邮箱帐号</span>849673404@qq.com</a></li>
-          <li class="wxgzh"><a href="javascript:void(0)"
-            target="_blank"><span>微信号</span>luo849673404</a></li>
-          <li class="wx" style="border:none"><img
-            src="${pageContext.request.contextPath}/images/wx.jpg"></li>
-        </ul>
-      </div>
     </div>
+
     <a href="#" class="top cd-top animated ">Top</a>
   </article>
+
   <!-- 全局js -->
   <script src="${pageContext.request.contextPath}/js/page/index.js"></script>
   <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>

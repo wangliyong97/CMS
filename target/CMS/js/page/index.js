@@ -33,20 +33,7 @@ $(window).scroll(
     }
     if ($(document).scrollTop() > 350 && count == 2) {
       $(".newblogs").css("display", "block");
-      initBlogByNew(1); //初始化最新5篇文章
-      count++;
-    }
-    if ($(document).scrollTop() > 450 && count == 3) {
-      $(".git").css("display", "block");
-      count++;
-    }
-    if ($(document).scrollTop() > 570 && count == 4) {
-      $(".weixin").css("display", "block");
-      count++;
-    }
-    if ($(document).scrollTop() > 750 && count == 5) {
-      $(".link").css("display", "block");
-      initAllLinks(); //初始化所有已上架友链
+        initActivityByNew(1); //初始化最新5篇文章
       count++;
     }
     if ($(document).scrollTop() > 1050 && width > 700) {
@@ -65,7 +52,7 @@ $(window).scroll(
       isEnd = true;
       $('.page').css('display', 'block');
       setTimeout(function() {
-        initBlogByNew(pageNext);
+         initActivityByNew(pageNext);
       }, 500);
     } else {
       $('.page').css('display', 'none');
@@ -76,13 +63,13 @@ $(document).ready(function() {
   initBlogByTop(); //初始化置顶的3篇文章
   initBlogByAllTypeBlog();
   initActivityByLike(); //初始化特别推荐6项活动
-  initBlogByClick(); //初始化点击排行5篇文章
+  initActivityByClick(); //初始化点击排行5篇文章
   init();
 });
 
 var initBlogByClickMore = function() {
   setTimeout(function() {
-    initBlogByNew(pageNext);
+      initActivityByNew(pageNext);
   }, 200);
 }
 
@@ -103,21 +90,19 @@ var initBlogByTop = function() {
     status : 1
   };
   $.ajax({
-    url : 'selectGroupLikeBlogListByPage',
+    url : 'selectGroupLikeActivityListByPage',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
-      var topBlog = '';
-      var data = data.blogList;
+      var topActivity = '';
+      var data = data.activityList;
       for (var i = 0; i < data.length; i++) {
         var id = data[i].id.toString(8) * data[i].id;
-        topBlog += '<li><a href="find/' + id + '.html" title=' + data[i].title + ' target="_blank">' + data[i].title + '</a></li>';
-      /*topBlog += '<li class="animated fadeIn"><a href="find/' + id + '.html" onclick=""><img style="width:415px;height:155px;" src="' + data[i].images + '"></a><span>'
-        + data[i].title + '</span></li>'*/
+          topActivity += '<li><a href="find/' + id + '.html" title=' + data[i].title + ' target="_blank">' + data[i].title + '</a></li>';
       }
       // 初始化数据
-      $(".notice").find("ul").html(topBlog);
+      $(".notice").find("ul").html(topActivity);
       globalCount++;
       returnAllCount();
     },
@@ -227,8 +212,8 @@ var initActivityByLike = function() {
   });
 };
 
-//初始化最新文章
-var initBlogByNew = function(page) {
+//初始化最新活动
+var initActivityByNew = function(page) {
   //设置参数
   var params = {
     pageSize : 5,
@@ -242,10 +227,10 @@ var initBlogByNew = function(page) {
       data : params,
       dataType : 'json',
       success : function(dataAll) {
-        var newBlog = '';
+        var newActivity = '';
         var parm = "";
         var arr = new Array();
-        var data = dataAll.blogList;
+        var data = dataAll.activityList;
         var page = dataAll.pageInfo;
         for (var i = 0; i < data.length; i++) {
           arr[i] = data[i].id;
@@ -261,7 +246,7 @@ var initBlogByNew = function(page) {
               keyword = data[i].keyword;
             }
           }
-          newBlog += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
+            newActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
             + data[i].title
             + '</a></h3><span class="blogpic imgscale"><a href="find/' + id + '.html" title=""><img src="' + data[i].images + '"  /></a></span><p class="blogtext">'
             + data[i].introduction
@@ -271,7 +256,7 @@ var initBlogByNew = function(page) {
             + Format(data[i].addtime, "yyyy-MM-dd")
             + '</span><span  class="clicknum">浏览('
             + data[i].clicknum
-            + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">阅读原文</a></span></li>'
+            + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">查看详情</a></span></li>'
         }
         var p = {
           client_id : 'cytzg9rLH',
@@ -298,9 +283,9 @@ var initBlogByNew = function(page) {
           });
         // 初始化数据
         if (page.pageNum >= 2) {
-          $(".newblogs").find("ul").append(newBlog);
+          $(".newblogs").find("ul").append(newActivity);
         } else {
-          $(".newblogs").find("ul").html(newBlog);
+          $(".newblogs").find("ul").html(newActivity);
         }
         if (page.total > 5) {
           var pagenav = '';
@@ -330,7 +315,7 @@ var initBlogByNew = function(page) {
 };
 
 //初始化点击排行
-var initBlogByClick = function() {
+var initActivityByClick = function() {
   //设置参数
   var params = {
     pageSize : 5,
@@ -340,24 +325,24 @@ var initBlogByClick = function() {
   };
   $
     .ajax({
-      url : 'selectGroupLikeBlogListByPage',
+      url : 'selectGroupLikeActivityListByPage',
       type : 'get',
       data : params,
       dataType : 'json',
       success : function(data) {
-        var clickBlog = '';
-        var data = data.blogList;
+        var clickActivity = '';
+        var data = data.activityList;
         var time = '';
         for (var i = 0; i < data.length; i++) {
           var id = data[i].id.toString(8) * data[i].id;
           time = i * 0.05;
-          clickBlog += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a target="_blank" href="find/' + id + '.html">'
+            clickActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a target="_blank" href="find/' + id + '.html">'
             + data[i].title
             + '</a></b><p><i><img src="' + data[i].images + '"></i><span>'
             + data[i].introduction + '</span></p></li>'
         }
         // 初始化数据
-        $(".paihang").find("ul").html(clickBlog);
+        $(".paihang").find("ul").html(clickActivity);
       },
       error : function() {
         layer.msg('请求太快，请稍后再试！', {
@@ -366,125 +351,6 @@ var initBlogByClick = function() {
       }
     });
 };
-
-var initAllLinks = function() {
-
-  $.ajax({
-    url : 'selectAllLinks',
-    type : 'get',
-    data : "",
-    dataType : 'json',
-    success : function(data) {
-      var linksAll = '';
-      var data = data.linksList;
-      var time = '';
-      for (var i = 0; i < data.length; i++) {
-        time = i * 0.05;
-        linksAll += '<li style="animation-delay:0.'
-          + i
-          + 's;float:left;margin: 0 1% 10px 0;padding:3px;" class="animated fadeIn"><a target="_blank" href="'
-          + data[i].link
-          + '" target= "_blank" onclick="clickNum('
-          + data[i].id + ')">' + data[i].name
-          + '</a></li>';
-      }
-      // 初始化数据
-      $(".link").find("ul").html(linksAll);
-      time = time + 0.1;
-      var msg = '<h5 style="animation-delay:' + time + 's class="animated fadeIn" title="QQ:849673404">注：添加友链,请点击&nbsp;&nbsp;&nbsp;<a class="applyLinks" onclick="applyLinks()" href="javascript:void(0);" style="font-size:13px;color:#f8ac59">申请友链</a></h5>';
-      $(".msg").find("a").html(msg);
-    },
-    error : function() {
-      layer.msg('请求太快，请稍后再试！', {
-        icon : 5
-      });
-    }
-  });
-}
-
-var applyLinks = function() {
-  swal({
-    title : '互换友链',
-    text : '注意：请在您的网站友链处添加本站链接后再行申请！！！！！！添加格式如下：名称&网站首页地址',
-    type : 'input',
-    showCancelButton : true,
-    confirmButtonColor : "#1c84c6",
-    confirmButtonText : "提交",
-    closeOnConfirm : false
-  }, function() {
-    //swal("删除成功！", "您已经永久删除了这条信息。", "success");
-    checkLinks();
-  });
-}
-
-var checkLinks = function() {
-  var inputLink = new Array();
-  inputLink = $("fieldset").find("input").val().split("&");
-  var title = '';
-  var text = '';
-  var type = '';
-  if (inputLink.length != 2) {
-    title = '格式错误',
-    text = '请检查格式是否正确',
-    type = 'error'
-  } else {
-    title = '请核对信息',
-    text = '名称：' + inputLink[0].replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;") + "   。" + '链接：' + inputLink[1].replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
-    type = 'warning'
-  }
-  swal({
-    title : title,
-    text : text,
-    type : type,
-    showCancelButton : true,
-    confirmButtonColor : "#1c84c6",
-    confirmButtonText : "确定",
-    closeOnConfirm : false
-  }, function() {
-    if (type == 'warning') {
-      addLinks(inputLink[0], inputLink[1]);
-    }
-  });
-};
-var addLinks = function(name, link) {
-  var params = {
-    name : name,
-    link : link,
-    sort : 0,
-    isapply : -1,
-    prarm : '有新伙伴申请友链啦！',
-  };
-  $.ajax({
-    url : 'addLinks',
-    type : 'post',
-    data : params,
-    dataType : 'json',
-    success : function(data) {
-      if (data.status == 200) {
-        swal("申请成功", "等待管理审核", "success");
-      }
-    },
-    error : function() {
-      swal("申请失败", "请检查格式是否正确", "error");
-    }
-  });
-}
-
-
-//更新链接点击次数
-var clickNum = function(id) {
-  var params = {
-    id : id,
-  };
-  $.ajax({
-    url : 'selectLinksById',
-    type : 'post',
-    data : params,
-    dataType : 'json',
-    success : function(data) {},
-    error : function() {}
-  });
-}
 
 //格式化时间
 function Format(datetime, fmt) {
