@@ -87,4 +87,20 @@
     from activity_type
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectActivityTypeListByPage" parameterType="Map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from activity_type
+    <where>
+      <if test="typeName!=null and typeName!=''">
+        and typeName like CONCAT(CONCAT('%', #{typeName}), '%')
+      </if>
+
+      <if test="addTime!=null and addTime!=''">
+        and DATE_FORMAT(addTime,'%Y-%m-%d')=#{addTime}
+      </if>
+    </where>
+    ORDER BY num DESC
+  </select>
+
 </mapper>

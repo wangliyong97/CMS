@@ -1,7 +1,3 @@
-/**
- *
- * @type {number}
- */
 var globalCount = 0;
 $(".top").click(function() {
   $('body,html').animate({
@@ -16,9 +12,8 @@ var isEnd = false;
 var time = null;
 var width = window.innerWidth || document.documentElement.clientWidth;
 if (width < 660) {
-  var pagenav = '<p style="text-align:center;margin:-5px auto 20px;"><a href="javascript:void(0);" onclick="initBlogByClickMore()"><i class="fa fa-arrow-down"></i> 加载更多</a></p>';
+  var pagenav = '<p style="text-align:center;margin:-5px auto 20px;"><a href="javascript:void(0);" onclick="initActivityByClickMore()"><i class="fa fa-arrow-down"></i> 加载更多</a></p>';
   $(".pageMin").html(pagenav);
-//$(".top").css("display", "none");
 }
 
 $(window).scroll(
@@ -60,14 +55,14 @@ $(window).scroll(
   });
 
 $(document).ready(function() {
-  initBlogByTop(); //初始化置顶的3篇文章
-  initBlogByAllTypeBlog();
+  initActivityByTop(); //初始化置顶的3篇文章
+  initActivityByAllType();
   initActivityByLike(); //初始化特别推荐6项活动
   initActivityByClick(); //初始化点击排行5篇文章
-  init();
+  // init();
 });
 
-var initBlogByClickMore = function() {
+var initActivityByClickMore = function() {
   setTimeout(function() {
       initActivityByNew(pageNext);
   }, 200);
@@ -81,7 +76,7 @@ var returnAllCount = function() {
   }
 }
 
-var initBlogByTop = function() {
+var initActivityByTop = function() {
   //设置参数
   var params = {
     pageSize : 5,
@@ -114,17 +109,15 @@ var initBlogByTop = function() {
   });
 };
 
-
 //初始化每个类别的前N
-var initBlogByAllTypeBlog = function() {
-
+var initActivityByAllType= function() {
   $.ajax({
-    url : 'selectBlogByAllType',
+    url : 'selectActivityByAllType',
     type : 'get',
     dataType : 'json',
     success : function(data) {
-      var likeBlog = '';
-      var data = data.blogMap;
+      var likeActivity = '';
+      var data = data.activityMap;
       var tab_button = "";
       var newsitem = "";
       var indexTab = 0;
@@ -171,7 +164,6 @@ var initBlogByAllTypeBlog = function() {
     }
   });
 };
-
 
 //初始化推荐
 var initActivityByLike = function() {

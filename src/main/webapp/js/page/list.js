@@ -1,5 +1,3 @@
- 
-
 var globalCount = 0;
   $(".top").click(function() {
     $('body,html').animate({
@@ -38,33 +36,33 @@ var globalCount = 0;
       isEnd = true;
       $('.page').css('display', 'block');
       setTimeout(function() {
-        initBlogListByPage(pageNext, "none", null);
+        initActivityListByPage(pageNext, "none", null);
       }, 500);
     }
   });
   var initBlog = function() {
     setTimeout(function() {
-      initBlogListByPage(pageNext, "none", null);
+      initActivityListByPage(pageNext, "none", null);
     }, 100);
   }
   
   $(document).ready(function() {
     //初始化类别信息
-    initBlogType();
+    initActivityType();
     initBlogByLike();
     initBlogByTop();
     //初始化技术专栏的信息
     var keyword = $("#keyword").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     if(keyword.search('type')!=-1){
       var id = keyword.split('_')[1];
-      initBlogListByPage(pageNext, id, id);
+      initActivityListByPage(pageNext, id, id);
     }else{
-      initBlogListByPage(pageNext, "none", null);
+      initActivityListByPage(pageNext, "none", null);
     }
   });
   
-  var initBlogListByPage = function(pageNum, type_id, typename) {
-    //查询出文章
+  var initActivityListByPage = function(pageNum, type_id, typename) {
+    //查询出活动
     //获取关键字，表示查询所有符合的记录
     var params = "";
     var prarm = "";
@@ -75,7 +73,7 @@ var globalCount = 0;
         keyword = "";
         prarm = 'none'
       } else {
-        prarm = '搜索关键字为<span class="text-info">#' + keyword + '#</span>的博客'
+        prarm = '搜索关键字为<span class="text-info">#' + keyword + '#</span>的活动'
       }
       typeStatus = false;
       params = {
@@ -101,14 +99,14 @@ var globalCount = 0;
     }
   
     $.ajax({
-      url : 'selectLikeBlogListByPage',
+      url : 'selectLikeActivityListByPage',
       type : 'get',
       data : params,
       dataType : 'json',
       success : function(data) {
         var blogList = '';
         var page = data.pageInfo;
-        var data = data.blogList;
+        var data = data.activityList;
         if (data.length > 0) {
           var parm = "";
           var arr = new Array();
@@ -123,24 +121,7 @@ var globalCount = 0;
               } else {
                 keyword = data[i].keyword;
               }
-            }
-           /* blogList += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
-            + data[i].title
-            + '</a></h3><span class="blogpic imgscale"><a href="find/' + id + '.html" title=""><img src="' + data[i].images + '"  /></a></span><p class="blogtext">'
-            + data[i].introduction
-            + '</p><div class="autor"><span class="lm f_l"><a href="javascript:void(0);">' + data[i].type.typename + '</a></span><span class="lm f_l"><a href="javascript:void(0);">'
-            + keyword
-            + '</a></span><span class="dtime f_l">'
-            + Format(data[i].addtime, "yyyy-MM-dd")
-            + '</span><span class="viewnum f_l">浏览<b>（<a href="javascript:void(0);">'
-            + data[i].clicknum
-            + '</a></b>）</span><span class="pingl f_l">评论（<b><a class='
-            + data[i].id
-            + ' href="javascript:void(0);">'
-            + data[i].commentnum
-            + '</a></b>）</span><span class="f_r"><a href="find/' + id + '.html" class="more">阅读原文>></a></span></div></li>'
-         */
-            blogList += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
+            }activityList += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
             + data[i].title
             + '</a></h3><span class="blogpic imgscale"><a href="find/' + id + '.html" title=""><img src="' + data[i].images + '"  /></a></span><p class="blogtext">'
             + data[i].introduction
@@ -151,7 +132,6 @@ var globalCount = 0;
             + '</span><span  class="clicknum">浏览('
             + data[i].clicknum
             + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">阅读原文</a></span></li>'
-          
           }
           var p = {
             client_id : 'cytzg9rLH',
@@ -174,7 +154,7 @@ var globalCount = 0;
             }
           });
         } else {
-          blogList = "<h1 style='font-size:110px;text-align:center;margin:20px;'>404</h1><h3 style='text-align:center;' class='font-bold'>抱歉，你所访问的资源不存在~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
+            activityList = "<h1 style='font-size:110px;text-align:center;margin:20px;'>404</h1><h3 style='text-align:center;' class='font-bold'>抱歉，你所访问的资源不存在~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
         }
         if (page.pageNum >= 2) {
           $(".newblogs").find("ul").append(blogList);
@@ -281,14 +261,14 @@ var globalCount = 0;
   }
   
   //初始化所有类别信息
-  var initBlogType = function() {
+  var initActivityType = function() {
     //查询出文章类别
     //设置参数，表示查询所有的类别
     var params = {
       "data" : "all"
     };
     $.ajax({
-      url : 'selectBlogType',
+      url : 'selectActivityType',
       type : 'post',
       data : params,
       dataType : 'json',
@@ -296,8 +276,7 @@ var globalCount = 0;
         var typeName = '';
         for (var i = 0; i < data.length; i++) {
           var time = i * 0.03;
-          // <li style="animation-delay:'+time+'s" class="animated fadeIn" style="animation-delay:'+time+'s" class="animated fadeIn"><a style="padding: 5px;margin-right: 3px;border: none; background-color: #f1f1f1;" onclick="searchType('+data[i].id+',\''+data[i].typename+'\')" href="javascript:void(0);"> <i class="fa fa-tag"></i>'+data[i].typename+'</a></li>
-          typeName += '<a style="animation-delay:' + time + 's" class="animated fadeIn" onclick="searchType(' + data[i].id + ',\'' + data[i].typename + '\')" href="javascript:void(0);">' + data[i].typename + '</a> '
+          typeName += '<a style="animation-delay:' + time + 's class="animated fadeIn" onclick="searchType(' + data[i].id + ',\'' + data[i].typename + '\')" href="javascript:void(0);">' + data[i].typename + '</a> '
         }
         var length = '';
         var keyTitle = '';
@@ -346,13 +325,13 @@ var globalCount = 0;
       isrecommend : 1 //1 表示推荐
     };
     $.ajax({
-      url : 'selectGroupLikeBlogListByPage',
+      url : 'selectGroupLikeActivityListByPage',
       type : 'get',
       data : params,
       dataType : 'json',
       success : function(data) {
-        var likeBlog_1 = '';
-        var likeBlog_2 = '';
+        var likeActivity_1 = '';
+        var likeActivity_2 = '';
         var data = data.blogList;
         var time = '';
   
@@ -363,9 +342,9 @@ var globalCount = 0;
           var id = data[i].id.toString(8) * data[i].id;
           time = i * 0.03;
           if (i == 1) {
-            likeBlog_1 = '<i ><a target="_blank" href="find/' + id + '.html"><img src="' + data[i].images + '"></i><p>' + data[i].title + '</p></a>'
+            likeActivity_1 = '<i ><a target="_blank" href="find/' + id + '.html"><img src="' + data[i].images + '"></i><p>' + data[i].title + '</p></a>'
           } else {
-            likeBlog_2 += '<li style="animation-delay:' + time + 's" class="animated fadeIn"> <i><img src="' + data[i].images + '"></i><p><a href="find/' + id + '.html">' + data[i].title + '</a></p><span>[' + Format(data[i].addtime, "yyyy-MM-dd") + ']</span> </li>';
+            likeActivity_2 += '<li style="animation-delay:' + time + 's class="animated fadeIn"> <i><img src="' + data[i].images + '"></i><p><a href="find/' + id + '.html">' + data[i].title + '</a></p><span>[' + Format(data[i].addtime, "yyyy-MM-dd") + ']</span> </li>';
           }
         }
         // 初始化数据

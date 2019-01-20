@@ -116,7 +116,7 @@
 
     <a href="#" class="top cd-top animated ">Top</a>
   </article>
-  
+
   <!-- 全局js -->
   <script src="${pageContext.request.contextPath}/js/page/index.js"></script>
   <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>

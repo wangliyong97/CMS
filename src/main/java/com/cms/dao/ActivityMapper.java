@@ -8,4 +8,8 @@ import java.util.Map;
 public interface ActivityMapper {
 
     List<Activity> selectGroupLikeActivityListByPage(Map<String, Object> map);
+
+    List<Activity> selectLikeActivityListByPageWithBlobs(Map<String, Object> map);
+
+    List<Activity> selectActivityByAllType();
 }

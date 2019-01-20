@@ -12,4 +12,8 @@ import java.util.Map;
 
 public interface ActivityService {
     List<Activity> selectGroupLikeActivityListByPage(Map<String, Object> map);
+
+    List<Activity> selectLikeActivityListByPageWithBlobs(Map<String, Object> map);
+
+    Map<String,List<Activity>> selectActivityByAllType();
 }

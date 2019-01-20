@@ -33,7 +33,6 @@
     content
   </sql>
 
-
   <select id="selectGroupLikeActivityListByPage" parameterType="Map" resultMap="ResultMapWithBLOBs">
     select <include refid="Base_Column_List" />
     from activity
@@ -64,4 +63,52 @@
     </if>
     DESC
   </select>
+
+    <select id="selectLikeActivityListByPageWithBlobs" parameterType="Map" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        from activity
+        <where>
+            <if test="isTop!=null and isTop!=''">
+                and isTop=#{isTop}
+            </if>
+            <if test="type_id!=null and type_id!=''">
+                and type_id=#{type_id}
+            </if>
+            <if test="status!=null and status!=''">
+                and status=#{status}
+            </if>
+            <if test="isRecommend!=null and isRecommend!=''">
+                and isRecommend=#{isRecommend}
+            </if>
+            <if test="addTime!=null and addTime!=''">
+                and DATE_FORMAT(addTime,'%Y-%m-%d')=#{addTime}
+            </if>
+            <if test="title!=null and title!=''">
+                and ( title like CONCAT(CONCAT('%', #{title}), '%') or keyword like
+                CONCAT(CONCAT('%', #{keyword}), '%') or introduction like
+                CONCAT(CONCAT('%', #{introduction}), '%') or content like
+                CONCAT(CONCAT('%', #{content}), '%'))
+            </if>
+        </where>
+        ORDER BY
+        <if test="sort!=null and sort!=''">
+            #{sort}
+        </if>
+        DESC
+    </select>
+    <select id="selectActivityByAllType" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        from
+        activity AS a
+        where
+        (select
+        COUNT(*)
+        from
+        activity AS b
+        where
+        <![CDATA[b.`status`=1 AND b.type_id = a.type_id AND b.clickNum >= a.clickNum) <= 6 AND `type_id` != 4 AND
+	         `status` = 1]]> ORDER BY a.type_id DESC,a.clickNum DESC
+    </select>
 </mapper>
