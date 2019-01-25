@@ -11,8 +11,8 @@ setTimeout(function() {
 }, 100);
 
 $(document).ready(function() {
-	initBlogCountBystatus();
-	initBlogType();
+	initActivityCountBystatus();
+	initActivityType();
 	//初始化富文本
 	$('#summernote').summernote({
 		height : 400, //初始化默认高度    
@@ -34,14 +34,14 @@ var returnAllCount = function() {
 	}
 }
 
-var initBlogType = function() {
-	//查询出文章类别
+var initActivityType = function() {
+	//查询出活动类别
 	//设置参数，表示查询所有的类别
 	var params = {
 		"data" : "all"
 	};
 	$.ajax({
-		url : '../selectBlogType',
+		url : '../selectActivityType',
 		type : 'post',
 		data : params,
 		dataType : 'json',
@@ -51,21 +51,10 @@ var initBlogType = function() {
 				.html("");
 			var typeName = '';
 			var typeNameAndNum = '';
-			var circle = new Array("text-navy",
-				"text-danger",
-				" text-info",
-				"text-primary",
-				"text-warning");
-			var label = new Array(
-				"label-primary",
-				"label-danger",
-				" label-info",
-				"label-success",
-				"label-warning");
+			var circle = new Array("text-navy", "text-danger", " text-info", "text-primary", "text-warning");
+			var label = new Array("label-primary", "label-danger", " label-info", "label-success", "label-warning");
 			for (var i = 0; i < data.length; i++) {
-				typeName += '<option value="' + data[i].id + '">'
-					+ data[i].typename
-					+ '</option>';
+				typeName += '<option value="' + data[i].id + '">' + data[i].typename + '</option>';
 				typeNameAndNum += '<li><a href="javascript:void(0);"> <i class="fa fa-circle '
 					+ circle[i % 5]
 					+ '"></i> '
@@ -74,7 +63,7 @@ var initBlogType = function() {
 					+ label[i % 5]
 					+ ' pull-right">'
 					+ data[i].num
-					+ ' 篇</span></a></li>'
+					+ ' 场</span></a></li>'
 			}
 			// 初始化数据
 			$(".form-horizontal").find(
@@ -91,29 +80,28 @@ var initBlogType = function() {
 	returnAllCount();
 }
 
-
-var initBlogCountBystatus = function() {
+var initActivityCountBystatus = function() {
 	//初始化博客数目
 	$.ajax({
-		url : '../selectBlogListByStatus',
+		url : '../selectActivityListByStatus',
 		type : 'post',
 		dataType : 'json',
 		success : function(data) {
 			for (var i = 0; i < data.list.length; i++) {
 				if (data.list[i].status == -1) {
 					$(".s-2").html(
-						data.list[i].count + '篇');
+						data.list[i].count + '场');
 				} else if (data.list[i].status == 1) {
 					$(".s-1").html(
-						data.list[i].count + '篇');
+						data.list[i].count + '场');
 				} else if (data.list[i].status == 2) {
 					$(".s-3").html(
-						data.list[i].count + '篇');
+						data.list[i].count + '场');
 				}
 			}
 		},
 		error : function() {
-			swal("初始化博客状态错误", "请重新操作", "error");
+			swal("初始化活动状态错误", "请重新操作", "error");
 		}
 	});
 	globalCount++;
@@ -219,7 +207,7 @@ var prevBlog = function() {
 		$(this).attr("id", 'nav1_' + topNum + '');
 		topNum++;
 	});
-	var add = '<a  class="btn btn-white" href="javascript:void(0);" onclick="addBlog(1)">发表</a>';
+	var add = '<a  class="btn btn-white" href="javascript:void(0);" onclick="addActivity(1)">发表</a>';
 	$(".modal-footer").find(".add").html(add);
 	$('pre').each(function(i, block) {
 		hljs.highlightBlock(block);
@@ -227,10 +215,10 @@ var prevBlog = function() {
 
 };
 
-var addBlog = function(id) {
-	var prarm = '新增了一篇博客';
+var addActivity = function(id) {
+	var prarm = '新增了一场活动';
 	if (id == -1) {
-		prarm = '将博客放入<span class="text-navy">草稿箱</span>';
+		prarm = '将活动放入<span class="text-navy">草稿箱</span>';
 	}
 	var params = {
 		'title' : $("#title").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
@@ -243,14 +231,14 @@ var addBlog = function(id) {
 		'status' : id
 	};
 	$.ajax({
-		url : "../addBlog",
+		url : "../addActivity",
 		type : "POST",
 		data : params,
 		dataType : 'json',
 		success : function(data) {
 			if (data.status == 200) {
-				initBlogCountBystatus();
-				initBlogType();
+				initActivityCountBystatus();
+				initActivityType();
 				$("#myModal").modal('hide');
 				if (id == 1) {
 					swal("发布成功", "博客已在前端展示", "success");
@@ -283,7 +271,7 @@ var addBlog = function(id) {
 //只有验证通过才能执行 添加
 $("#add_draft,#add_draft2").click(function() {
   $("#prev2").click();
-  addBlog(-1);
+    addActivity(-1);
 });
 
 //只有验证通过才能执行 预览

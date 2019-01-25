@@ -16,7 +16,7 @@
       <result column="addTime" jdbcType="TIMESTAMP" property="addtime" />
       <result column="status" jdbcType="INTEGER" property="status" />
       <!-- 配置 多对一 关联关系 -->
-      <association property="typeId" column="type_id"
+      <association property="type" column="type_id"
                    javaType="com.cms.pojo.ActivityType" select="com.cms.dao.ActivityTypeMapper.selectActivityTypeById">
       </association>
   </resultMap>
@@ -111,4 +111,82 @@
         <![CDATA[b.`status`=1 AND b.type_id = a.type_id AND b.clickNum >= a.clickNum) <= 6 AND `type_id` != 4 AND
 	         `status` = 1]]> ORDER BY a.type_id DESC,a.clickNum DESC
     </select>
+    <select id="selectActivityListByStatus" resultType="map">
+        SELECT status,
+        COUNT(*) AS count
+        FROM
+        activity
+        GROUP BY status
+    </select>
+    <update id="refreshCache" flushCache="true">
+        SELECT 1;
+    </update>
+    <select id="selectActivityById" parameterType="java.lang.Integer"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />,
+        <include refid="Blob_Column_List" />
+        from activity
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <update id="updateActivitySelective" parameterType="com.cms.pojo.Activity">
+        update activity
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="keyword != null">
+                keyword = #{keyword,jdbcType=VARCHAR},
+            </if>
+            <if test="images != null">
+                images = #{images,jdbcType=VARCHAR},
+            </if>
+            <if test="clicknum != null">
+                clickNum = #{clicknum,jdbcType=INTEGER},
+            </if>
+            <if test="commentnum != null">
+                commentNum = #{commentnum,jdbcType=INTEGER},
+            </if>
+            <if test="agreenum != null">
+                agreeNum = #{agreenum,jdbcType=INTEGER},
+            </if>
+            <if test="istop != null">
+                isTop = #{istop,jdbcType=INTEGER},
+            </if>
+            <if test="isrecommend != null">
+                isRecommend = #{isrecommend,jdbcType=INTEGER},
+            </if>
+            <if test="addtime != null">
+                addTime = #{addtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type_id = #{type.id,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="insertActivity" parameterType="com.cms.pojo.Activity">
+        insert into activity (id, title, introduction,
+        keyword, images, clickNum,
+        commentNum, agreeNum, isTop,
+        isRecommend, addTime,
+        status, type_id, content
+        )
+        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+        #{introduction,jdbcType=VARCHAR},
+        #{keyword,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 0,
+        0, 0, 0,
+        0, #{addtime,jdbcType=TIMESTAMP},
+        #{status,jdbcType=INTEGER}, #{type.id,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
+        )
+    </insert>
 </mapper>

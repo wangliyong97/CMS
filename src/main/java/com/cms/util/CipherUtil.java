@@ -80,20 +80,8 @@ public class CipherUtil {
         return hexDigits[d1] + hexDigits[d2];
     }
 
-//    public static void main(String[] args) {
-//        String pwd1 = "123456";
-//        String pwd2 = "";
-//        CipherUtil cipher = new CipherUtil();
-//        System.out.println("加密?" + pwd1);
-//
-//        pwd2 = cipher.generatePassword(pwd1);
-//        System.out.println("加密?" + pwd2);
-//
-//        System.out.print("验证:");
-//        if (cipher.validatePassword(pwd2, "admin")) {
-//            System.out.println("正确");
-//        } else {
-//            System.out.println("错误");
-//        }
-//    }
+    public static void main(String[] args) {
+        String str = "1";
+        System.out.println(generatePassword(str));
+    }
 }

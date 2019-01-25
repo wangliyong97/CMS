@@ -21,4 +21,8 @@ public interface ActivityTypeMapper {
     ActivityType selectActivityTypeById(Integer id);
 
     List<ActivityType> selectActivityTypeListByPage(Map<String, Object> map);
+
+    ActivityType selectActivityTypeByName(String typename);
+
+    int updateActivityTypeSelective(ActivityType record);
 }

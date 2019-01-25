@@ -13,8 +13,7 @@ setTimeout(function() {
 
 $(document).ready(function() {
 	//参数1表示当前页为1
-	initBlog(1);
-
+	initActivity(1);
 });
 
 var returnAllCount = function() {
@@ -25,7 +24,7 @@ var returnAllCount = function() {
 	}
 }
 
-var initBlog = function(pageNum) {
+var initActivity = function(pageNum) {
 	//查询出文章
 	//获取关键字，表示查询所有符合的记录
 	var params = {
@@ -36,24 +35,29 @@ var initBlog = function(pageNum) {
 		status : 1 //1 表示已发布
 	};
 	$.ajax({
-		url : '../selectGroupLikeBlogListByPage',
+		url : '../selectGroupLikeActivityListByPage',
 		type : 'post',
 		data : params,
 		dataType : 'json',
 		success : function(data) {
-			var blogList = '';
+			var activityList = '';
 			var page = data.pageInfo;
-			var data = data.blogList;
+			var data = data.activityList;
 			var circle = new Array("text-navy", "text-danger", " text-info", "text-primary", "text-warning");
 			for (var i = 0; i < data.length; i++) {
 				var time = 0.03 * i;
-				blogList += '<li class="animated fadeInDown" style="margin: 0 0 5px 0;animation-delay:' + time + 's""><a href="javascript:void(0);" style="padding: 0;" onclick="findBlogById(' + data[i].id + ')"> <i style="width:14px;height: 15px;" class="fa ' + circle[i % 5] + ' fa-circle "></i> ' + data[i].title + '</a></li>';
+                activityList += '<li class="animated fadeInDown" style="margin: 0 0 5px 0;' +
+					'animation-delay:' + time + 's">' +
+					'<a href="javascript:void(0);" style="padding: 0;' +
+					'" onclick="findActivityById(' + data[i].id + ')"> ' +
+					'<i style="width:14px;height: 15px;" class="fa ' + circle[i % 5] + ' fa-circle "></i>' +
+					' ' + data[i].title + '</a></li>';
 			}
 			if (page.pageNum >= 2) {
-				$(".category-list").append(blogList);
+				$(".category-list").append(activityList);
 			} else {
-				$(".category-list").html(blogList);
-				findBlogById(data[0].id);
+				$(".category-list").html(activityList);
+				findActivityById(data[0].id);
 				$(".allTotal").find("b").html(page.total);
 				$(".allPage").find("b").html(page.pages);
 			}
@@ -80,48 +84,47 @@ var pageNav = function(pageNum, allPage) {
 	} else if (pageNum > allPage) {
 		swal("查询失败", "当前为最后一页", "error");
 	} else {
-		initBlog(pageNum);
+		initActivity(pageNum);
 	}
 }
 
-var findBlogByKey = function() {
+var findActivityByKey = function() {
 	if ($(".form-group").find(".form-control").val() != "") {
-		initBlog(1);
+		initActivity(1);
 	}
-
 }
 
 
-var findBlogById = function(id) {
+var findActivityById = function(id) {
 	var params = {
 		id : id
 	};
 	$.ajax({
-		url : '../selectBlogById',
+		url : '../selectActivityById',
 		type : 'post',
 		data : params,
 		dataType : 'json',
 		success : function(data) {
 			//初始化右边详情内容
-			$(".newsview").find(".news_title").html(data.blog.title);
-			$(".newsview").find(".au02").html(Format(data.blog.addtime, "yyyy-MM-dd hh:mm:ss"));
-			$(".au03").find('b').html(data.blog.clicknum);
-			$(".news_about").find(".news_intr").html(data.blog.introduction);
+			$(".newsview").find(".news_title").html(data.activity.title);
+			$(".newsview").find(".au02").html(Format(data.activity.addtime, "yyyy-MM-dd hh:mm:ss"));
+			$(".au03").find('b').html(data.activity.clicknum);
+			$(".news_about").find(".news_intr").html(data.activity.introduction);
 			var keyword = '';
 			$(".newsview").find(".tags").html("");
-			if (data.blog.keyword != '' && data.blog.keyword != null) {
-				if (data.blog.keyword.search(';') != -1) {
+			if (data.activity.keyword != '' && data.activity.keyword != null) {
+				if (data.activity.keyword.search(';') != -1) {
 					var strs = new Array();
-					strs = data.blog.keyword.split(";");
+					strs = data.activity.keyword.split(";");
 					for (var i = 0; i < strs.length && strs[i] != ''; i++) {
 						keyword += '<a href="#">' + strs[i] + '</a>';
 					}
 				} else {
-					keyword = '<a href="#">' + data.blog.keyword + '</a>';
+					keyword = '<a href="#">' + data.activity.keyword + '</a>';
 				}
 			}
 			$(".newsview").find(".tags").append(keyword);
-			$(".newsview").find(".news_infos").html(data.blog.content);
+			$(".newsview").find(".news_infos").html(data.activity.content);
 			$('pre').each(function(i, block) {
 				hljs.highlightBlock(block);
 			});

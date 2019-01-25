@@ -1,5 +1,6 @@
 package com.cms.service.impl;
 
+import com.cms.dao.ActivityMapper;
 import com.cms.dao.ActivityTypeMapper;
 import com.cms.pojo.ActivityType;
 import com.cms.service.ActivityService;
@@ -18,8 +19,41 @@ import java.util.Map;
 public class ActivityTypeServiceImpl implements ActivityTypeService{
     @Autowired
     private ActivityTypeMapper activityTypeMapper;
+    @Autowired
+    private ActivityMapper activityMapper;
     @Override
     public List<ActivityType> selectActivityTypeListByPage(Map<String, Object> map) {
         return activityTypeMapper.selectActivityTypeListByPage(map);
+    }
+
+    @Override
+    public ActivityType selectActivityTypeById(Integer id) {
+        return activityTypeMapper.selectActivityTypeById(id);
+    }
+
+    @Override
+    public ActivityType selectActivityTypeByName(String typename) {
+        return activityTypeMapper.selectActivityTypeByName(typename);
+    }
+
+    @Override
+    public int updateActivityTypeSelective(ActivityType record) {
+        if(activityTypeMapper.updateActivityTypeSelective(record)!=0){
+            return activityMapper.refreshCache();
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteActivityTypeById(Integer id) {
+        if(activityTypeMapper.deleteByPrimaryKey(id)!=0){
+            return activityMapper.refreshCache();
+        }
+        return 0;
+    }
+
+    @Override
+    public int insertActivityType(ActivityType record) {
+        return activityTypeMapper.insertSelective(record);
     }
 }

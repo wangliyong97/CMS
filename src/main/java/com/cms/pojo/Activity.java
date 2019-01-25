@@ -35,11 +35,11 @@ public class Activity {
 
     private Integer status;
 
-    private ActivityType typeId;
+    private ActivityType type;
 
     private String content;
 
-    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, ActivityType typeId, String content) {
+    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, ActivityType type, String content) {
         this.id = id;
         this.title = title;
         this.introduction = introduction;
@@ -53,7 +53,7 @@ public class Activity {
         this.updatetime = updatetime;
         this.addtime = addtime;
         this.status = status;
-        this.typeId = typeId;
+        this.type = type;
         this.content = content;
     }
 
@@ -164,12 +164,12 @@ public class Activity {
         this.status = status;
     }
 
-    public ActivityType getTypeId() {
-        return typeId;
+    public ActivityType getType() {
+        return type;
     }
 
-    public void setTypeId(ActivityType typeId) {
-        this.typeId = typeId;
+    public void setType(ActivityType type) {
+        this.type = type;
     }
 
     public String getContent() {

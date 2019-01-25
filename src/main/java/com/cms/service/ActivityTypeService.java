@@ -11,4 +11,14 @@ import java.util.Map;
 public interface ActivityTypeService {
 
     List<ActivityType> selectActivityTypeListByPage(Map<String, Object> map);
+
+    ActivityType selectActivityTypeById(Integer id);
+
+    ActivityType selectActivityTypeByName(String typename);
+
+    int updateActivityTypeSelective(ActivityType record);
+
+    int deleteActivityTypeById(Integer id);
+
+    int insertActivityType(ActivityType record);
 }

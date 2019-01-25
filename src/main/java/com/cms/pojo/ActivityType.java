@@ -9,17 +9,16 @@ public class ActivityType {
 
     private Integer num;
 
-    private Date addtime;
+    private Date addTime;
 
-    public ActivityType(Integer id, String typename, Integer num, Date addtime) {
+    public ActivityType(Integer id, String typename, Integer num, Date addTime) {
         this.id = id;
         this.typename = typename;
         this.num = num;
-        this.addtime = addtime;
+        this.addTime = addTime;
     }
 
     public ActivityType() {
-        super();
     }
 
     public Integer getId() {
@@ -35,7 +34,7 @@ public class ActivityType {
     }
 
     public void setTypename(String typename) {
-        this.typename = typename == null ? null : typename.trim();
+        this.typename = typename;
     }
 
     public Integer getNum() {
@@ -46,11 +45,11 @@ public class ActivityType {
         this.num = num;
     }
 
-    public Date getAddtime() {
-        return addtime;
+    public Date getAddTime() {
+        return addTime;
     }
 
-    public void setAddtime(Date addtime) {
-        this.addtime = addtime;
+    public void setAddTime(Date addTime) {
+        this.addTime = addTime;
     }
 }

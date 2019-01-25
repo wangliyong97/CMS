@@ -47,8 +47,8 @@ public class ActivityController {
         if(activity.getIstop()!=null){
             map.put("isTop", activity.getIstop());
         }
-        if(activity.getTypeId()!=null){
-            map.put("type_id", activity.getTypeId());
+        if(activity.getType()!=null){
+            map.put("type_id", activity.getType().getId());
         }
         map.put("status", 1);
         if(activity.getStatus()!=null){
@@ -98,8 +98,8 @@ public class ActivityController {
         if(activity.getIstop()!=null){
             map.put("isTop", activity.getIstop());
         }
-        if(activity.getTypeId()!=null){
-            map.put("type_id", activity.getTypeId());
+        if(activity.getType()!=null){
+            map.put("type_id", activity.getType().getId());
         }
         map.put("status", 1);
         if(activity.getStatus()!=null){

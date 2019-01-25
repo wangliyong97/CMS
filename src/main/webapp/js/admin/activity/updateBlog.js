@@ -268,7 +268,7 @@ var updateBlog = function(id) {
 					timer : 1500,
 				});
 				setTimeout(function() {
-					window.location.href = "../blog/blogTable.jsp";
+					window.location.href = "../blog/activityTable.jsp";
 				}, 1500);
 			} else {
 				swal("更新失败", data.msg, "error");

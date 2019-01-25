@@ -11,7 +11,7 @@ setTimeout(function() {
 }, 100);
 
 $(document).ready(function() {
-	selectBlog();
+	selectActivity();
 });
 
 var returnAllCount = function() {
@@ -32,7 +32,7 @@ $("#toolbar .type").click(function() {
 		isrecommend = 1;
 	if ($(this).val() == 4)
 		istop = 1;
-	var params = $('#allBlog').bootstrapTable('getOptions')
+	var params = $('#allActivity').bootstrapTable('getOptions')
 	params.queryParams = function(params) {
 		return {
 			pageSize : params.limit,
@@ -44,21 +44,21 @@ $("#toolbar .type").click(function() {
 			istop : istop,
 		}
 	}
-	$('#allBlog').bootstrapTable('refresh', params)
+	$('#allActivity').bootstrapTable('refresh', params)
 });
 
 //实现点击类别传参数到后台
 $("#toolbar .btn-group .btn").click(function() {
-	selectBlogType();
+	selectActivityType();
 });
 
 //初始化类别信息
-var selectBlogType = function() {
+var selectActivityType = function() {
 	var params = {
 		"data" : "all"
 	};
 	$.ajax({
-		url : '../selectBlogType',
+		url : '../selectActivityType',
 		type : 'post',
 		data : params,
 		dataType : 'json',
@@ -79,7 +79,7 @@ var selectBlogType = function() {
 
 //传参数类别ID
 var sendType = function(type_id) {
-	var params = $('#allBlog').bootstrapTable('getOptions')
+	var params = $('#allActivity').bootstrapTable('getOptions')
 	params.queryParams = function(params) {
 		return {
 			pageSize : params.limit,
@@ -89,14 +89,14 @@ var sendType = function(type_id) {
 			'type.id' : type_id,
 		}
 	}
-	$('#allBlog').bootstrapTable('refresh', params)
+	$('#allActivity').bootstrapTable('refresh', params)
 }
 
 //初始化表格数据
-var selectBlog = function() {
-	$('#allBlog').bootstrapTable({
+var selectActivity = function() {
+	$('#allActivity').bootstrapTable({
 		method : 'post',
-		url : "../selectGroupLikeBlogListByPage",
+		url : "../selectGroupLikeActivityListByPage",
 		dataType : "json",
 		striped : false, //使表格带有条纹  
 		pagination : true, //在表格底部显示分页工具栏  
@@ -218,7 +218,7 @@ var selectBlog = function() {
 			},
 			{
 				title : '发表时间',
-				field : 'addtime',
+				field : 'addTime',
 				align : 'center',
 				width : '17%',
 				formatter : function(value, row, index) {
@@ -232,17 +232,17 @@ var selectBlog = function() {
 				width : '15%',
 				formatter : function(value, row, index) {
 					//查看	
-					var a = '<a  class=" btn-sm btn-info" href="#" data-toggle="modal" data-target="#myModal" onclick="selectBlogById(\'' + row.id + '\')">查看</a> ';
+					var a = '<a  class=" btn-sm btn-info" href="#" data-toggle="modal" data-target="#myModal" onclick="selectActivityById(\'' + row.id + '\')">查看</a> ';
 					//编辑
 					var b = '<a  class=" btn-sm btn-primary"  href="../blog/updateBlog.jsp?id=' + row.id + '"><i class="fa fa-edit" ></i> 编辑</a> ';
 					//从回收站还原
 					var c = '<a  class=" btn-sm btn-danger"  onclick="operation(' + row.id + ',\'还原\')"><i class="fa fa-share-square-o" ></i> 还原</a> ';
 					//取消推荐
-					var d = '<a  class=" btn-sm btn-primary"  onclick="operation(' + row.id + ',\'取推荐\')">取 推荐</a> ';
+					var d = '<a  class=" btn-sm btn-primary"  onclick="operation(' + row.id + ',\'取推荐\')">取消推荐</a> ';
 					//从草稿还原
 					var e = '<a  class=" btn-sm btn-danger"  onclick="operation(' + row.id + ',\'发表\')"><i class="fa fa-share-square-o" ></i> 发表</a> ';
 					//取消置顶
-					var f = '<a  class=" btn-sm btn-success"  onclick="operation(' + row.id + ',\'取置顶\')">取 置顶</a> ';
+					var f = '<a  class=" btn-sm btn-success"  onclick="operation(' + row.id + ',\'取置顶\')">取消置顶</a> ';
 					if (row.status == 2) {
 						return a + c;
 					} else if (row.status == 1) {
@@ -326,10 +326,9 @@ var formatTableUnit = function(value, row, index) {
 	};
 };
 
-
 //获取行号  
 var getSelectRows = function(status) {
-	var date = $("#allBlog").bootstrapTable('getSelections');
+	var date = $("#allActivity").bootstrapTable('getSelections');
 	var idArray = new Array();
 	var title = '';
 	var text = '';
@@ -355,17 +354,17 @@ var getSelectRows = function(status) {
 		if (status == 1) {
 			for (var i = 0; i < date.length; i++) {
 				idArray[i] = date[i].id;
-				operationBlog(idArray[i], 2, null, null); //参数2表示  放入回收站
+				operationActivity(idArray[i], 2, null, null); //参数2表示  放入回收站
 			}
 		} else if (status == 2) {
 			for (var i = 0; i < date.length; i++) {
 				idArray[i] = date[i].id;
-				operationBlog(idArray[i], null, null, 1); // 设置为置顶
+				operationActivity(idArray[i], null, null, 1); // 设置为置顶
 			}
 		} else if (status == 3) {
 			for (var i = 0; i < date.length; i++) {
 				idArray[i] = date[i].id;
-				operationBlog(idArray[i], null, 1, null); //设置为推荐
+				operationActivity(idArray[i], null, 1, null); //设置为推荐
 			}
 		}
 	});
@@ -397,19 +396,19 @@ var operation = function(id, op) {
 		closeOnConfirm : false
 	}, function() {
 		if (op == "还原") {
-			operationBlog(id, 1, null, null)
+			operationActivity(id, 1, null, null)
 		} else if (op == "取推荐") {
-			operationBlog(id, null, 0, null)
+			operationActivity(id, null, 0, null)
 		} else if (op == "发表") {
-			operationBlog(id, 1, null, null)
+			operationActivity(id, 1, null, null)
 		} else if (op == "取置顶") {
-			operationBlog(id, null, null, 0)
+			operationActivity(id, null, null, 0)
 		}
 	});
 };
 
 //博客的操作
-var operationBlog = function(idArray, status, isrecommend, isTop) {
+var operationActivity = function(idArray, status, isrecommend, isTop) {
 	var param = '';
 	var prarm = '';
 	if (status != null) {
@@ -451,14 +450,14 @@ var operationBlog = function(idArray, status, isrecommend, isTop) {
 		};
 	}
 	$.ajax({
-		url : '../updateBlog',
+		url : '../updateActivity',
 		type : 'post',
 		data : param,
 		dataType : 'json',
 		success : function(data) {
 			//查询成功
 			if (data.status == 200) {
-				$("#allBlog").bootstrapTable('refresh');
+				$("#allActivity").bootstrapTable('refresh');
 				swal("更新成功", "", "success");
 			} else {
 				swal("更新失败", data.msg, "error");
@@ -499,38 +498,38 @@ function Format(datetime, fmt) {
 }
 
 //查看博客内容
-function selectBlogById(blogId) {
+function selectActivityById(activityId) {
 	var param = {
-		id : blogId
+		id : activityId
 	}
 	$.ajax({
-		url : '../selectBlogById',
+		url : '../selectActivityById',
 		type : 'post',
 		data : param,
 		dataType : 'json',
 		success : function(data) {
 			//查询成功
 			if (data.status == 200) {
-				$(".newsview").find(".news_title").html(data.blog.title);
-				$(".newsview").find(".au02").html(Format(data.blog.addtime, "yyyy-MM-dd hh:mm:ss"));
-				$(".au03").find('b').html(data.blog.clicknum);
-				$(".news_about").find(".news_intr").html(data.blog.introduction);
+				$(".newsview").find(".news_title").html(data.activity.title);
+				$(".newsview").find(".au02").html(Format(data.activity.addTime, "yyyy-MM-dd hh:mm:ss"));
+				$(".au03").find('b').html(data.activity.clicknum);
+				$(".news_about").find(".news_intr").html(data.activity.introduction);
 				var keyword = '';
 				$(".newsview").find(".tags").html("");
-				if (data.blog.keyword != '' && data.blog.keyword != null) {
-					if (data.blog.keyword.search(';') != -1) {
+				if (data.activity.keyword != '' && data.activity.keyword != null) {
+					if (data.activity.keyword.search(';') != -1) {
 						var strs = new Array();
-						strs = data.blog.keyword.split(";");
+						strs = data.activity.keyword.split(";");
 						for (var i = 0; i < strs.length && strs[i] != ''; i++) {
 							keyword += '<a href="#">' + strs[i] + '</a>';
 						}
 					} else {
-						keyword = '<a href="#">' + data.blog.keyword + '</a>';
+						keyword = '<a href="#">' + data.activity.keyword + '</a>';
 					}
 				}
 				$(".newsview").find(".tags").append(keyword);
-				$(".newsview").find(".news_infos").html(data.blog.content);
-				var update = '<a  class="J_menuItem btn btn-white" href="../blog/updateBlog.jsp?id=' + data.blog.id + '">编辑</a>';
+				$(".newsview").find(".news_infos").html(data.activity.content);
+				var update = '<a  class="J_menuItem btn btn-white" href="../blog/updateBlog.jsp?id=' + data.activity.id + '">编辑</a>';
 				$(".modal-footer").find(".update").html(update);
 			}
 			$('pre').each(function(i, block) {

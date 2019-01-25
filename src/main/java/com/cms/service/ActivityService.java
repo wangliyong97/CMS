@@ -16,4 +16,12 @@ public interface ActivityService {
     List<Activity> selectLikeActivityListByPageWithBlobs(Map<String, Object> map);
 
     Map<String,List<Activity>> selectActivityByAllType();
+
+    List<?>  selectActivityListByStatus();
+
+    Activity selectActivityById(Integer id);
+
+    int updateActivitySelective(Activity activity);
+
+    int insertActivity(Activity activity);
 }

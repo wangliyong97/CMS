@@ -10,10 +10,10 @@ setTimeout(function() {
 	$('body').css('opacity', '1');
 	$('body').attr("class", "gray-bg") //添加样式
 }, 100);
-$(document).ready(function() {
 
+$(document).ready(function() {
 	initType();
-	selectBlogType();
+    selectActivityType();
 });
 
 var returnAllCount = function() {
@@ -31,7 +31,7 @@ var initType = function() {
 		"data" : "all"
 	};
 	$.ajax({
-		url : '../selectBlogType',
+		url : '../selectActivityType',
 		type : 'post',
 		data : params,
 		dataType : 'json',
@@ -40,7 +40,7 @@ var initType = function() {
 			var circle = new Array("text-navy", "text-danger", " text-info", "text-primary", "text-warning");
 			var label = new Array("label-primary", "label-danger", " label-info", "label-success", "label-warning");
 			for (var i = 0; i < data.length; i++) {
-				typeNameAndNum += '<li><a href="javascript:void(0);"> <i class="fa fa-circle ' + circle[i % 5] + '"></i> ' + data[i].typename + '<span class="label ' + label[i % 5] + ' pull-right">' + data[i].num + ' 篇</span></a></li>'
+				typeNameAndNum += '<li><a href="javascript:void(0);"> <i class="fa fa-circle ' + circle[i % 5] + '"></i> ' + data[i].typename + '<span class="label ' + label[i % 5] + ' pull-right">' + data[i].num + ' 场</span></a></li>'
 			}
 			// 初始化数据
 			$(".category-list").html(typeNameAndNum);
@@ -54,10 +54,10 @@ var initType = function() {
 }
 
 //初始化表格数据
-var selectBlogType = function() {
-	$('#allBlogType').bootstrapTable({
+var selectActivityType = function() {
+	$('#allActivityType').bootstrapTable({
 		method : 'post',
-		url : "../selectBlogTypeListByPage",
+		url : "../selectActivityTypeListByPage",
 		dataType : "json",
 		striped : false, //使表格带有条纹  
 		pagination : true, //在表格底部显示分页工具栏  
@@ -136,14 +136,12 @@ var selectBlogType = function() {
 					return type;
 				}
 			},
-
 			{
 				title : '数量',
 				field : 'num',
 				align : 'center',
 				width : '8%',
 			},
-
 			{
 				title : '发表时间',
 				field : 'addTime',
@@ -159,8 +157,8 @@ var selectBlogType = function() {
 				align : 'center',
 				width : '12%',
 				formatter : function(value, row, index) {
-					var a = '<a  class=" btn-sm btn-info" data-toggle="modal" data-target="#modal-form" onclick="selectBlogTypeById(' + row.id + ')"><i class="fa fa-edit" ></i> 编辑</a> ';
-					var b = '<a  class=" btn-sm btn-danger"   onclick="deleteBlogType(' + row.id + ',\'' + row.typename + '\')"><i class="fa fa-trash-o" ></i> 删除</a> ';
+					var a = '<a  class=" btn-sm btn-info" data-toggle="modal" data-target="#modal-form" onclick="selectActivityTypeById(' + row.id + ')"><i class="fa fa-edit" ></i> 编辑</a> ';
+					var b = '<a  class=" btn-sm btn-danger"   onclick="deleteActivityType(' + row.id + ',\'' + row.typename + '\')"><i class="fa fa-trash-o" ></i> 删除</a> ';
 					return a + b;
 				}
 			}
@@ -169,7 +167,6 @@ var selectBlogType = function() {
 	globalCount++;
 	returnAllCount();
 }
-
 
 //传参数到后台
 function queryParams(params) {
@@ -181,19 +178,19 @@ function queryParams(params) {
 	};
 }
 
-var selectBlogTypeById = function(id) {
+var selectActivityTypeById = function(id) {
 	var params = {
 		id : id
 	};
 	$.ajax({
-		url : '../selectBlogTypeById',
+		url : '../selectActivityTypeById',
 		type : 'post',
 		data : params,
 		dataType : 'json',
 		success : function(data) {
 			if (data.status == 200) {
-				$("#oldTypeName").html(data.blogType.typename);
-				var updateButton = ' <button class="btn btn-sm btn-primary pull-right m-t-n-xs" onclick="updateBlogType(' + data.blogType.id + ',\'' + data.blogType.typename + '\')" type="button"><strong>提交</strong></button>'
+				$("#oldTypeName").html(data.activityType.typename);
+				var updateButton = ' <button class="btn btn-sm btn-primary pull-right m-t-n-xs" onclick="updateActivityType(' + data.activityType.id + ',\'' + data.activityType.typename + '\')" type="button"><strong>提交</strong></button>'
 				$("#update").html(updateButton);
 			} else if (data.status == 0) {
 				swal("查询失败", "不存在该类别信息", "error");
@@ -206,7 +203,7 @@ var selectBlogTypeById = function(id) {
 
 };
 
-var updateBlogType = function(id, typename) {
+var updateActivityType = function(id, typename) {
 	var params = {
 		'id' : id,
 		'typename' : $("#newTypeName").val(),
@@ -214,7 +211,7 @@ var updateBlogType = function(id, typename) {
 	};
 	if ($("#commentForm2").valid()) {
 		$.ajax({
-			url : '../updateBlogType',
+			url : '../updateActivityType',
 			type : 'post',
 			data : params,
 			dataType : 'json',
@@ -222,7 +219,7 @@ var updateBlogType = function(id, typename) {
 				if (data.status == 200) {
 					$("#modal-form").modal('hide');
 					initType();
-					$("#allBlogType").bootstrapTable('refresh');
+					$("#allActivityType").bootstrapTable('refresh');
 					$(".tip2").html("");
 					$("#newTypeName").val("");
 					swal("更新成功", "", "success");
@@ -240,10 +237,10 @@ var updateBlogType = function(id, typename) {
 
 }
 
-var deleteBlogType = function(id, name) {
+var deleteActivityType = function(id, name) {
 	var params = {
 		id : id,
-		prarm : '删除的博客类别为<span class="text-info">#' + name + '#</span>',
+		prarm : '删除的活动类别为<span class="text-info">#' + name + '#</span>',
 	};
 	swal({
 		title : "确定要删除该类别吗",
@@ -256,13 +253,13 @@ var deleteBlogType = function(id, name) {
 	}, function() {
 
 		$.ajax({
-			url : '../deleteBlogType',
+			url : '../deleteActivityType',
 			type : 'post',
 			data : params,
 			dataType : 'json',
 			success : function(data) {
 				if (data.status == 200) {
-					$("#allBlogType").bootstrapTable('refresh');
+					$("#allActivityType").bootstrapTable('refresh');
 					initType();
 					swal("删除成功！", "", "success");
 				} else if (data.status == 2) {
@@ -276,31 +273,29 @@ var deleteBlogType = function(id, name) {
 			}
 		});
 	});
-
-
 }
 
 //只有验证通过才能执行 添加
 $("#addType").click(function() {
 	if ($("#commentForm1").valid()) {
-		addBlogType();
+        addActivityType();
 	}
 });
 
-var addBlogType = function() {
+var addActivityType = function() {
 	var params = {
 		'typename' : $("#typename").val(),
-		prarm : '新增的博客类别为<span class="text-info">#' + $("#typename").val() + '#</span>',
+		prarm : '新增的活动类别为<span class="text-info">#' + $("#typename").val() + '#</span>',
 	};
 	$.ajax({
-		url : '../addBlogType',
+		url : '../addActivityType',
 		type : 'post',
 		data : params,
 		dataType : 'json',
 		success : function(data) {
 			if (data.status == 200) {
 				initType();
-				$("#allBlogType").bootstrapTable('refresh');
+				$("#allActivityType").bootstrapTable('refresh');
 				$(".tip").html("");
 				$("#typename").val("");
 				swal("添加成功", "", "success");
@@ -313,6 +308,7 @@ var addBlogType = function() {
 		}
 	});
 };
+
 //格式化时间
 function Format(datetime, fmt) {
 	if (parseInt(datetime) == datetime) {

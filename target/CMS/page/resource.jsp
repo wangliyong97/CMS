@@ -2,12 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>资源页_个人博客 - 一个在Java道路上的技术员个人博客网站</title>
  <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico"> 
 <meta name="keywords" content="个人博客,罗廷方个人博客,罗廷方" />

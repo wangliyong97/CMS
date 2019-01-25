@@ -1,8 +1,14 @@
 package com.cms.controller.backend;
 
+import com.cms.annotation.SystemLog;
 import com.cms.service.IUserManagerService;
 import com.cms.util.CipherUtil;
+import com.cms.util.ConstantUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.ShiroException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,50 +23,35 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by wangliyong on 2019/1/9.
  */
-
+@Slf4j
 @Controller
-@RequestMapping("/manager/")
 public class UserManagerController {
     @Autowired
     private IUserManagerService iUserManagerService;
 
-    /**
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @param model
-     * @return
-     */
-    @RequestMapping("login")
-    public String toLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Model model){
+    @RequestMapping("/login")
+    public String tologin(HttpServletRequest request, HttpServletResponse response, Model model){
         return "login";
     }
 
-    /**
-     *
-     * @param username
-     * @param password
-     * @param httpSession
-     * @param model
-     * @return
-     */
-    @RequestMapping("checkLogin")
-    public String login(String username, String password, HttpSession httpSession, Model model){
+    @RequestMapping("/checkLogin")
+    @SystemLog(description = ConstantUtil.LOGIN_IN,userType=ConstantUtil.USERTYPE_ADMIN)
+    public String login(String username,HttpSession session,String password,Model model) {
         String result = "";
-        //获取password后使用MD5进行加密
+        //取密码，并用MD5加密
         password = CipherUtil.generatePassword(password);
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         Subject currentUser = SecurityUtils.getSubject();
-        //使用shiro进行权限验证
         try {
-            if(currentUser.isAuthenticated()){
-                token.setRememberMe(true);
-                currentUser.login(token);
+            if (!currentUser.isAuthenticated()){//使用shiro来验证
+                token.setRememberMe(true);  //记住密码
+                currentUser.login(token);//验证角色和权限
             }
-            result = "manage/index";//验证成功
-            httpSession.setAttribute(username,username);
+            result = "admin/index";//验证成功
+            session.setAttribute("username", username);
         } catch (Exception e) {
-            result = "manage/login";
-            model.addAttribute("message","用户名或密码错误!");
+            result = "login";//验证失败
+            model.addAttribute("message", "用户名或密码错误");
         }
         return result;
     }

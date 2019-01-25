@@ -11,7 +11,7 @@ var globalCount = 0;
  
   var width = window.innerWidth || document.documentElement.clientWidth;
   if (width < 960) {
-    var pagenav = '<p style="text-align:center;margin:-5px auto 20px;"><a href="javascript:void(0);" onclick="initBlog()"><i class="fa fa-arrow-down"></i> 加载更多</a></p>';
+    var pagenav = '<p style="text-align:center;margin:-5px auto 20px;"><a href="javascript:void(0);" onclick="initActivity()"><i class="fa fa-arrow-down"></i> 加载更多</a></p>';
     $(".pageMin").html(pagenav);
     $(".tag").css('display', 'none');
   }
@@ -40,7 +40,7 @@ var globalCount = 0;
       }, 500);
     }
   });
-  var initBlog = function() {
+  var initActivity = function() {
     setTimeout(function() {
       initActivityListByPage(pageNext, "none", null);
     }, 100);

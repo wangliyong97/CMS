@@ -12,4 +12,14 @@ public interface ActivityMapper {
     List<Activity> selectLikeActivityListByPageWithBlobs(Map<String, Object> map);
 
     List<Activity> selectActivityByAllType();
+
+    List<?>  selectActivityListByStatus();
+
+    int refreshCache();
+
+    Activity selectActivityById(Integer id);
+
+    int updateActivitySelective(Activity record);
+
+    int insertActivity(Activity record);
 }

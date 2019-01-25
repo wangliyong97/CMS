@@ -4,40 +4,24 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-<title>博客类别</title>
+<title>活动类别</title>
 <meta name="keywords" content="">
-<meta name="description"
-	content="">
-
+<meta name="description" content="">
 <link rel="shortcut icon" href="favicon.ico">
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/bootstrap-table/bootstrap-table.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
 </head>
-
 <body class="white-bg" style="opacity:0">
 <div id="fakeloader"></div>
 	<div class="wrapper wrapper-content">
@@ -47,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="ibox-content mailbox-content">
 						<div class="file-manager">
 							<a class="btn btn-block btn-primary compose-mail"
-								href="javascript:void(0);">博客类别</a>
+								href="javascript:void(0);">活动类别</a>
 							<div class="space-25"></div>
 							<h5 class="tag-title">增加类别</h5>
 							<form role="form" class="form-inline" id="commentForm1">
@@ -74,9 +58,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-sm-9">
 				<div class="ibox float-e-margins">
 					<div class="mail-box-header">
-						<h2>博客类别</h2>
+						<h2>活动类别</h2>
 
-						<table id="allBlogType" data-mobile-responsive="true">
+						<table id="allActivityType" data-mobile-responsive="true">
 
 						</table>
 					</div>
@@ -109,21 +93,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 
-
-
 	<!-- 全局js -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-
-
 	<!-- 自定义js -->
 	<script src="${pageContext.request.contextPath}/js/content.js"></script>
 	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
-	<!-- iCheck -->
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
+
+    <!-- iCheck -->
+	<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
 	
 	<!-- jQuery Validation plugin javascript-->
     <script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
@@ -131,14 +111,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="${pageContext.request.contextPath}/js/plugins/validate/form-validate-demo.js"></script>
 	
 	<!-- Bootstrap table -->
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/admin/blog/blogType.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/admin/activity/activityType.js"></script>
 </body>
 
 </html>

@@ -6,16 +6,16 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<shiro name="user"></shiro>
 
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
-
-<title>博客后台 - 主页</title>
+<title>活动管理系统后台 - 主页</title>
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico"> 
 <meta name="keywords" content="">
 <meta name="description" content="">
@@ -27,11 +27,9 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/fakeLoader.css"
+<link href="${pageContext.request.contextPath}/css/fakeLoader.css"
 	rel="stylesheet">
 </head>
-
 <body class="fixed-sidebar full-height-layout white-bg"
 	style="overflow:hidden;">
 	<div id="fakeloader"></div>
@@ -49,7 +47,7 @@
 								src="${pageContext.request.contextPath}/images/photos2.jpg" /></span>
 							<a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
 								class="clear"> <span class="block m-t-xs"><strong
-										class="font-bold">罗廷方</strong></span> <span
+										class="font-bold">管理员</strong></span> <span
 									class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
 							</span>
 							</a>
@@ -75,21 +73,21 @@
 							class="nav-label">统计图表</span></a>
 						</li>
 					<li><a href="#"><i class="fa fa-book"></i> <span
-							class="nav-label">博客模块</span><span class="fa arrow"></span></a>
+							class="nav-label">活动模块</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 								<li><a class="J_menuItem"
-								href="${pageContext.request.contextPath}/admin/blog/blogTable.jsp">博客管理</a>
+								href="${pageContext.request.contextPath}/admin/blog/activityTable.jsp">活动管理</a>
 							</li>
 								
 							<li><a class="J_menuItem"
-								href="${pageContext.request.contextPath}/admin/blog/addBlog.jsp">写博客</a>
+								href="${pageContext.request.contextPath}/admin/blog/addActivity.jsp">编辑活动</a>
 							</li>
 							
 							<li><a class="J_menuItem"
-								href="${pageContext.request.contextPath}/admin/blog/findBlog.jsp">查询博客</a>
+								href="${pageContext.request.contextPath}/admin/blog/findActivity.jsp">查询活动</a>
 							</li>
 							<li><a class="J_menuItem"
-								href="${pageContext.request.contextPath}/admin/blog/blogType.jsp">类别</a>
+								href="${pageContext.request.contextPath}/admin/blog/activityType.jsp">类别</a>
 							</li>
 							
 

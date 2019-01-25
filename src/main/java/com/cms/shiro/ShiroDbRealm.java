@@ -3,6 +3,7 @@ package com.cms.shiro;
 import com.cms.pojo.BackendUser;
 import com.cms.service.IUserManagerService;
 import com.cms.util.CipherUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.cache.Cache;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 /**
  * Created by wangliyong on 2019/1/9.
  */
+@Slf4j
 public class ShiroDbRealm extends AuthorizingRealm {
     private static final String ALGORITHM = "MD5";
 
@@ -30,34 +32,16 @@ public class ShiroDbRealm extends AuthorizingRealm {
      * 验证登陆
      */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(
-            AuthenticationToken authcToken) throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
         BackendUser backendUser = iUserManagerService.findUserByLoginName(token.getUsername());
-        CipherUtil cipher = new CipherUtil();// MD5加密
+        CipherUtil cipher = new CipherUtil();    //MD5加密
         if (backendUser != null) {
-            return new SimpleAuthenticationInfo(backendUser.getUsername(),
-                    cipher.generatePassword(backendUser.getPassword()), getName());
+            return new SimpleAuthenticationInfo(backendUser.getUsername(), cipher.generatePassword(backendUser.getPassword()), getName());
         } else {
             throw new AuthenticationException();
         }
     }
-
-    /**
-     * 登陆成功之后，进行角色和权限验证
-     */
-	/*
-	 * protected AuthorizationInfo doGetAuthorizationInfo1(PrincipalCollection
-	 * principals) { 这里应该根据userName使用role和permission 的serive层来做判断，并将对应
-	 * 的权限加进来，下面简化了这一步 Set<String> roleNames = new HashSet<String>();
-	 * Set<String> permissions = new HashSet<String>();
-	 * roleNames.add("admin");//添加角色。对应到index.jsp
-	 * roleNames.add("administrator");
-	 * permissions.add("create");//添加权限,对应到index.jsp
-	 * permissions.add("login.do?main"); permissions.add("login.do?logout");
-	 * SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
-	 * info.setStringPermissions(permissions); return info; }
-	 */
 
     /**
      * 清除所有用户授权信息缓存.

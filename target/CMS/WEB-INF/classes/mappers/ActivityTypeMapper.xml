@@ -26,7 +26,7 @@
     insert into activity_type (id, typeName, num, 
       addTime)
     values (#{id,jdbcType=INTEGER}, #{typename,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
-      #{addtime,jdbcType=TIMESTAMP})
+      #{addTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.cms.pojo.ActivityType" >
     insert into activity_type
@@ -40,7 +40,7 @@
       <if test="num != null" >
         num,
       </if>
-      <if test="addtime != null" >
+      <if test="addTime != null" >
         addTime,
       </if>
     </trim>
@@ -54,8 +54,8 @@
       <if test="num != null" >
         #{num,jdbcType=INTEGER},
       </if>
-      <if test="addtime != null" >
-        #{addtime,jdbcType=TIMESTAMP},
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -68,8 +68,8 @@
       <if test="num != null" >
         num = #{num,jdbcType=INTEGER},
       </if>
-      <if test="addtime != null" >
-        addTime = #{addtime,jdbcType=TIMESTAMP},
+      <if test="addTime != null" >
+        addTime = #{addTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -78,7 +78,7 @@
     update activity_type
     set typeName = #{typename,jdbcType=VARCHAR},
       num = #{num,jdbcType=INTEGER},
-      addTime = #{addtime,jdbcType=TIMESTAMP}
+      addTime = #{addTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectActivityTypeById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -102,5 +102,25 @@
     </where>
     ORDER BY num DESC
   </select>
-
+  <select id="selectActivityTypeByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from activity_type
+    where typeName = #{typename,jdbcType=VARCHAR}
+  </select>
+    <update id="updateActivityTypeSelective" parameterType="com.cms.pojo.ActivityType">
+        update activity_type
+        <set>
+            <if test="typename != null">
+                typeName = #{typename,jdbcType=VARCHAR},
+            </if>
+            <if test="num != null">
+                num = #{num,jdbcType=INTEGER},
+            </if>
+            <if test="addTime != null">
+                addTime = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>
