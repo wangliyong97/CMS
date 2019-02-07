@@ -1,6 +1,6 @@
 var globalCount = 0;
 $("#fakeloader").fakeLoader({
-	timeToHide : 10000,
+	timeToHide : 5000,
 	zIndex : 999,
 	spinner : "spinner6", //Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
 	bgColor : "#fff",
@@ -13,9 +13,9 @@ setTimeout(function() {
 $(document).ready(function() {
 	$("#end").val(Format(new Date(), "yyyy-MM-dd"));
 	$("#start").val(Format(new Date().getTime() - 6 * 24 * 60 * 60 * 1000, "yyyy-MM-dd"));
-	initBlogCountByStatus(), //初始化已发表/草稿箱博客数目
-	initResourceCountByStatus() //初始化已发表资源数目
-	initBlogCountByDate() //初始化昨日/今日博客发表数目
+	initActivityCountByStatus(), //初始化已发表/草稿箱博客数目
+	initResourceCountByStatus() //初始化已发布资源数目
+	initActivityCountByDate() //初始化昨日/今日博客发表数目
 	initVisitCount("now") //初始化今日访客
 	initVisitCount("history") //初始化历史访客
 	initVisitCountByWeek(7) //初始化num日访客 
@@ -189,15 +189,15 @@ var initResourceCountByStatus = function() {
 			returnAllCount();
 		},
 		error : function() {
-			swal("博客总数错误", "请重新操作", "error");
+			// swal("博客总数错误", "请重新操作", "error");
 		}
 	});
 };
 
-var initBlogCountByStatus = function() {
+var initActivityCountByStatus = function() {
 	//初始化博客数目
 	$.ajax({
-		url : 'selectBlogListByStatus',
+		url : 'selectActivityListByStatus',
 		type : 'post',
 		dataType : 'json',
 		success : function(data) {
@@ -211,7 +211,7 @@ var initBlogCountByStatus = function() {
 					$(".draft").html(data.list[i].count);
 					var draftPercent = Math.round(data.list[i].count / allCount * 100) / 1.00 + '%<i class="fa fa-bolt"></i>';
 					$(".draftPercent").html(draftPercent);
-				//已发表
+				//已发布
 				} else if (data.list[i].status == 1) {
 					$(".allBlog").html(data.list[i].count);
 					var allBlogPercent = Math.round(data.list[i].count / allCount * 100) / 1.00 + '%<i class="fa fa-bolt"></i>';
@@ -227,12 +227,12 @@ var initBlogCountByStatus = function() {
 			returnAllCount();
 		},
 		error : function() {
-			swal("博客总数错误", "请重新操作", "error");
+			swal("活动总数错误", "请重新操作", "error");
 		}
 	});
 };
 
-var initBlogCountByDate = function() {
+var initActivityCountByDate = function() {
 	var date = new Date();
 	var startTime = Format(new Date(date.getTime() - 2 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
 	var startTimePre = Format(new Date(date.getTime() - 24 * 60 * 60 * 1000), "yyyy-MM-dd");
@@ -243,7 +243,7 @@ var initBlogCountByDate = function() {
 		status : "1"
 	};
 	$.ajax({
-		url : 'selectBlogListByDate',
+		url : 'selectActivityListByDate',
 		type : 'post',
 		data : params,
 		dataType : 'json',
@@ -266,16 +266,16 @@ var initBlogCountByDate = function() {
 				}
 			}
 
-			var nowBlogPercent = level(now, yes);
-			$(".nowBlogPercent").html(nowBlogPercent);
+			var nowActivityPercent = level(now, yes);
+			$(".nowActivityPercent").html(nowActivityPercent);
 
-			var yesBlogPercent = level(yes, yes2);
-			$(".yesBlogPercent").html(yesBlogPercent);
+			var yesActivityPercent = level(yes, yes2);
+			$(".yesActivityPercent").html(yesActivityPercent);
 			globalCount++;
 			returnAllCount();
 		},
 		error : function() {
-			swal("博客发表数错误", "请重新操作", "error");
+			swal("活动发布数错误", "请重新操作", "error");
 		}
 	});
 };
@@ -364,7 +364,7 @@ var toThousands = function(num) {
 	return result;
 }
 
-//最近的num日访客
+//最近的日访客
 var initVisitCountByWeek = function(num) {
 	$(".year").removeClass("active");
 	$(".month").removeClass("active");

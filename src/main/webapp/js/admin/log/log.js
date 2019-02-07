@@ -112,8 +112,8 @@ var selectLogByDate = function(pageNum, startTime, endTime) {
 					}
 					var param = data[i].param;
 					var p = data[i].param;
-					if (data[i].description == "查看博客") {
-						data[i].description = '查看的博客ID为：<a class="text-info" title="点击查看对应博客"  data-toggle="modal" data-target="#myModal" onclick="selectBlogByVid(' + data[i].param + ')">' + data[i].param + '</a>';
+					if (data[i].description == "查看活动") {
+						data[i].description = '查看的活动ID为：<a class="text-info" title="点击查看对应活动"  data-toggle="modal" data-target="#myModal" onclick="selectActivityByVid(' + data[i].param + ')">' + data[i].param + '</a>';
 						param = "";
 					} else {
 						if (param.length > 50) {
@@ -204,7 +204,7 @@ $('#end').datepicker({
 
 		});
 
-var selectBlogByVid = function(vid) {
+var selectActivityByVid = function(vid) {
 	var id;
 	for (var i = 1; i <= vid; i++) {
 		if (i * i.toString(8) == vid) {
@@ -216,32 +216,32 @@ var selectBlogByVid = function(vid) {
 		id : id
 	}
 	$.ajax({
-		url : '../selectBlogById',
+		url : '../selectActivityById',
 		type : 'post',
 		data : param,
 		dataType : 'json',
 		success : function(data) {
 			//查询成功
 			if (data.status == 200) {
-				$(".newsview").find(".news_title").html(data.blog.title);
-				$(".newsview").find(".au02").html(Format(data.blog.addtime, "yyyy-MM-dd hh:mm:ss"));
-				$(".au03").find('b').html(data.blog.clicknum);
-				$(".news_about").find(".news_intr").html(data.blog.introduction);
+				$(".newsview").find(".news_title").html(data.activity.title);
+				$(".newsview").find(".au02").html(Format(data.activity.addtime, "yyyy-MM-dd hh:mm:ss"));
+				$(".au03").find('b').html(data.activity.clicknum);
+				$(".news_about").find(".news_intr").html(data.activity.introduction);
 				var keyword = '';
 				$(".newsview").find(".tags").html("");
-				if (data.blog.keyword != '' && data.blog.keyword != null) {
-					if (data.blog.keyword.search(';') != -1) {
+				if (data.activity.keyword != '' && data.activity.keyword != null) {
+					if (data.activity.keyword.search(';') != -1) {
 						var strs = new Array();
-						strs = data.blog.keyword.split(";");
+						strs = data.activity.keyword.split(";");
 						for (var i = 0; i < strs.length && strs[i] != ''; i++) {
 							keyword += '<a href="#">' + strs[i] + '</a>';
 						}
 					} else {
-						keyword = '<a href="#">' + data.blog.keyword + '</a>';
+						keyword = '<a href="#">' + data.activity.keyword + '</a>';
 					}
 				}
 				$(".newsview").find(".tags").append(keyword);
-				$(".newsview").find(".news_infos").html(data.blog.content);
+				$(".newsview").find(".news_infos").html(data.activity.content);
 			}
 			$('pre').each(function(i, block) {
 				hljs.highlightBlock(block);

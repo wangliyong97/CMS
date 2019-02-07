@@ -245,6 +245,65 @@ public class ActivityManagerController {
     }
 
     /**
+     * 通过日期查询所有活动
+     * @param status
+     * @param startTime
+     * @param endTime
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/selectActivityListByDate", method = RequestMethod.POST)
+    @ResponseBody
+    @AccessLimit(seconds = 1, maxCount = 10)
+    public Map<String, Object> selectActivityListByDate(
+            @RequestParam(value = "status") String status,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime)
+            throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (status != "" && status != null) {
+            map.put("status", status);
+        }
+        if (startTime != "" && startTime != null) {
+            map.put("startTime", startTime);
+        }
+        if (endTime != "" && endTime != null) {
+            map.put("endTime", endTime);
+        }
+        List<?> list = activityService.selectActivityListByDate(map);
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        if (list.size() > 0) {
+            returnMap.put("status", 200);
+        } else {
+            // 500表示：返回值为Null
+            returnMap.put("status", 500);
+        }
+        returnMap.put("list", list);
+        return returnMap;
+    }
+
+    /**
+     * 获取点击活动排行
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/selectActivityByClick", method = RequestMethod.POST)
+    @ResponseBody
+    @AccessLimit(seconds = 1, maxCount = 10)
+    public Map<String, Object> selectActivityByClick() throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<?> list = activityService.selectActivityByClick();
+        if (list.size() > 0) {
+            map.put("status", 200);
+        } else {
+            // 500表示：返回值为Null
+            map.put("status", 500);
+        }
+        map.put("list", list);
+        return map;
+    }
+
+    /**
      * 更新活动
      * @param prarm
      * @param activity

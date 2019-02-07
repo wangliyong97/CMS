@@ -7,17 +7,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>数据图表</title>
 <meta name="keywords" content="">
-<meta name="description"
-	content="">
-
+<meta name="description" content="">
 <link rel="shortcut icon" href="favicon.ico">
 <link href="${pageContext.request.contextPath}/css/gruvbox-light.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -98,15 +93,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                     <div class="ibox-content">
-                        <div class="echarts" id="echarts-line-blogClickSort"></div>
+                        <div class="echarts" id="echarts-line-activityClickSort"></div>
                     	<div style="margin:27px 0 0 15px">
-                    		<h5>注:  点击可以查看对应博客内容</h5>
+                    		<h5>注:  点击可以查看对应活动内容</h5>
                     	</div>
                     	
                     </div>
                 </div>
             </div>
-            
             
             <div class="col-sm-6" style="clear:both">
                 <div class="ibox float-e-margins">
@@ -145,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="col-sm-6">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5> <i class="fa fa-bar-chart"></i> 发表量</h5>
+                        <h5> <i class="fa fa-bar-chart"></i> 发布量</h5>
                         <div class="ibox-tools">
                             <a class="collapse-link">
                                 <i class="fa fa-chevron-up"></i>
@@ -168,9 +162,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="echarts" id="echarts-line-blog"></div>
                     	<div class="col-sm-8 input-daterange input-group" style="margin: 20px auto 0px;" id="datepicker">
 							 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-							<input type="text" class="input-sm form-control" id="startBlog" />
+							<input type="text" class="input-sm form-control" id="startActivity" />
 							<span class="input-group-addon">到 </span> 
-							<input type="text" class="input-sm form-control" id="endBlog" />
+							<input type="text" class="input-sm form-control" id="endActivity" />
 						</div>
                     </div>
                 </div>
@@ -215,23 +209,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 全局js -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script> 
+    <script>hljs.initHighlightingOnLoad();</script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-
 	<script src="${pageContext.request.contextPath}/js/plugins/peity/jquery.peity.min.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 	<!-- 自定义js -->
 	<script src="${pageContext.request.contextPath}/js/content.js"></script>
-	
 	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
-	
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/echarts/echarts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/echarts/echarts.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/admin/charts/charts.js"></script>
-    
 </body>
 
 </html>

@@ -4,7 +4,6 @@ $("#fakeloader").fakeLoader({
 	zIndex : 999, // Default zIndex
 	spinner : "spinner6", //Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
 	bgColor : "#fff", //Hex, RGB or RGBA colors
-//imagePath:"yourPath/customizedImage.gif" //If you want can you insert your custom image
 });
 
 setTimeout(function() {
@@ -13,13 +12,10 @@ setTimeout(function() {
 }, 100);
 
 $(document).ready(function() {
-
 	initVisitCount();
 	initBlackIpCount();
 	selectVisit();
-
 });
-
 
 var returnAllCount = function() {
 	if (globalCount == 3) {
@@ -44,7 +40,7 @@ var initVisitCount = function() {
 			$(".a-1").html(count);
 		},
 		error : function() {
-			swal("初始化资源数目错误", "请重新操作", "error");
+			swal("初始化失败!", "请重新操作", "error");
 		}
 	});
 	globalCount++;
@@ -61,7 +57,7 @@ var initBlackIpCount = function() {
 			$(".a-3").html(data.count);
 		},
 		error : function() {
-			swal("初始化资源数目错误", "请重新操作", "error");
+			swal("初始化失败!", "请重新操作", "error");
 		}
 	});
 	globalCount++;

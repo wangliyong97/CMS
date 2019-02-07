@@ -125,4 +125,14 @@ public class ActivityServiceImpl implements ActivityService {
         return 0;
     }
 
+    @Override
+    public List<?> selectActivityListByDate(Map<String, Object> map) {
+        return activityMapper.selectActivityListByDate(map);
+    }
+
+    @Override
+    public List<?> selectActivityByClick() {
+        return activityMapper.selectActivityByClick();
+    }
+
 }

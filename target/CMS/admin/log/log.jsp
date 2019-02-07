@@ -7,51 +7,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>日志记录</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
-
 <link rel="shortcut icon" href="favicon.ico">
-<link href="${pageContext.request.contextPath}/css/github-gist.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/loaders.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/fakeLoader.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/index.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/base.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/github-gist.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/loaders.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
 <style type="text/css">
 .loader-inner>div {
 	background-color: #907f819e
 }
 </style>
-
 </head>
 
 <body class="white-bg" style="opacity:0">
@@ -89,9 +68,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                
                                 <li><a href="javascript:void(0)" onclick="fastToSearch('普通用户')"><i class="fa fa-user-plus"></i>普通用户</a>
                                 </li>
-                                 <li><a href="javascript:void(0)" onclick="fastToSearch('查看博客')"><i class="fa fa-tag"></i> 查看博客</a>
+                                 <li><a href="javascript:void(0)" onclick="fastToSearch('浏览活动')"><i class="fa fa-tag"></i> 浏览活动</a>
                                 </li>
-                                 <li><a href="javascript:void(0)" onclick="fastToSearch('关键字查询博客')"><i class="fa fa-tag"></i> 关键字搜索博客</a>
+                                 <li><a href="javascript:void(0)" onclick="fastToSearch('关键字查询活动')"><i class="fa fa-tag"></i> 关键字查询活动</a>
                                 </li>
                                 <li><a href="javascript:void(0)" onclick="fastToSearch('关键字查询资源')"><i class="fa fa-tag"></i> 搜索资源</a>
                                 </li>
@@ -101,9 +80,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<ul class="folder-list m-b-md" style="padding: 0">
 							 <li><a href="javascript:void(0)" onclick="fastToSearch('管理员')"><i class="fa fa-user"></i> 管理员</a>
                                 </li>
-                                <li><a href="javascript:void(0)" onclick="fastToSearch('更新博客')"><i class="fa fa-tag"></i> 博客(增/删/改)</a>
+                                <li><a href="javascript:void(0)" onclick="fastToSearch('更新活动')"><i class="fa fa-tag"></i> 活动(增/删/改)</a>
                                 </li>
-                                <li><a href="javascript:void(0)" onclick="fastToSearch('修改博客类别')"><i class="fa fa-tag"></i> 博客类别(增/删/改)</a>
+                                <li><a href="javascript:void(0)" onclick="fastToSearch('修改活动地址')"><i class="fa fa-tag"></i> 活动地址(增/删/改)</a>
                                 </li>
                                 <li><a href="javascript:void(0)" onclick="fastToSearch('资源')"><i class="fa fa-tag"></i> 资源(增/删/改)</a>
                                 </li>
@@ -126,9 +105,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        <div class="input-group">
 	                            <input type="text" class="form-control input-sm keyword"  placeholder="搜索用户，ip等">
 	                            <div class="input-group-btn">
-	                                <button type='button' onclick="selectLogByDate(1,null, null);" class="btn btn-sm btn-primary">
-	                                  		  搜索
-	                                </button>
+	                                <button type='button' onclick="selectLogByDate(1,null, null);" class="btn btn-sm btn-primary">搜索</button>
 	                            </div>
 	                        </div>
 	                    </form>
@@ -137,10 +114,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="mail-box no-padding" style="margin-bottom:0px">
                         <ul class="list-group logList">
-                            
                         </ul>
                         <ul class="list-group page">
-                            
                         </ul>
                     </div>
                 </div>
@@ -183,20 +158,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 全局js -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script> 
+    <script>hljs.initHighlightingOnLoad();</script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
 	<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
-	
 	<!-- Data picker -->
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 	<!-- 自定义js -->
 	<script src="${pageContext.request.contextPath}/js/content.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/admin/log/log.js"></script>
-
 </body>
 
 </html>

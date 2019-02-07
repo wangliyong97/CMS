@@ -9,34 +9,20 @@
 
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="renderer" content="webkit">
-
 <title>博客后台 - 主页</title>
-
 <meta name="keywords" content="">
 <meta name="description" content="">
-
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/fakeLoader.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
 </head>
 
 <body class="white-bg" style="opacity:0">
@@ -47,13 +33,13 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
 						<span class="label label-success pull-right">总数</span>
-						<h5>博客</h5>
+						<h5>活动</h5>
 					</div>
 					<div class="ibox-content">
 						<h1 class="allBlog no-margins" style="text-align: center;">0</h1>
 						<div class="allBlogPercent stat-percent font-bold text-navy">
 							0%</div>
-						<small>已发表</small>
+						<small>已发布</small>
 					</div>
 				</div>
 			</div>
@@ -67,7 +53,7 @@
 						<h1 class="draft no-margins" style="text-align: center;">0</h1>
 						<div class="draftPercent stat-percent font-bold text-warning">
 							0%</div>
-						<small>未发表</small>
+						<small>未发布</small>
 					</div>
 				</div>
 			</div>
@@ -76,11 +62,11 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
 						<span class="label label-warning pull-right">今天</span>
-						<h5>今日发表</h5>
+						<h5>今日发布</h5>
 					</div>
 					<div class="ibox-content">
 						<h1 class="nowBlog no-margins" style="text-align: center;">0</h1>
-						<div class="nowBlogPercent stat-percent font-bold text-danger">
+						<div class="nowActivityPercent stat-percent font-bold text-danger">
 							0%</div>
 						<small>较昨日</small>
 					</div>
@@ -111,7 +97,7 @@
 						<h1 class="resource no-margins" style="text-align: center;">0</h1>
 						<div class="resourcePercent stat-percent font-bold text-navy">
 							0%</div>
-						<small>已发表</small>
+						<small>已发布</small>
 					</div>
 				</div>
 			</div>
@@ -134,11 +120,11 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
 						<span class="label label-warning pull-right">昨天</span>
-						<h5>昨日发表</h5>
+						<h5>昨日发布</h5>
 					</div>
 					<div class="ibox-content">
 						<h1 class="yesBlog no-margins" style="text-align: center;">0</h1>
-						<div class="yesBlogPercent stat-percent font-bold text-danger">
+						<div class="yesActivityPercent stat-percent font-bold text-danger">
 							0%</div>
 						<small>较昨日</small>
 					</div>
@@ -238,22 +224,14 @@
 	</div>
 
 	<!-- 全局js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/echarts/echarts.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/echarts/echarts.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
 	<!-- Data picker -->
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
-
-	<script
-		src="${pageContext.request.contextPath}/js/admin/index_v1.js"></script>
-	
+	<script src="${pageContext.request.contextPath}/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/js/admin/index_v1.js"></script>
 </body>
-
 </html>
 

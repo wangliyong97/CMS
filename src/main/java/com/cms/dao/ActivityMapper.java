@@ -22,4 +22,8 @@ public interface ActivityMapper {
     int updateActivitySelective(Activity record);
 
     int insertActivity(Activity record);
+
+    List<?>  selectActivityListByDate(Map<String, Object> map);
+
+    List<?> selectActivityByClick();
 }

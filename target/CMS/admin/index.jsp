@@ -19,16 +19,11 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico"> 
 <meta name="keywords" content="">
 <meta name="description" content="">
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/fakeLoader.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
 </head>
 <body class="fixed-sidebar full-height-layout white-bg"
 	style="overflow:hidden;">
@@ -64,7 +59,6 @@
 					<li><a href="${pageContext.request.contextPath}/admin/index_v1.jsp" class="J_menuItem"> <i class="fa fa-home"></i> <span
 							class="nav-label">主页</span>
 					</a></li>
-
 					<li><a class="J_menuItem"
 								href="${pageContext.request.contextPath}/admin/log/log.jsp"><i class="fa fa-hourglass-2"></i>
 					<span class="nav-label">操作日志</span></a></li>
@@ -72,61 +66,48 @@
 					<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/charts/eCharts.jsp"><i class="fa fa-bar-chart"></i><span
 							class="nav-label">统计图表</span></a>
 						</li>
-					<li><a href="#"><i class="fa fa-book"></i> <span
-							class="nav-label">活动模块</span><span class="fa arrow"></span></a>
+					<li><a href="#"><i class="fa fa-book"></i> <span class="nav-label">活动模块</span><span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-								<li><a class="J_menuItem"
+                            <li><a class="J_menuItem"
 								href="${pageContext.request.contextPath}/admin/blog/activityTable.jsp">活动管理</a>
 							</li>
-								
 							<li><a class="J_menuItem"
 								href="${pageContext.request.contextPath}/admin/blog/addActivity.jsp">编辑活动</a>
 							</li>
-							
 							<li><a class="J_menuItem"
 								href="${pageContext.request.contextPath}/admin/blog/findActivity.jsp">查询活动</a>
 							</li>
 							<li><a class="J_menuItem"
 								href="${pageContext.request.contextPath}/admin/blog/activityType.jsp">类别</a>
 							</li>
-							
+						</ul>
+					</li>
+						
+                    <%--<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/resource/resource.jsp"><i class="fa fa-table"></i> <span--%>
+                        <%--class="nav-label">资源模块</span></a>--%>
+                    <%--</li>--%>
 
-						</ul></li>
-						
-						<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/resource/resource.jsp"><i class="fa fa-table"></i> <span
-							class="nav-label">资源模块</span></a>
-						</li>
-						<li><a href="#"><i class="fa fa-street-view"></i> <span
-							class="nav-label">访客模块</span><span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							
-							<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/visit.jsp">访客记录
-							</a></li>
-							<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/visitTable.jsp">访客统计
-							</a></li>
-							<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/black.jsp">黑名单
-							</a></li>
-						</ul>	
-						</li>
-						<li><a href="#" class="links"><i class="fa fa-unlink"></i> <span
-							class="nav-label">友情链接</span>               </a>
-						<ul class="nav nav-second-level">
-							<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/links/links.jsp"> 友情链接 </a>
-							</li>
-							<li class="isApplyLinks"><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/links/isApplyLinks.jsp"> 未处理消息 </a>
-							</li>
-						</ul>	
-						</li>
-						
-					<li><a href="http://changyan.kuaizhan.com/" class="J_menuItem"><i class="fa fa-commenting-o"></i> <span
-							class="nav-label">评论模块</span></a>
-						</li>
-					
-					<li><a href="${pageContext.request.contextPath}/admin/pics/pics.jsp" class="J_menuItem"><i class="fa fa-picture-o"></i> <span
-							class="nav-label">本地图库</span></a>
-						</li>
-					<li><a href="${pageContext.request.contextPath}/index.jsp" target= "_blank"><i class="fa fa-desktop"></i> <span
-							class="nav-label">前台页面 </span></a>
+                    <li><a href="#"><i class="fa fa-street-view"></i> <span
+                        class="nav-label">访客模块</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/visit.jsp">访客记录
+                        </a></li>
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/visitTable.jsp">访客统计
+                        </a></li>
+                        <li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/black.jsp">黑名单
+                        </a></li>
+                    </ul>
+                    </li>
+					<li>
+                        <a href="http://changyan.kuaizhan.com/" class="J_menuItem"><i class="fa fa-commenting-o"></i> <span class="nav-label">评论模块</span></a>
+                    </li>
+					<li>
+                        <a href="${pageContext.request.contextPath}/admin/pics/pics.jsp" class="J_menuItem"><i class="fa fa-picture-o"></i> <span class="nav-label">本地图库</span></a>
+                    </li>
+					<li>
+                        <a href="${pageContext.request.contextPath}/index.jsp" target= "_blank"><i class="fa fa-desktop"></i> <span class="nav-label">前台页面 </span></a>
+                    </li>
 				</ul>
 			</div>
 		</nav>
@@ -201,9 +182,7 @@
 					<li class="active"><a data-toggle="tab" href="#tab-1"> <i
 							class="fa fa-gear"></i> 主题
 					</a></li>
-
 				</ul>
-
 				<div class="tab-content">
 					<div id="tab-1" class="tab-pane active">
 						<div class="sidebar-title">

@@ -24,4 +24,8 @@ public interface ActivityService {
     int updateActivitySelective(Activity activity);
 
     int insertActivity(Activity activity);
+
+    List<?> selectActivityListByDate(Map<String, Object> map);
+
+    List<?> selectActivityByClick();
 }

@@ -11,11 +11,9 @@ setTimeout(function() {
 }, 100);
 
 $(document).ready(function() {
-
 	initVisitCount();
 	initBlackIpCount();
 	selectVisit();
-
 });
 
 var returnAllCount = function() {
@@ -41,7 +39,7 @@ var initVisitCount = function() {
 			$(".a-1").html(count);
 		},
 		error : function() {
-			swal("初始化资源数目错误", "请重新操作", "error");
+			swal("初始化失败!", "请重新操作", "error");
 		}
 	});
 	globalCount++;
@@ -58,7 +56,7 @@ var initBlackIpCount = function() {
 			$(".a-3").html(data.count);
 		},
 		error : function() {
-			swal("初始化资源数目错误", "请重新操作", "error");
+			swal("初始化失败！", "请重新操作", "error");
 		}
 	});
 	globalCount++;

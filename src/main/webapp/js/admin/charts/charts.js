@@ -1,4 +1,3 @@
-
 var globalCount = 0;
 $("#fakeloader").fakeLoader({
 	timeToHide : 10000, //Time in milliseconds for fakeLoader disappear
@@ -12,7 +11,6 @@ setTimeout(function() {
 }, 100);
 
 $(document).ready(function() {
-
 	var date = new Date();
 	var start = Format(new Date(date.getTime() - 6 * 24 * 60 * 60 * 1000), "yyyy-MM-dd");
 	var end = Format(date, "yyyy-MM-dd");
@@ -20,16 +18,16 @@ $(document).ready(function() {
 	$("#endTime").val(end);
 	initVisitCountByDate(start, end); //初始化7日访客
 
-	$("#startBlog").val(start);
-	$("#endBlog").val(end);
-	initBlogCountByDate(start, end); //初始化7日博客数量
+	$("#startActivity").val(start);
+	$("#endBActivity").val(end);
+	initActivityCountByDate(start, end); //初始化7日博客数量
 
 	$("#startUserLogClick").val(start);
 	$("#endUserLogClick").val(end);
 	initUserLogClickByDate(start, end); //初始化7日访客
 
 
-	initBlogClickSort(); //初始化博客点击排序
+	initActivityClickSort(); //初始化活动点击排序
 
 });
 
@@ -91,7 +89,7 @@ $('#startBlog').datepicker({
 	if ($('#endBlog').val() != "" && $('#startBlog').val() > $('#endBlog').val()) {
 		swal("指定日期范围出错", "请重新检查", "error");
 	} else if ($('#startBlog').val() != "" && $('#endBlog').val() != "") {
-		initBlogCountByDate($('#startBlog').val(), $('#endBlog').val());
+		initActivityCountByDate($('#startBlog').val(), $('#endBlog').val());
 	}
 });
 
@@ -108,7 +106,7 @@ $('#endBlog').datepicker({
 	if ($('#startBlog').val() != "" && $('#startBlog').val() > $('#endBlog').val()) {
 		swal("指定日期范围出错", "截止日期必须大于起始日期", "error");
 	} else if ($('#startBlog').val() != "" && $('#endBlog').val() != "") {
-		initBlogCountByDate($('#startBlog').val(), $('#endBlog').val());
+		initActivityCountByDate($('#startBlog').val(), $('#endBlog').val());
 	}
 
 });
@@ -239,7 +237,7 @@ var initEchartsByVisit = function(days, counts) {
 
 
 //最近的num日博客发表数
-var initBlogCountByDate = function(startTime, endTime) {
+var initActivityCountByDate = function(startTime, endTime) {
 	var start = Date.parse(new Date(startTime));
 	var end = Date.parse(new Date(endTime));
 	var num = Math.abs(parseInt((end - start) / 1000 / 3600 / 24));
@@ -249,7 +247,7 @@ var initBlogCountByDate = function(startTime, endTime) {
 		status : 1
 	};
 	$.ajax({
-		url : '../selectBlogListByDate',
+		url : '../selectActivityListByDate',
 		type : 'post',
 		data : params,
 		dataType : 'json',
@@ -272,25 +270,25 @@ var initBlogCountByDate = function(startTime, endTime) {
 			for (var j = 0; j < days.length; j++) {
 				days[j] = Format(days[j], "yyyy/MM/dd");
 			}
-			initEchartsByBlog(days, counts);
+			initEchartsByActivity(days, counts);
 		},
 		error : function() {
-			swal("近日博客发表数初始化错误", "请重新操作", "error");
+			swal("近日活动发布数初始化错误", "请重新操作", "error");
 		}
 	});
 };
 
-var initEchartsByBlog = function(days, counts) {
+var initEchartsByActivity = function(days, counts) {
 	var lineChart = echarts.init(document.getElementById("echarts-line-blog"));
 	var lineoption = {
 		title : {
-			text : '博客发表数'
+			text : '活动发布数'
 		},
 		tooltip : {
 			trigger : 'axis'
 		},
 		legend : {
-			data : [ '近' + days.length + '日博客发表数' ]
+			data : [ '近' + days.length + '日活动发布数' ]
 		},
 		toolbox : {
 			show : true,
@@ -330,7 +328,7 @@ var initEchartsByBlog = function(days, counts) {
 		],
 		series : [
 			{
-				name : '近' + days.length + '日博客发表数',
+				name : '近' + days.length + '日活动发布数',
 				type : 'bar',
 				data : counts,
 				markPoint : {
@@ -397,7 +395,7 @@ $('#endUserLogClick').datepicker({
 
 });
 
-//最近num日博客点击数
+//最近num日活动点击数
 var initUserLogClickByDate = function(startTime, endTime) {
 	var start = Date.parse(new Date(startTime));
 	var end = Date.parse(new Date(endTime));
@@ -434,7 +432,7 @@ var initUserLogClickByDate = function(startTime, endTime) {
 			initEchartsByUserLogCount(days, counts);
 		},
 		error : function() {
-			swal("近日博客发表数初始化错误", "请重新操作", "error");
+			swal("近日活动发布数初始化错误", "请重新操作", "error");
 		}
 	});
 };
@@ -522,10 +520,10 @@ var initEchartsByUserLogCount = function(days, counts) {
 
 
 
-//初始化  博客 浏览排行
-var initBlogClickSort = function() {
+//初始化活动浏览排行
+var initActivityClickSort = function() {
 	$.ajax({
-		url : '../selectBlogByClick',
+		url : '../selectActivityByClick',
 		type : 'post',
 		dataType : 'json',
 		success : function(data) {
@@ -542,7 +540,7 @@ var initBlogClickSort = function() {
 			for (var i = 0; i < data.list.length; i++) {
 				idArray[1][i] = data.list[i].clickNum;
 			}
-			initEchartsByBlogClickSort(idArray, counts);
+			initEchartsByActivityClickSort(idArray, counts);
 		},
 		error : function() {
 			swal("初始化历史浏览量排行错误", "请重新操作", "error");
@@ -551,17 +549,17 @@ var initBlogClickSort = function() {
 
 };
 
-var initEchartsByBlogClickSort = function(idArray, counts) {
-	var lineChart = echarts.init(document.getElementById("echarts-line-blogClickSort"));
+var initEchartsByActivityClickSort = function(idArray, counts) {
+	var lineChart = echarts.init(document.getElementById("echarts-line-activityClickSort"));
 	var lineoption = {
 		title : {
-			text : '博客浏览排行'
+			text : '活动浏览排行'
 		},
 		tooltip : {
 			trigger : 'axis'
 		},
 		legend : {
-			data : [ 'Top' + counts.length + ' 博客浏览排行' ]
+			data : [ 'Top' + counts.length + ' 活动浏览排行' ]
 		},
 		toolbox : {
 			show : true,
@@ -601,7 +599,7 @@ var initEchartsByBlogClickSort = function(idArray, counts) {
 		],
 		series : [
 			{
-				name : 'Top' + counts.length + ' 博客浏览排行',
+				name : 'Top' + counts.length + ' 活动浏览排行',
 				type : 'bar',
 				data : counts,
 				markPoint : {
@@ -631,49 +629,49 @@ var initEchartsByBlogClickSort = function(idArray, counts) {
 	globalCount++;
 	returnAllCount();
 	lineChart.on('click', function(params) {
-		var blogId = 0;
+		var activityId = 0;
 		$('#btn').trigger("click");
 		for (var i = 0; i < counts.length; i++) {
 			if (idArray[1][i] == params.value) {
-				blogId = idArray[0][i];
+                activityId = idArray[0][i];
 			}
 		}
-		selectBlogById(blogId);
+		selectActivityById(activityId);
 	});
 };
 
-//查看博客内容
-function selectBlogById(blogId) {
+//查看活动内容
+function selectActivityById(activityId) {
 	var param = {
-		id : blogId
+		id : activityId
 	}
 	$.ajax({
-		url : '../selectBlogById',
+		url : '../selectActivityById',
 		type : 'post',
 		data : param,
 		dataType : 'json',
 		success : function(data) {
 			//查询成功
 			if (data.status == 200) {
-				$(".newsview").find(".news_title").html(data.blog.title);
-				$(".newsview").find(".au02").html(Format(data.blog.addtime, "yyyy-MM-dd hh:mm:ss"));
-				$(".au03").find('b').html(data.blog.clicknum);
-				$(".news_about").find(".news_intr").html(data.blog.introduction);
+				$(".newsview").find(".news_title").html(data.activity.title);
+				$(".newsview").find(".au02").html(Format(data.activity.addtime, "yyyy-MM-dd hh:mm:ss"));
+				$(".au03").find('b').html(data.activity.clicknum);
+				$(".news_about").find(".news_intr").html(data.activity.introduction);
 				var keyword = '';
 				$(".newsview").find(".tags").html("");
-				if (data.blog.keyword != '' && data.blog.keyword != null) {
-					if (data.blog.keyword.search(';') != -1) {
+				if (data.activity.keyword != '' && data.activity.keyword != null) {
+					if (data.activity.keyword.search(';') != -1) {
 						var strs = new Array();
-						strs = data.blog.keyword.split(";");
+						strs = data.activity.keyword.split(";");
 						for (var i = 0; i < strs.length && strs[i] != ''; i++) {
 							keyword += '<a href="#">' + strs[i] + '</a>';
 						}
 					} else {
-						keyword = '<a href="#">' + data.blog.keyword + '</a>';
+						keyword = '<a href="#">' + data.activity.keyword + '</a>';
 					}
 				}
 				$(".newsview").find(".tags").append(keyword);
-				$(".newsview").find(".news_infos").html(data.blog.content);
+				$(".newsview").find(".news_infos").html(data.activity.content);
 			}
 			$('pre').each(function(i, block) {
 				hljs.highlightBlock(block);

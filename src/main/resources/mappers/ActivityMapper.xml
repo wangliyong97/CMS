@@ -189,4 +189,25 @@
         #{status,jdbcType=INTEGER}, #{type.id,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
         )
     </insert>
+    <select id="selectActivityListByDate" resultType="map" parameterType="Map">
+        SELECT addTime,SUM(clickNum) AS clickNum,
+        COUNT(*) AS count
+        FROM
+        activity
+        <where>
+            <if test="startTime!=null and startTime!=''">
+                and DATE_FORMAT(addTime,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+            </if>
+            <if test="status!=null and status!=''">
+                and status=#{status}
+            </if>
+        </where>
+        GROUP BY DATE_FORMAT(addTime,'%Y-%m-%d')
+    </select>
+    <select id="selectActivityByClick" resultType="map">
+        SELECT id,clickNum
+        FROM activity
+        ORDER BY clickNum
+        DESC LIMIT 7
+    </select>
 </mapper>

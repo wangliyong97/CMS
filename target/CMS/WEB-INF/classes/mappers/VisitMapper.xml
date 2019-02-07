@@ -127,4 +127,74 @@
       time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectVisitListByDate" resultType="map" parameterType="Map">
+    SELECT time,
+    COUNT(*) AS count
+    FROM
+    visit
+    <where>
+      <if test="startTime!=null and startTime!='' and format=='day'">
+        and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+      </if>
+      <if test="startTime!=null and startTime!='' and format=='month'">
+        and DATE_FORMAT(time,'%Y-%m') BETWEEN #{startTime} AND #{endTime}
+      </if>
+      <if test="startTime!=null and startTime!='' and format=='year'">
+        and DATE_FORMAT(time,'%Y') BETWEEN #{startTime} AND #{endTime}
+      </if>
+    </where>
+    <if test="format=='day'">
+      GROUP BY DATE_FORMAT(time,'%Y-%m-%d')
+    </if>
+    <if test="format=='month'">
+      GROUP BY DATE_FORMAT(time,'%Y-%m')
+    </if>
+    <if test="format=='year'">
+      GROUP BY DATE_FORMAT(time,'%Y')
+    </if>
+  </select>
+    <select id="selectVisitListByIp" resultType="map">
+        SELECT
+        COUNT(*) AS count
+        FROM
+        visit
+        GROUP BY ip,userAgent
+        ORDER BY count desc
+    </select>
+    <select id="selectLikeVisitListByPage" parameterType="Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from visit
+        <where>
+            <if test="ip!=null and ip!=''">
+                and (ip like CONCAT(CONCAT('%', #{ip}), '%') or city like
+                CONCAT(CONCAT('%', #{city}), '%') or platformType like
+                CONCAT(CONCAT('%', #{platformType}), '%') or browserType like
+                CONCAT(CONCAT('%', #{browserType}), '%'))
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+            </if>
+        </where>
+        ORDER BY time DESC
+    </select>
+    <select id="selectLikeVisitListGroupByIp" parameterType="Map" resultType="map">
+        select
+        id,ip,city ,browserType ,platformType,
+        COUNT(*) AS count
+        from visit
+        <where>
+            <if test="ip!=null and ip!=''">
+                and (ip like CONCAT(CONCAT('%', #{ip}), '%') or city like
+                CONCAT(CONCAT('%', #{city}), '%') or platformType like
+                CONCAT(CONCAT('%', #{platformType}), '%') or browserType like
+                CONCAT(CONCAT('%', #{browserType}), '%'))
+            </if>
+            <if test="startTime!=null and startTime!=''">
+                and DATE_FORMAT(time,'%Y-%m-%d') BETWEEN #{startTime} AND #{endTime}
+            </if>
+        </where>
+        GROUP BY ip,userAgent
+        ORDER BY count desc
+    </select>
 </mapper>

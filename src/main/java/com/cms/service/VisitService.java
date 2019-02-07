@@ -1,23 +1,15 @@
-package com.cms.dao;
+package com.cms.service;
 
 import com.cms.pojo.Visit;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
 
-public interface VisitMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Visit record);
-
-    int insertSelective(Visit record);
-
-    Visit selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Visit record);
-
-    int updateByPrimaryKey(Visit record);
-
+/**
+ * Created by wangliyong on 2019/2/7.
+ */
+public interface VisitService {
     List<?> selectVisitListByDate(Map<String, Object> map);
 
     List<?>  selectVisitListByIp(Map<String, Object> map);
