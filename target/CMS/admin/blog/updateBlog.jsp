@@ -7,57 +7,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>更新博客</title>
 <meta name="keywords" content="">
-<meta name="description"
-	content="">
-
-<link rel="shortcut icon" href="favicon.ico">
-<link href="${pageContext.request.contextPath}/css/github-gist.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/fakeLoader.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/summernote/summernote.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/summernote/summernote-bs3.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/index.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/base.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css"
-	rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/plugins/webuploader/webuploader.css">
-    <link rel="stylesheet"href="${pageContext.request.contextPath}/css/plugins/webuploader/webuploader-demo.css">
+<meta name="description" content="">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="${pageContext.request.contextPath}/css/github-gist.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/plugins/iCheck/custom.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/plugins/webuploader/webuploader.css">
+	<link rel="stylesheet"href="${pageContext.request.contextPath}/css/plugins/webuploader/webuploader-demo.css">
 <style>
 .news_infos span{
  	font-size:13px;
  }
-
 </style>
-
 </head>
 
 <body class="white-bg" style="opacity:0">
@@ -93,8 +68,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							    <a class="fancybox picPath" href="#pic" data-toggle="modal" onclick="findPicList()">
 								
 								</a>
-							
-							
 								<!-- <div class="images" style="width:100%">
 								
 								</div> -->

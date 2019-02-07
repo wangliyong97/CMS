@@ -128,7 +128,7 @@ function sendFile(file, editor, $editable) {
 	$.ajax({
 		data : data,
 		type : "POST",
-		url : "../uploadBlogImages",
+		url : "../uploadActivityImages",
 		dataType : "json",
 		cache : false,
 		contentType : false,

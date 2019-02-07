@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by wangliyong on 2019/1/25.
@@ -33,13 +36,18 @@ import java.util.Map;
 public class ActivityManagerController {
     @Autowired
     private ActivityService activityService;
-
     @Autowired
     private ActivityTypeService activityTypeService;
-
     @Autowired
     private BackendUserService backendUserService;
 
+    /**
+     * 编辑活动
+     * @param prarm
+     * @param activity
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addActivity", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(description = ConstantUtil.ACTIVITY_ADD, userType = ConstantUtil.USERTYPE_ADMIN)
@@ -59,6 +67,12 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 通过活动地址来获取活动
+     * @param data
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectActivityType", method = RequestMethod.POST)
     @ResponseBody
     public List<ActivityType> selectActivityType(@RequestParam(value = "data", required = false) String data) throws Exception {
@@ -70,6 +84,15 @@ public class ActivityManagerController {
         return typeList;
     }
 
+    /**
+     * 通过页码进行活动查询
+     * @param activity
+     * @param sort
+     * @param page
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectGroupLikeActivityListByPage")
     @ResponseBody
     @AccessLimit(seconds = 1, maxCount = 15)
@@ -123,6 +146,14 @@ public class ActivityManagerController {
         return returnMap;
     }
 
+    /**
+     * 通过页码搜索活动类别
+     * @param activityType
+     * @param page
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectActivityTypeListByPage", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> selectActivityTypeListByPage(ActivityType activityType,
@@ -151,6 +182,12 @@ public class ActivityManagerController {
         return returnMap;
     }
 
+    /**
+     * 通过活动类别id进行搜索
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectActivityTypeById", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> selectActivityType(Integer id) throws Exception {
@@ -165,6 +202,11 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 通过活动状态进行搜索
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectActivityListByStatus", method = RequestMethod.POST)
     @ResponseBody
     @AccessLimit(seconds = 1, maxCount = 10)
@@ -181,6 +223,12 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 通过活动id进行活动获取
+     * @param id
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectActivityById", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> selectActivityById(Integer id) throws Exception {
@@ -196,6 +244,14 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 更新活动
+     * @param prarm
+     * @param activity
+     * @param session
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/updateActivity", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(description = ConstantUtil.ACTIVITY_UPDATE, userType = ConstantUtil.USERTYPE_ADMIN)
@@ -224,6 +280,14 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 更新活动类型
+     * @param prarm
+     * @param session
+     * @param activityType
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/updateActivityType", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(description = ConstantUtil.ActivityType_UPDATE, userType = ConstantUtil.USERTYPE_ADMIN)
@@ -250,6 +314,14 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 删除活动类别
+     * @param prarm
+     * @param session
+     * @param ActivityType
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/deleteActivityType", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(description = ConstantUtil.ActivityType_DELETE, userType = ConstantUtil.USERTYPE_ADMIN)
@@ -276,6 +348,13 @@ public class ActivityManagerController {
         return map;
     }
 
+    /**
+     * 添加活动类别
+     * @param prarm
+     * @param activityType
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/addActivityType", method = RequestMethod.POST)
     @ResponseBody
     @SystemLog(description = ConstantUtil.ACTIVITYTYPE_ADD, userType = ConstantUtil.USERTYPE_ADMIN)
@@ -290,6 +369,129 @@ public class ActivityManagerController {
                 map.put("status", 200);
             } else {
                 map.put("status", 0);
+            }
+        }
+        return map;
+    }
+
+    /**
+     *结合summernote实现图片上传
+     * @param prarm
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/uploadActivityImages", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> uploadActivityImages(String prarm, HttpServletRequest request) throws Exception {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (multipartResolver.isMultipart(request)) {
+            MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) request;
+            Iterator<String> fileNamesIter = mreq.getFileNames();
+            while (fileNamesIter.hasNext()) {
+                MultipartFile file = mreq.getFile(fileNamesIter.next());
+                if (file != null) {
+                    String myFileName = file.getOriginalFilename();
+                    if (myFileName.trim() != "") {
+                        String fileName = file.getOriginalFilename();
+                        String fileBaseName = fileName.substring(0, fileName.lastIndexOf("."));
+                        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        String newFileName = df.format(new Date());
+                        String fileNames = newFileName + new Random().nextInt(1000000) + "." + fileExt;
+                        String filePath = "d:\\upload\\activity\\" + newFileName + "\\" + fileNames;
+                        File localFile = new File(filePath);
+                        if (!localFile.exists()) {
+                            localFile.mkdirs();
+                        }
+                        file.transferTo(localFile);
+                        fileNames = "/upload/activity/" + newFileName + "/" + fileNames;
+                        map.put("name", fileBaseName);
+                        map.put("path", fileNames);
+                        map.put("status", 200);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
+     * 添加封面图片
+     * @param prarm
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/uploadBg", method = RequestMethod.POST)
+    @ResponseBody
+    @SystemLog(description = ConstantUtil.UPLOAD_IMAGES, userType = ConstantUtil.USERTYPE_ADMIN)
+    public Map<String, Object> uploadBg(String prarm, HttpServletRequest request) throws Exception {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (multipartResolver.isMultipart(request)) {
+            MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) request;
+            Iterator<String> fileNamesIter = mreq.getFileNames();
+            while (fileNamesIter.hasNext()) {
+                MultipartFile file = mreq.getFile(fileNamesIter.next());
+                if (file != null) {
+                    String myFileName = file.getOriginalFilename();
+                    if (myFileName.trim() != "") {
+                        String fileName = file.getOriginalFilename();
+                        String fileBaseName = fileName.substring(0, fileName.lastIndexOf("."));
+                        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        String newFileName = df.format(new Date());
+                        String fileNames = newFileName + new Random().nextInt(1000000) + "." + fileExt;
+                        String filePath = "d:\\upload\\background\\" + fileNames;
+                        File localFile = new File(filePath);
+                        if (!localFile.exists()) {
+                            localFile.mkdirs();
+                        }
+                        file.transferTo(localFile);
+                        fileNames = "/upload/background/" + newFileName + "/" + fileNames;
+                        map.put("name", fileBaseName);
+                        map.put("path", fileNames);
+                        map.put("status", 200);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    /**
+     * 删除封面图片
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/deletePic", method = RequestMethod.POST)
+    @ResponseBody
+    @SystemLog(description = ConstantUtil.DELETE_IMAGES, userType = ConstantUtil.USERTYPE_ADMIN)
+    public Map<String, Object> deletePic(String prarm, HttpSession session,String path, HttpServletRequest request) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String username = (String)session.getAttribute("username");
+        BackendUser user = backendUserService.findUserByLoginName(username);
+        if(user.getHaspermission() == 0){
+            map.put("status", 0);
+            map.put("msg", "没有删除权限");
+            return map;
+        }
+        String tempPath = path.replace("/", "\\");
+        File fileTemp = new File("d:\\" + tempPath);
+        if (fileTemp.exists()) {
+            if (fileTemp.isFile()) {
+                if (fileTemp.delete()) {
+                    map.put("status", 200);
+                    map.put("msg", "删除成功");
+                } else {
+                    // 0 表示删除失败
+                    map.put("status", 0);
+                    map.put("msg", "删除失败");
+                }
             }
         }
         return map;
