@@ -5,16 +5,11 @@
 <head>
 <meta charset="utf-8">
 <title>所有活动列表</title>
-<link rel="shortcut icon"
-  href="${pageContext.request.contextPath}/images/favicon.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="${pageContext.request.contextPath}/css/style.css"
-  rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-  rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/loaders.css"
-  rel="stylesheet">
-
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/loaders.css" rel="stylesheet">
 <style type="text/css">
 .loader-inner>div {
   background-color: #907f819e
@@ -44,8 +39,7 @@
 }
 </style>
 </head>
-<body
-  style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
   <%@ include file="top.jsp"%>
   <article>
     <div class="rbox">
@@ -81,7 +75,6 @@
   </article>
   <script src="${pageContext.request.contextPath}/js/page/list.js"></script>
   <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
-  <script id="cy_cmt_num"
-    src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytzg9rLH"></script>
+  <script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytzg9rLH"></script>
 </body>
 </html>

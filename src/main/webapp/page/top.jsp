@@ -6,19 +6,17 @@
  <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/m.css" rel="stylesheet">
- <script
-    src="https://hm.baidu.com/hm.js?f655f558c510211e38805f6b586e6b15"></script>
-<script
-    src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/comm.js"></script>
-<style>
-* {
-  cursor: url('${pageContext.request.contextPath}/images/ani/a.cur'), auto;
-}
-a {
-  cursor: url('${pageContext.request.contextPath}/images/ani/b.cur'), auto;
-}
-</style>
+ <script src="https://hm.baidu.com/hm.js?f655f558c510211e38805f6b586e6b15"></script>
+ <script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+ <script src="${pageContext.request.contextPath}/js/comm.js"></script>
+  <style>
+  * {
+    cursor: url('${pageContext.request.contextPath}/images/ani/a.cur'), auto;
+  }
+  a {
+    cursor: url('${pageContext.request.contextPath}/images/ani/b.cur'), auto;
+  }
+  </style>
 </head>
 <header id="header">
   <div class="navbox">
@@ -31,7 +29,7 @@ a {
     <nav>
       <ul id="starlist">
         <li><a href="${pageContext.request.contextPath}/index" title="首页" >网站首页</a></li>
-        <li><a href="${pageContext.request.contextPath}/page/list.jsp">活动介绍</a></li>
+        <li><a href="${pageContext.request.contextPath}/list">活动介绍</a></li>
         <li><a href="${pageContext.request.contextPath}/resource">资源分享</a></li>
         <li><a href="${pageContext.request.contextPath}/about">关于我</a></li>
         <li><a href="${pageContext.request.contextPath}/message">留言</a></li>

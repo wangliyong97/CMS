@@ -15,13 +15,14 @@ var globalCount = 0;
     $(".pageMin").html(pagenav);
     $(".tag").css('display', 'none');
   }
+
   $(window).scroll(function() {
     if (isEnd == true) {
       return;
     }
     if ($(document).scrollTop() > 200 && count == 1) {
       $(".dj").css("display", "block");
-      initBlogByClick();
+      initActivityByClick();
       count++;
     }
     
@@ -49,8 +50,8 @@ var globalCount = 0;
   $(document).ready(function() {
     //初始化类别信息
     initActivityType();
-    initBlogByLike();
-    initBlogByTop();
+    initActivityByLike();
+    initActivityByTop();
     //初始化技术专栏的信息
     var keyword = $("#keyword").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     if(keyword.search('type')!=-1){
@@ -93,7 +94,7 @@ var globalCount = 0;
         pageSize : 100,
         page : pageNum,
         'type.id' : type_id,
-        param : '搜索类别为<span class="text-info">#' + typename + '#</span>的博客列表',
+        param : '搜索类别为<span class="text-info">#' + typename + '#</span>的活动列表',
         status : 1 //1 表示已发布
       };
     }
@@ -104,7 +105,7 @@ var globalCount = 0;
       data : params,
       dataType : 'json',
       success : function(data) {
-        var blogList = '';
+        var activityList = '';
         var page = data.pageInfo;
         var data = data.activityList;
         if (data.length > 0) {
@@ -131,7 +132,7 @@ var globalCount = 0;
             + Format(data[i].addtime, "yyyy-MM-dd")
             + '</span><span  class="clicknum">浏览('
             + data[i].clicknum
-            + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">阅读原文</a></span></li>'
+            + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">阅读详情</a></span></li>'
           }
           var p = {
             client_id : 'cytzg9rLH',
@@ -157,9 +158,9 @@ var globalCount = 0;
             activityList = "<h1 style='font-size:110px;text-align:center;margin:20px;'>404</h1><h3 style='text-align:center;' class='font-bold'>抱歉，你所访问的资源不存在~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
         }
         if (page.pageNum >= 2) {
-          $(".newblogs").find("ul").append(blogList);
+          $(".newblogs").find("ul").append(activityList);
         } else {
-          $(".newblogs").find("ul").html(blogList);
+          $(".newblogs").find("ul").html(activityList);
         }
         if (page.total > 8 && !typeStatus) {
           var pagenav = '';
@@ -193,7 +194,7 @@ var globalCount = 0;
   };
   
   
-  var initBlogByTop = function() {
+  var initActivityByTop = function() {
     //设置参数
     var params = {
       pageSize : 5,
@@ -202,19 +203,19 @@ var globalCount = 0;
       status : 1
     };
     $.ajax({
-      url : 'selectGroupLikeBlogListByPage',
+      url : 'selectGroupLikeActivityListByPage',
       type : 'get',
       data : params,
       dataType : 'json',
       success : function(data) {
-        var topBlog = '';
-        var data = data.blogList;
+        var topActivity = '';
+        var data = data.activityList;
         for (var i = 0; i < data.length; i++) {
           var id = data[i].id.toString(8) * data[i].id;
-          topBlog +='<li><a href="find/' + id + '.html" title='+ data[i].title + ' target="_blank">'+data[i].title+'</a></li>';
+          topActivity +='<li><a href="find/' + id + '.html" title='+ data[i].title + ' target="_blank">'+data[i].title+'</a></li>';
         }
         // 初始化数据
-        $(".notice").find("ul").html(topBlog);
+        $(".notice").find("ul").html(topActivity);
         globalCount++;
       },
       error : function() {
@@ -239,7 +240,7 @@ var globalCount = 0;
       });
     });
   
-    initBlogListByPage(pageNum, type, null);
+    initActivityListByPage(pageNum, type, null);
     setTimeout(function() {
       window.scrollTo(0, 0); //滑动到浏览器顶部
       layer.close(index);
@@ -254,16 +255,16 @@ var globalCount = 0;
         shade : [ 0.1, '#eee' ] //0.1透明度的白色背景
       });
     });
-    initBlogListByPage(1, "none", null);
+    initActivityListByPage(1, "none", null);
     setTimeout(function() {
       layer.close(index);
     }, 200);
   }
   
-  //初始化所有类别信息
+  //初始化所有地址信息
   var initActivityType = function() {
-    //查询出文章类别
-    //设置参数，表示查询所有的类别
+    //查询出活动地址
+    //设置参数，表示查询所有的地址
     var params = {
       "data" : "all"
     };
@@ -313,12 +314,10 @@ var globalCount = 0;
     setTimeout(function() {
       layer.close(index);
     }, 200);
-  
-  
   }
   
   //初始化推荐
-  var initBlogByLike = function() {
+  var initActivityByLike = function() {
     var params = {
       pageSize : 5,
       page : 1,
@@ -332,7 +331,7 @@ var globalCount = 0;
       success : function(data) {
         var likeActivity_1 = '';
         var likeActivity_2 = '';
-        var data = data.blogList;
+        var data = data.activityList;
         var time = '';
   
         for (var i = 0; i < data.length; i++) {
@@ -348,8 +347,8 @@ var globalCount = 0;
           }
         }
         // 初始化数据
-        $(".tuijian2").find(".tjpic").html(likeBlog_1);
-        $(".tuijian2").find(".sidenews").html(likeBlog_2);
+        $(".tuijian2").find(".tjpic").html(likeActivity_1);
+        $(".tuijian2").find(".sidenews").html(likeActivity_2);
       },
       error : function() {
         layer.msg('请求太快，请稍后再试！', {
@@ -360,7 +359,7 @@ var globalCount = 0;
   };
   
   //初始化点击排行
-  var initBlogByClick = function() {
+  var initActivityByClick = function() {
     //设置参数
     var params = {
       pageSize : 9,
@@ -368,13 +367,13 @@ var globalCount = 0;
       sort : "clickNum", //按点击量排序,默认按时间
     };
     $.ajax({
-      url : 'selectGroupLikeBlogListByPage',
+      url : 'selectGroupLikeActivityListByPage',
       type : 'get',
       data : params,
       dataType : 'json',
       success : function(data) {
-        var clickBlog = '';
-        var data = data.blogList;
+        var clickActivity = '';
+        var data = data.activityList;
   
         for (var i = 0; i < data.length; i++) {
           if (data[i].title.length > 20) {
@@ -382,12 +381,12 @@ var globalCount = 0;
           }
           var id = data[i].id.toString(8) * data[i].id;
           time = i * 0.05;
-          clickBlog += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><i></i><a target="_blank" href="find/' + id + '.html">'
+          clickActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><i></i><a target="_blank" href="find/' + id + '.html">'
             + data[i].title
             + '</a></li>'
         }
         // 初始化数据
-        $(".dj").find(".click").html(clickBlog);
+        $(".dj").find(".click").html(clickActivity);
       },
       error : function() {
         layer.msg('请求太快，请稍后再试！', {

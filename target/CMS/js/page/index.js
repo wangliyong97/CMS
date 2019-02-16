@@ -23,12 +23,12 @@ $(window).scroll(
     }
     if ($(document).scrollTop() > 110 && count == 1) {
       //$(".dj").css("display", "block");
-      //initBlogByClick(); //初始化点击排行5篇文章
+      //initActivityByClick(); //初始化点击排行5项活动
       count++;
     }
     if ($(document).scrollTop() > 350 && count == 2) {
       $(".newblogs").css("display", "block");
-        initActivityByNew(1); //初始化最新5篇文章
+        initActivityByNew(1); //初始化最新5项活动
       count++;
     }
     if ($(document).scrollTop() > 1050 && width > 700) {
