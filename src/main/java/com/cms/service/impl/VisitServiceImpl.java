@@ -36,4 +36,14 @@ public class VisitServiceImpl implements VisitService{
     public List<?> selectLikeVisitListGroupByIp(Map<String, Object> map) {
         return visitMapper.selectLikeVisitListGroupByIp(map);
     }
+
+    @Override
+    public Long findVisitTimes(Visit visit) {
+        return visitMapper.findVisitTimes(visit);
+    }
+
+    @Override
+    public int insert(Visit record) {
+        return visitMapper.insert(record);
+    }
 }

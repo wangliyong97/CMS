@@ -17,4 +17,8 @@ public interface VisitService {
     List<Visit> selectLikeVisitListByPage(Map<String, Object> map);
 
     List<?> selectLikeVisitListGroupByIp(Map<String, Object> map);
+
+    Long findVisitTimes(Visit visit);
+
+    int insert(Visit record);
 }

@@ -12,6 +12,8 @@ public interface VisitMapper {
 
     int insertSelective(Visit record);
 
+    Long findVisitTimes(Visit visit);
+
     Visit selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Visit record);
