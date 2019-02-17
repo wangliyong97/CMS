@@ -46,13 +46,13 @@
     <input name="keyword" id="keyword" value="${keyword}"
           type="hidden">
       <div class="cloud animated fadeIn whitebg">
-        <h2 class="cloud_hometitle">地址预览</h2>
+        <h2 class="cloud_hometitle">标签云</h2>
         <ul>
 
         </ul>
       </div>
       <div class="tuijian2  animated fadeIn whitebg">
-        <h2 class="cloud_hometitle">推荐活动</h2>
+        <h2 class="cloud_hometitle">推荐文章</h2>
         <ul class="tjpic animated fadeIn">
           <i><img src="images/t03.jpg"></i>
         </ul>

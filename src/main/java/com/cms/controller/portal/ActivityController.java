@@ -4,11 +4,14 @@ import com.cms.annotation.AccessLimit;
 import com.cms.annotation.SystemLog;
 import com.cms.pojo.Activity;
 import com.cms.service.ActivityService;
+import com.cms.util.ActivityIdSafeUtil;
 import com.cms.util.ConstantUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,6 +28,55 @@ public class ActivityController {
     @Autowired
     private ActivityService activityService;
 
+    @RequestMapping(value = "/find/{id}.html")
+    @SystemLog(description = ConstantUtil.ACTIVITY_SELECT,userType=ConstantUtil.USERTYPE_USER)
+    public String selectActivityById(@PathVariable Integer id, Model model) throws Exception {
+        int sId= ActivityIdSafeUtil.ActivityIdToSafe(id);
+        if(id==null||id<=0){
+            //0表示查询 错误
+            model.addAttribute("status", 0);
+        }else{
+            Activity activity=activityService.selectActivityUserById(sId);
+            if(activity==null){
+                //查询的博客不存在
+                model.addAttribute("status", 500);
+            }else{
+                model.addAttribute("status", 200);
+            }
+            model.addAttribute("activity", activity);
+        }
+        return "page/info";
+    }
+
+    @RequestMapping(value = "/selectPrevActivity")
+    @ResponseBody
+    public Map<String, Object> selectPrevActivity(Integer id) throws Exception{
+        Map<String, Object> map=new HashMap<String, Object>();
+        Activity activity=activityService.selectPrevActivity(id);
+        if(activity!=null){
+            map.put("status", 200);
+        }else{
+            //500表示：返回值为Null
+            map.put("status", 500);
+        }
+        map.put("activity", activity);
+        return map;
+    }
+
+    @RequestMapping(value = "/selectNextActivity")
+    @ResponseBody
+    public Map<String, Object> selectNextActivity(Integer id) throws Exception{
+        Map<String, Object> map=new HashMap<String, Object>();
+        Activity activity=activityService.selectNextActivity(id);
+        if(activity!=null){
+            map.put("status", 200);
+        }else{
+            //500表示：返回值为Null
+            map.put("status", 500);
+        }
+        map.put("activity", activity);
+        return map;
+    }
 
     @RequestMapping(value = "/selectGroupLikeActivityListByPage")
     @ResponseBody

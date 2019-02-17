@@ -120,8 +120,7 @@
   <!-- 全局js -->
   <script src="${pageContext.request.contextPath}/js/page/index.js"></script>
   <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
-  <script
-    src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+  <script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
 </body>
 
 </html>

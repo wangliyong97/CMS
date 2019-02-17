@@ -61,6 +61,23 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public Activity selectActivityUserById(Integer id) {
+        Activity activity = activityMapper.selectActivityUserById(id);
+        if (activity != null) {
+            synchronized (activity) {
+                count.getAndIncrement();
+                activity.setClicknum(activity.getClicknum() + count.get());
+                // 5条记录 往数据库写入 一次
+                if (count.get() >= 5) {
+                    activityMapper.updateActivitySelective(activity);
+                    count.set(0);
+                }
+            }
+        }
+        return activity;
+    }
+
+    @Override
     public Activity selectActivityById(Integer id) {
         Activity activity = activityMapper.selectActivityById(id);
         if (activity != null) {
@@ -75,6 +92,16 @@ public class ActivityServiceImpl implements ActivityService {
             }
         }
         return activity;
+    }
+
+    @Override
+    public Activity selectPrevActivity(Integer id) {
+        return activityMapper.selectPrevActivity(id);
+    }
+
+    @Override
+    public Activity selectNextActivity(Integer id) {
+        return activityMapper.selectNextActivity(id);
     }
 
     @Override

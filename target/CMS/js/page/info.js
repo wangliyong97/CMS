@@ -64,7 +64,7 @@ if (width < 700) {
 $(window).scroll(function() {
   if ($(document).scrollTop() > 20 && count == 1) {
     $(".dj").css("display", "block");
-    initBlogByClick();
+    initActivityByClick();
     count++;
   }
   if ($(document).scrollTop() > 1200 && width > 700) {
@@ -81,14 +81,14 @@ $(document).ready(function() {
   if ($(".newsview h1").text() != "404") {
     Format();
     Tags();
-    selectPrevBlog();
-    selectNextBlog();
-    initBlogByRel(); //初始化相关文章
+    selectPrevActivity();
+    selectNextActivity();
+    initActivityByRel(); //初始化相关文章
   }
-  initBlogByLike();
+  initActivityByLike();
   setTimeout(function() {
     $(".ds").css("opacity", "1");
-  }, 1000);
+  }, 500);
   var topId = $(".nav-item"); /*获取目录点击区域*/
   topId.click(function() {
     var topId = $(this).attr("id");
@@ -116,21 +116,21 @@ var Tags = function() {
   $(".newsview").find(".tags").append(keyword);
 }
 
-var selectPrevBlog = function() {
+var selectPrevActivity = function() {
   var id = $(".id").val();
   var params = {
     id : id - 1
   };
   $.ajax({
-    url : '../selectPrevBlog',
+    url : '../selectPrevActivity',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
       var preTitle = "";
       if (data.status == 200) {
-        var id = data.blog.id.toString(8) * data.blog.id;
-        preTitle = '<a href="../find/' + id + '.html">' + data.blog.title + '</a>';
+        var id = data.activity.id.toString(8) * data.activity.id;
+        preTitle = '<a href="../find/' + id + '.html">' + data.activity.title + '</a>';
       } else {
         preTitle = '<span>无</span>';
       }
@@ -145,22 +145,22 @@ var selectPrevBlog = function() {
 
 };
 
-var selectNextBlog = function() {
+var selectNextActivity = function() {
   var vid = $(".id").val();
   var id = parseInt(vid) + 1;
   var params = {
     id : id
   };
   $.ajax({
-    url : '../selectNextBlog',
+    url : '../selectNextActivity',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
       var nextTitle = '';
       if (data.status == 200) {
-        var sid = data.blog.id.toString(8) * data.blog.id;
-        nextTitle = '<a href="../find/' + sid + '.html">' + data.blog.title + '</a>';
+        var sid = data.activity.id.toString(8) * data.activity.id;
+        nextTitle = '<a href="../find/' + sid + '.html">' + data.activity.title + '</a>';
       } else {
         nextTitle = '<span>无</span>';
       }
@@ -176,26 +176,26 @@ var selectNextBlog = function() {
 };
 
 //初始化相关文章
-var initBlogByRel = function() {
+var initActivityByRel = function() {
   var params = {
     pageSize : 6,
     page : 1,
     'type.id' : $(".typeId").val(),
   };
   $.ajax({
-    url : '../selectGroupLikeBlogListByPage',
+    url : '../selectGroupLikeActivityListByPage',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
-      var relBlog = '';
-      var data = data.blogList;
+      var relActivity = '';
+      var data = data.activityList;
       for (var i = 0; i < data.length; i++) {
         var id = data[i].id.toString(8) * data[i].id;
-        relBlog += '<li><i style="color:#5788aa" class="fa fa-paperclip"></i> <a href="' + id + '.html" title="' + data[i].title + '">' + data[i].title + '</a></li>'
+        relActivity += '<li><i style="color:#5788aa" class="fa fa-paperclip"></i> <a href="' + id + '.html" title="' + data[i].title + '">' + data[i].title + '</a></li>'
       }
       // 初始化数据
-      $(".otherlink").find("ul").html(relBlog);
+      $(".otherlink").find("ul").html(relActivity);
     },
     error : function() {
       layer.msg('加载的太快啦', {
@@ -206,7 +206,7 @@ var initBlogByRel = function() {
 };
 
 //初始化推荐
-var initBlogByLike = function() {
+var initActivityByLike = function() {
   //设置参数
   var params = {
     pageSize : 5,
@@ -214,25 +214,24 @@ var initBlogByLike = function() {
     isrecommend : 1 //1 表示推荐
   };
   $.ajax({
-    url : '../selectGroupLikeBlogListByPage',
+    url : '../selectGroupLikeActivityListByPage',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
-      var likeBlog = '';
-      var data = data.blogList;
+      var likeActivity = '';
+      var data = data.activityList;
       var time = '';
       for (var i = 0; i < data.length; i++) {
-
         var id = data[i].id.toString(8) * data[i].id;
         time = i * 0.05;
-        likeBlog += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a href="../find/' + id + '.html">'
+        likeActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a href="../find/' + id + '.html">'
           + data[i].title
           + '</a></b><p><i><img src="' + data[i].images + '"></i><span>'
           + data[i].introduction + '<span></p></li>'
       }
       // 初始化数据
-      $(".paihang").find(".like").html(likeBlog);
+      $(".paihang").find(".like").html(likeActivity);
     },
     error : function() {
       layer.msg('加载的太快啦', {
@@ -243,7 +242,7 @@ var initBlogByLike = function() {
 };
 
 //初始化点击排行
-var initBlogByClick = function() {
+var initActivityByClick = function() {
   //设置参数
   var params = {
     pageSize : 5,
@@ -251,25 +250,24 @@ var initBlogByClick = function() {
     sort : "clickNum", //按点击量排序,默认按时间
   };
   $.ajax({
-    url : '../selectGroupLikeBlogListByPage',
+    url : '../selectGroupLikeActivityListByPage',
     type : 'get',
     data : params,
     dataType : 'json',
     success : function(data) {
-      var clickBlog = '';
-      var data = data.blogList;
+      var clickActivity = '';
+      var data = data.activityList;
       var time = '';
       for (var i = 0; i < data.length; i++) {
-
         var id = data[i].id.toString(8) * data[i].id;
         time = i * 0.05;
-        clickBlog += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a href="../find/' + id + '.html">'
+        clickActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeIn"><b><a href="../find/' + id + '.html">'
           + data[i].title
           + '</a></b><p><i><img src="' + data[i].images + '"></i><span>'
           + data[i].introduction + '</span></p></li>'
       }
       // 初始化数据
-      $(".paihang").find(".click").html(clickBlog);
+      $(".paihang").find(".click").html(clickActivity);
     },
     error : function() {
       layer.msg('加载的太快啦', {
@@ -278,7 +276,6 @@ var initBlogByClick = function() {
     }
   });
 };
-
 
 //格式化时间
 var Format = function() {

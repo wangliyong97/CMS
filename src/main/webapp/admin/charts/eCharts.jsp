@@ -31,6 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 </style>
 </head>
+
 <body class="white-bg" style="opacity:0">
 <div id="fakeloader"></div>
    <div class="wrapper wrapper-content">

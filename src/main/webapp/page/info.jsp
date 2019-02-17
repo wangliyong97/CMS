@@ -4,23 +4,17 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>${blog.title}</title>
-<link rel="shortcut icon"
-  href="${pageContext.request.contextPath}/images/favicon.ico">
-<meta name="keywords" content="${blog.keyword}" />
-<meta name="description" content="${blog.introduction}" />
+<title>${activity.title}</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+<meta name="keywords" content="${activity.keyword}" />
+<meta name="description" content="${activity.introduction}" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="${pageContext.request.contextPath}/css/github-gist.css"
-  rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.css"
-  rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-  rel="stylesheet">
-<script
-    src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+<link href="${pageContext.request.contextPath}/css/github-gist.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
 </head>
-<body
-  style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
   <%@ include file="top.jsp"%>
   <article>
     <div class="tool-box">
@@ -39,7 +33,7 @@
               summary : '${blog.introduction}', /*分享摘要(可选)*/
               pics : '${blog.images}', /*分享图片(可选)*/
               flash : '', /*视频地址(可选)*/
-              site : 'luotf个人网站', /*分享来源(可选) 如：QQ分享*/
+              site : '活动分享网站', /*分享来源(可选) 如：QQ分享*/
               style : '201',
               width : 35,
               height : 35
@@ -60,8 +54,8 @@
               desc : '', /*默认分享理由(可选)*/
               summary : '${blog.introduction}', /*分享摘要(可选)*/
               title : '${blog.title}', /*分享标题(可选)*/
-              site : 'luotf个人网站', /*分享来源 如：腾讯网(可选)*/
-              pics : '${blog.images}', /*分享图片的路径(可选)*/
+              site : '活动分享网站', /*分享来源 如：腾讯网(可选)*/
+              pics : '${activity.images}', /*分享图片的路径(可选)*/
               style : '201',
               width : 113,
               height : 39
@@ -73,15 +67,16 @@
         
             document.write([ '<a title="分享到空间" version="1.0" style="" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?', s.join('&'), '" target="_blank"><i class="fa fa-star"></i><br>空间</a>' ].join(''));
           })();
-        </script> <script
+        </script>
+          <script
             src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201"
             charset="utf-8"></script></li>
         <li><script type="text/javascript">
           (function() {
             var p = {
               url : location.href,
-              title : '${blog.title}', /*分享标题(可选)*/
-              pic : '${blog.images}', /*分享图片的路径(可选)*/
+              title : '${activity.title}', /*分享标题(可选)*/
+              pic : '${activity.images}', /*分享图片的路径(可选)*/
             };
             var s = [];
             for (var i in p) {
@@ -96,7 +91,7 @@
       <div class="infos">
         <div class="newsview ">
           <h2 class="intitle">
-            您现在的位置是：<a href="/">网站首页</a>&nbsp;&gt;&nbsp;<a href="/">技术专栏</a>
+            您现在的位置是：<a href="/">网站首页</a>&nbsp;&gt;&nbsp;<a href="/">活动简介</a>
           </h2>
           <c:choose>
             <c:when test="${status== '0' || status== '500'}">
@@ -109,28 +104,28 @@
               </h4>
             </c:when>
             <c:otherwise>
-              <h3 class="news_title animated fadeIn">${blog.title}</h3>
-              <input class="id" type="hidden" value="${blog.id}">
+              <h3 class="news_title animated fadeIn">${activity.title}</h3>
+              <input class="id" type="hidden" value="${activity.id}">
               <div class="news_author animated fadeIn">
-                <span class="au01 ">luotf</span><span class="au02">
+                <span class="au01 ">管理员</span><span class="au02">
                   <input class="addtime" type="hidden"
-                  value="${blog.addtime}">
-                </span><span class="au03">共<b>${blog.clicknum}</b>人围观
+                  value="${activity.addtime}">
+                </span><span class="au03">共<b>${activity.clicknum}</b>人围观
                 </span>
               </div>
               <input class="typeId" type="hidden"
-                value="${blog.type.id}">
+                value="${activity.type.id}">
               <div class="tags animated fadeIn">
-                <input class="tag" type="hidden" value="${blog.keyword}">
+                <input class="tag" type="hidden" value="${activity.keyword}">
               </div>
               <div class="news_about animated fadeIn">
-                <strong>简介</strong>${blog.introduction}</div>
-              <div class="news_infos animated fadeIn">${blog.content}</div>
+                <strong>简介</strong>${activity.introduction}</div>
+              <div class="news_infos animated fadeIn">${activity.content}</div>
               <br>
               <br>
               <p
                 style="font-size:15px;padding: 10px 20px;background: #f7f7f7; border-left: 5px solid rgb(255, 146, 111);">
-                <b>转载：</b>感谢您对luotf个人博客网站平台的认可，及对该作品以及文章的青睐，非常欢迎各位朋友分享到个人站长或者朋友圈，但转载请说明文章出处。本文章部分图片、文章来源于网络，版权归原作者所有，如有侵权，请与我联系删除。
+                <b>转载：</b>感谢您对活动分享网站平台的认可！
               </p>
             </c:otherwise>
           </c:choose>
@@ -149,18 +144,18 @@
       </div>
       <div class="otherlink animated fadeIn"
         style="padding-bottom:20px;">
-        <h2>相关文章</h2>
+        <h2>相关活动</h2>
         <ul>
 
         </ul>
       </div>
       <div class="news_pl " id="news_pl">
-        <h2>文章评论</h2>
+        <h2>活动评论</h2>
         <div style="width:90%;margin: 0 auto;">
           <div id="cyEmoji" role="cylabs" data-use="emoji"
-            sid="${blog.id }"></div>
+            sid="${activity.id }"></div>
           <!--PC和WAP自适应版-->
-          <div id="SOHUCS" sid="${blog.id }"></div>
+          <div id="SOHUCS" sid="${activity.id }"></div>
         </div>
       </div>
 
@@ -184,7 +179,7 @@
       <script type="text/javascript" charset="utf-8"
         src="http://changyan.sohu.com/js/changyan.labs.https.js?appid=cytzg9rLH"></script>
       <div class="fixed-menu-list animated fadeInUp">
-        <div class="sidebar-nav-toc">文章目录</div>
+        <div class="sidebar-nav-toc">活动目录</div>
         <div class="post-toc">
           <div class="post-toc-content">
             <ol class="nav1">
@@ -201,8 +196,7 @@
   <%@ include file="fonter.jsp"%>
   <script src="${pageContext.request.contextPath}/js/page/info.js"></script>
   <script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
-  <script>hljs.initHighlightingOnLoad();
-  </script>
+  <script>hljs.initHighlightingOnLoad();</script>
   <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
 </body>
 </html>

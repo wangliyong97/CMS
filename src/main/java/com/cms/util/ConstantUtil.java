@@ -14,7 +14,7 @@ public class ConstantUtil {
 
     public static final String ACTIVITY_UPDATE="更新活动";
 
-    public static final String BLOG_SELECT="查看博客";
+    public static final String ACTIVITY_SELECT="查看博客";
 
     public static final String BLOG_FINDKEY="关键字查询博客";
 

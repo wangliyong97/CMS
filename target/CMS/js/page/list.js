@@ -41,10 +41,11 @@ var globalCount = 0;
       }, 500);
     }
   });
+
   var initActivity = function() {
     setTimeout(function() {
       initActivityListByPage(pageNext, "none", null);
-    }, 100);
+    }, 60);
   }
   
   $(document).ready(function() {

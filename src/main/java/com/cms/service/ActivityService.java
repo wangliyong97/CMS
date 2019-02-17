@@ -19,7 +19,13 @@ public interface ActivityService {
 
     List<?>  selectActivityListByStatus();
 
+    Activity selectActivityUserById(Integer id);
+
     Activity selectActivityById(Integer id);
+
+    Activity selectPrevActivity(Integer id);
+
+    Activity selectNextActivity(Integer id);
 
     int updateActivitySelective(Activity activity);
 

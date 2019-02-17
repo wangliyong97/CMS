@@ -29,9 +29,9 @@
 <link href="${pageContext.request.contextPath}/css/plugins/webuploader/webuploader-demo.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
 <style>
-.news_infos span {
-	font-size: 13px;
-}
+	.news_infos span {
+		font-size: 13px;
+	}
 </style>
 </head>
 <body class="white-bg" style="opacity:0">

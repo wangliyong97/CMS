@@ -7,32 +7,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>资源数据</title>
 <meta name="keywords" content="">
-<meta name="description"
-	content="">
-
-<link href="${pageContext.request.contextPath}/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/font-awesome.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/animate.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath}/css/style.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/bootstrap-table/bootstrap-table.min.css"
-	rel="stylesheet">
-<link
-	href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css"
-	rel="stylesheet">
+<meta name="description" content="">
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/fakeLoader.css" rel="stylesheet">
 </head>
 
@@ -143,47 +129,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 							<div id="update"></div>
 						</form>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
-
 	<!-- 全局js -->
 	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-
-
 	<!-- 自定义js -->
 	<script src="${pageContext.request.contextPath}/js/content.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
-
-<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
-
-<script
-		src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/validate/messages_zh.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/validate/form-validate-demo.js"></script>
-
+	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/validate/messages_zh.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/validate/form-validate-demo.js"></script>
 
 	<!-- Bootstrap table -->
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/admin/resource/resource.js"></script>
-
-
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="${pageContext.request.contextPath}/js/admin/resource/resource.js"></script>
 </body>
 
 </html>

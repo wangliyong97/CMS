@@ -68,7 +68,7 @@ a {
 .mt20 { margin-top: 20px; }
 .font16{font-size:16px;}
 .blue { color: #00C1DE }
-header { width: 100%; padding: 5px 0; background: #1C2327; height: 50px; }
+header { width: 100%; padding: 5px 0; background: #9a9a9ab8; height: 50px; }
 /*header::before { background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55); content: ""; height: 5px; position: absolute; top: 0; width: 100%; }*/
 .logo { float: left; margin-right: 60px; line-height: 56px; color: #FFF; font-size: 22px }
 .logo a { color: #FFF }
