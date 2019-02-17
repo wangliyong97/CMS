@@ -29,9 +29,9 @@
             var p = {
               url : location.href, /*获取URL，可加上来自分享到QQ标识，方便统计*/
               desc : '', /*分享理由(风格应模拟用户对话),支持多分享语随机展现（使用|分隔）*/
-              title : '${blog.title}', /*分享标题(可选)*/
-              summary : '${blog.introduction}', /*分享摘要(可选)*/
-              pics : '${blog.images}', /*分享图片(可选)*/
+              title : '${activity.title}', /*分享标题(可选)*/
+              summary : '${activity.introduction}', /*分享摘要(可选)*/
+              pics : '${activity.images}', /*分享图片(可选)*/
               flash : '', /*视频地址(可选)*/
               site : '活动分享网站', /*分享来源(可选) 如：QQ分享*/
               style : '201',
@@ -52,8 +52,8 @@
               url : location.href,
               showcount : '1', /*是否显示分享总数,显示：'1'，不显示：'0' */
               desc : '', /*默认分享理由(可选)*/
-              summary : '${blog.introduction}', /*分享摘要(可选)*/
-              title : '${blog.title}', /*分享标题(可选)*/
+              summary : '${activity.introduction}', /*分享摘要(可选)*/
+              title : '${activity.title}', /*分享标题(可选)*/
               site : '活动分享网站', /*分享来源 如：腾讯网(可选)*/
               pics : '${activity.images}', /*分享图片的路径(可选)*/
               style : '201',

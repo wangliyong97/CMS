@@ -6,7 +6,6 @@
  <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
  <link href="${pageContext.request.contextPath}/css/m.css" rel="stylesheet">
- <script src="https://hm.baidu.com/hm.js?f655f558c510211e38805f6b586e6b15"></script>
  <script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
  <script src="${pageContext.request.contextPath}/js/comm.js"></script>
   <style>
@@ -58,15 +57,7 @@
   src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js">
 </script>
 <script type="text/javascript">
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?f655f558c510211e38805f6b586e6b15";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
-  })();
-
-  //初始化所有类别信息
+    //初始化所有类别信息
   var initAllActivityType = function() {
     //查询出文章类别
     //设置参数，表示查询所有的类别

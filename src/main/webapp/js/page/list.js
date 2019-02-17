@@ -334,7 +334,6 @@ var globalCount = 0;
         var likeActivity_2 = '';
         var data = data.activityList;
         var time = '';
-  
         for (var i = 0; i < data.length; i++) {
           if (data[i].title.length > 25) {
             data[i].title = data[i].title.substring(0, 25) + "...";
@@ -342,7 +341,7 @@ var globalCount = 0;
           var id = data[i].id.toString(8) * data[i].id;
           time = i * 0.03;
           if (i == 1) {
-            likeActivity_1 = '<i ><a target="_blank" href="find/' + id + '.html"><img src="' + data[i].images + '"></i><p>' + data[i].title + '</p></a>'
+            likeActivity_1 = '<i><a target="_blank" href="find/' + id + '.html"><img src="' + data[i].images + '"></i><p>' + data[i].title + '</p></a>'
           } else {
             likeActivity_2 += '<li style="animation-delay:' + time + 's class="animated fadeIn"> <i><img src="' + data[i].images + '"></i><p><a href="find/' + id + '.html">' + data[i].title + '</a></p><span>[' + Format(data[i].addtime, "yyyy-MM-dd") + ']</span> </li>';
           }

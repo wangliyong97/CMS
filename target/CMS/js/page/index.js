@@ -55,11 +55,11 @@ $(window).scroll(
   });
 
 $(document).ready(function() {
-  initActivityByTop(); //初始化置顶的3篇文章
-  initActivityByAllType();
-  initActivityByLike(); //初始化特别推荐6项活动
-  initActivityByClick(); //初始化点击排行5篇文章
-  // init();
+    initActivityByLikebg(); //初始化滚动图片
+    initActivityByTop(); //初始化置顶的3篇文章
+    initActivityByAllType();
+    initActivityByLike(); //初始化特别推荐6项活动
+    initActivityByClick(); //初始化点击排行5篇文章
 });
 
 var initActivityByClickMore = function() {
@@ -341,6 +341,64 @@ var initActivityByClick = function() {
           icon : 5
         });
       }
+    });
+};
+
+//初始化推荐背景
+var initActivityByLikebg = function() {
+    var params = {
+        pageSize : 4,
+        page : 1,
+        isrecommend : 1 //1 表示推荐
+    };
+    $.ajax({
+        url : 'selectGroupLikeActivityListByPage',
+        type : 'get',
+        data : params,
+        dataType : 'json',
+        success : function(data) {
+            var likeActivity = '';
+            var data = data.activityList;
+            var time = '';
+            var id = '';
+            //用于处理图片标题问题
+            // if (data[i].title.length > 25) {
+            //     data[i].title = data[i].title.substring(0, 25) + "...";
+            // }
+            if(data.length > 0){
+                id = data[0].id.toString(8) * data[0].id;
+                time = 0 * 0.03;
+                likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[0].images + '"></i></a>'
+                // 初始化数据
+                $(".banner").find(".tupian1").html(likeActivity);
+                if(data.length - 1 > 0){
+                    id = data[1].id.toString(8) * data[1].id;
+                    time = 1 * 0.03;
+                    likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[1].images + '"></i></a>'
+                    // 初始化数据
+                    $(".banner").find(".tupian2").html(likeActivity);
+                    if(data.length - 2 > 0){
+                        id = data[2].id.toString(8) * data[2].id;
+                        time = 2 * 0.03;
+                        likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[2].images + '"></i></a>'
+                        // 初始化数据
+                        $(".banner").find(".tupian3").html(likeActivity);
+                        if(data.length - 3 > 0){
+                            id = data[3].id.toString(8) * data[3].id;
+                            time = 3 * 0.03;
+                            likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[3].images + '"></i></a>'
+                            // 初始化数据
+                            $(".banner").find(".tupian4").html(likeActivity);
+                        }
+                    }
+                }
+            }
+        },
+        error : function() {
+            layer.msg('请求太快，请稍后再试！', {
+                icon : 5
+            });
+        }
     });
 };
 

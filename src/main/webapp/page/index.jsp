@@ -27,23 +27,24 @@
       <div class="banbox">
         <div class="banner">
           <div id="banner" class="fader">
-            <li class="slide" style=" "><a
-              href="https://www.4562.com/" target="_blank"><img
-                src="${pageContext.request.contextPath}/images/5e9a97fc44fc12475b6b0e87e2ff5806.jpg"></a></li>
-
-            <li class="slide" style=" "><a
-              href="javascript:void(0)"
-              target="_blank"><img
-                src="${pageContext.request.contextPath}/images/2.jpg"></a></li>
-
-            <li class="slide" style=""><a
-              href="https://www.4562.com/" target="_blank"><img
-                src="${pageContext.request.contextPath}/images/8db2f0313616ebe46ca5770769850b42.png"></a></li>
+            <%--<li class="slide" style=" "><a href="https://www.4562.com/" target="_blank">--%>
+              <%--<img src="${pageContext.request.contextPath}/images/5e9a97fc44fc12475b6b0e87e2ff5806.jpg"></a></li>--%>
+                <li class="slide tupian1" style=" ">
+                    <img src="images/t03.jpg">
+                </li>
+                <li class="slide tupian2" style=" ">
+                    <img src="images/t03.jpg">
+                </li>
+                <li class="slide tupian3" style=" ">
+                    <img src="images/t03.jpg">
+                </li>
+                <li class="slide tupian4" style=" ">
+                    <img src="images/t03.jpg">
+                </li>
             <div class="fader_controls">
               <div class="pic_page prev" data-target="prev"></div>
               <div class="pic_page next" data-target="next"></div>
               <ul class="pager_list">
-
               </ul>
             </div>
           </div>
@@ -86,17 +87,10 @@
         <p>现居：四川省-成都市</p>
         <p>Email：849673404@qq.com</p>
         <ul class="linkmore">
-          <li><a href="http://www.luotf.com" target="_blank"
-            class="iconfont icon-zhuye" title="网站地址"></a></li>
-          <li><a
-            href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-MTIxcrLz8jMyLyNjdKfk5E"
-            target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
-          <li><a
-            href="http://wpa.qq.com/msgrd?v=3&uin=849673404&site=qq&menu=yes"
-            target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
-          <li id="weixin"><a href="#" target="_blank"
-            class="iconfont icon-weixin" title="关注我的微信"></a><i><img
-              src="${pageContext.request.contextPath}/images/my_vx.png"></i></li>
+          <li><a href="http://www.luotf.com" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
+          <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-MTIxcrLz8jMyLyNjdKfk5E" target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
+          <li><a href="http://wpa.qq.com/msgrd?v=3&uin=849673404&site=qq&menu=yes" target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
+          <li id="weixin"><a href="#" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="${pageContext.request.contextPath}/images/my_vx.png"></i></li>
         </ul>
       </div>
 
