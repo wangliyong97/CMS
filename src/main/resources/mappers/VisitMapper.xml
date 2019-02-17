@@ -34,6 +34,31 @@
       #{city,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{browsertype,jdbcType=VARCHAR}, 
       #{platformtype,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
   </insert>
+  <select id="findVisitTimes" parameterType="com.cms.pojo.Visit" resultType="Long">
+    SELECT COUNT(*) from visit
+    <where>
+      <if test="ip!=null and ip!=''">
+        and ip =#{ip}
+      </if>
+      <if test="userAgent!=null and userAgent!=''">
+        and userAgent =#{userAgent}
+      </if>
+      <if test="url!=null and url!=''">
+        and url =#{url}
+      </if>
+      <if test="browserType!=null and browserType!=''">
+        and browserType =#{browserType}
+      </if>
+      <if test="platformType!=null and platformType!=''">
+        and platformType =#{platformType}
+      </if>
+
+      <if test="time!=null ">
+        and TO_DAYS(DATE_FORMAT(time,'%Y-%m-%d')) = TO_DAYS(#{time})
+        <!-- and TO_DAYS(DATE_FORMAT(time,'%Y-%m-%d')) = TO_DAYS(#{time}) -->
+      </if>
+    </where>
+  </select>
   <insert id="insertSelective" parameterType="com.cms.pojo.Visit" >
     insert into visit
     <trim prefix="(" suffix=")" suffixOverrides="," >

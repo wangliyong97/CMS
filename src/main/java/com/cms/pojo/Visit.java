@@ -30,6 +30,10 @@ public class Visit {
         this.time = time;
     }
 
+    public Visit(String browserType, String platformType){
+        this.browsertype = browserType;
+        this.platformtype = platformType;
+    }
     public Visit() {
         super();
     }
