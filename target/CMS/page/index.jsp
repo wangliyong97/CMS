@@ -80,32 +80,19 @@
     </div>
 
     <div class="rbox">
-      <div class="card">
-        <h2>名片</h2>
-        <p>网名：我倾尽一生,囚你无期 | Luotf</p>
-        <p>职业：男程序员，Java研发工程师</p>
-        <p>现居：四川省-成都市</p>
-        <p>Email：849673404@qq.com</p>
-        <ul class="linkmore">
-          <li><a href="http://www.luotf.com" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
-          <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-MTIxcrLz8jMyLyNjdKfk5E" target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
-          <li><a href="http://wpa.qq.com/msgrd?v=3&uin=849673404&site=qq&menu=yes" target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
-          <li id="weixin"><a href="#" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="${pageContext.request.contextPath}/images/my_vx.png"></i></li>
-        </ul>
-      </div>
-
-      <div class="whitebg notice">
-      <h2 class="htitle">热门活动</h2>
-         <ul>
-         </ul>
-      </div>
-
-      <div class="dj paihang animated fadeIn" style="animation-delay:0.3s">
-        <h2 class="htitle">点击排行</h2>
-        <ul class="">
-
-        </ul>
-      </div>
+        <div class="applybtn">
+            <a href="${pageContext.request.contextPath}/web/spacelist">申请活动 - 入口</a>
+        </div>
+        <div class="dj paihang animated fadeIn" style="animation-delay:0.3s">
+            <h2 class="htitle">点击排行</h2>
+            <ul class="">
+            </ul>
+        </div>
+        <div class="whitebg notice">
+            <h2 class="htitle">热门活动</h2>
+            <ul>
+            </ul>
+        </div>
     </div>
 
     <a href="#" class="top cd-top animated ">Top</a>

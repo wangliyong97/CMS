@@ -310,7 +310,7 @@ var initActivityByNew = function(page) {
 var initActivityByClick = function() {
   //设置参数
   var params = {
-    pageSize : 5,
+    pageSize : 15,
     page : 1,
     sort : "clickNum", //按点击量排序,默认按时间
     status : 1,
