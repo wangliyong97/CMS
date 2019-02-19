@@ -362,33 +362,30 @@ var initActivityByLikebg = function() {
             var time = '';
             var id = '';
             //用于处理图片标题问题
-            // if (data[i].title.length > 25) {
-            //     data[i].title = data[i].title.substring(0, 25) + "...";
-            // }
             if(data.length > 0){
                 id = data[0].id.toString(8) * data[0].id;
                 time = 0 * 0.03;
                 likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[0].images + '"></i></a>'
                 // 初始化数据
-                $(".banner").find(".tupian1").html(likeActivity);
+                $(".carousel-inner").find(".tupian1").html(likeActivity);
                 if(data.length - 1 > 0){
                     id = data[1].id.toString(8) * data[1].id;
                     time = 1 * 0.03;
                     likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[1].images + '"></i></a>'
                     // 初始化数据
-                    $(".banner").find(".tupian2").html(likeActivity);
+                    $(".carousel-inner").find(".tupian2").html(likeActivity);
                     if(data.length - 2 > 0){
                         id = data[2].id.toString(8) * data[2].id;
                         time = 2 * 0.03;
                         likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[2].images + '"></i></a>'
                         // 初始化数据
-                        $(".banner").find(".tupian3").html(likeActivity);
+                        $(".carousel-inner").find(".tupian3").html(likeActivity);
                         if(data.length - 3 > 0){
                             id = data[3].id.toString(8) * data[3].id;
                             time = 3 * 0.03;
                             likeActivity = '<i><a target="_blank" href="find/' + id + '.html">' + '<img src="' + data[3].images + '"></i></a>'
                             // 初始化数据
-                            $(".banner").find(".tupian4").html(likeActivity);
+                            $(".carousel-inner").find(".tupian4").html(likeActivity);
                         }
                     }
                 }
