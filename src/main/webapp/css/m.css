@@ -28,6 +28,9 @@
     .searchico{
         display: none;
     }
+    .right{
+        display: none;
+    }
     .carousel-inner img{width:900px; height:200px}
 }
 @media only screen and (max-width: 768px) {

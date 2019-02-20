@@ -44,7 +44,76 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about">关于我</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/message">留言</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/">登录</a></li>
-                        <div class="searchico"></div>
+                        <li class="searchico"></li>
+                    </ul>
+                </div>
+                <div class="right" style="float: right">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle"
+                               data-toggle="dropdown"
+                               style="height: 60px">
+                                <img alt="" class="img-circle" src="${pageContext.request.contextPath}/images/person.png" width="40px" height="40px" margin-left="50px"/>
+                                <%--<span style="color: #FFFFFF;font-size: 15px">--%>
+                                <%--<i>username</i>--%>
+                            </span>
+                            </a>
+                            <div class="dropdown-menu pull-right"
+                                 style="background: #FFFFFF;width: 320px;overflow: hidden">
+                                <div style="margin-top: 16px;border-bottom: 1px solid #eeeeee">
+                                    <div style="text-align: center">
+                                        <img class="img-circle" src="${pageContext.request.contextPath}/images/person.png"
+                                             style="width: 40px;height: 40px;"/>
+                                    </div>
+                                    <div style="color: #323534;text-align: center;line-height: 36px;font-size: 15px">
+                                        <span>未登录</span>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-user" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            个人中心</p>
+                                    </div>
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-gear" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            账号管理</p>
+                                    </div>
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-key" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            密码修改</p>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-user-circle" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            修改头像</p>
+                                    </div>
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-comments" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            消息</p>
+                                    </div>
+                                    <div class="col-md-4 text-center grid">
+                                        <i class="fa fa-heart-o" style="font-size: 25px;line-height: 45px;"></i>
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                            帮助中心</p>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 20px">
+                                    <div class="text-center"
+                                         style="padding: 15px;margin: 0px;background: #f6f5f5;color: #323534;">
+                                        <i class="fa fa-sign-out"></i> 退出登入界面
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -67,14 +136,15 @@
 <script type="text/javascript" color="255,140,0" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 <script type="text/javascript">
     $(function () {
-        $(".img-circle").mouseover(function () {
+        $(".dropdown").mouseover(function () {
             $(this).addClass("open");
         });
 
-        $(".img-circle").mouseleave(function () {
+        $(".dropdown").mouseleave(function () {
             $(this).removeClass("open");
         })
     })
+
     //初始化所有类别信息
     var initAllActivityType = function() {
         //查询出活动类别
