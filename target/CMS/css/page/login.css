@@ -1,0 +1,78 @@
+body {
+    font-family: "Segoe UI Semibold", 微软雅黑, serif;
+    /*font-weight: bold;*/
+
+    background-size: cover;
+    background-color: #FFFFFF;
+    /*background: url(/images/background.jpg) no-repeat fixed center center;*/
+}
+
+a {
+    cursor: pointer;
+}
+
+.main-content {
+    border-radius: 10px;
+    box-shadow: 0 0 50px lightgray;
+    background-color: white;
+    padding: 4% 5%;
+
+    width: 520px;
+    height: 430px;
+}
+
+.login-input:focus {
+    background-color: transparent;
+}
+
+.login-input {
+    width: 80%;
+    height: 50px;
+    margin-bottom: 8px;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.user-name {
+    color: white;
+}
+
+.check-blog {
+    border-radius: 10px;
+    padding: 4px 13px;
+    font-size: x-small;
+    border: solid 1px orangered;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    color: orangered;
+}
+
+.about-me {
+    padding: 16px;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.logo {
+    width: 160px;
+}
+
+.scroll-down:hover {
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.scroll-down {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 0.3s ease-in-out;
+    width: 40px;
+}

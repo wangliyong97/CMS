@@ -1,7 +1,7 @@
 package com.cms.shiro;
 
-import com.cms.pojo.BackendUser;
-import com.cms.service.IUserManagerService;
+import com.cms.pojo.User;
+import com.cms.service.UserService;
 import com.cms.util.CipherUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
@@ -12,8 +12,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
-
 /**
  * Created by wangliyong on 2019/1/9.
  */
@@ -22,7 +20,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     private static final String ALGORITHM = "MD5";
 
     @Autowired
-    private IUserManagerService iUserManagerService;
+    private UserService userService;
 
     public ShiroDbRealm() {
         super();
@@ -34,10 +32,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        BackendUser backendUser = iUserManagerService.findUserByLoginName(token.getUsername());
+        User user = userService.findUserByLoginName(token.getUsername());
         CipherUtil cipher = new CipherUtil();    //MD5加密
-        if (backendUser != null) {
-            return new SimpleAuthenticationInfo(backendUser.getUsername(), cipher.generatePassword(backendUser.getPassword()), getName());
+        if (user != null) {
+            return new SimpleAuthenticationInfo(user.getUsername(), cipher.generatePassword(user.getPassword()), getName());
         } else {
             throw new AuthenticationException();
         }

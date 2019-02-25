@@ -31,7 +31,9 @@ public class User {
 
     private Date updateTime;
 
-    public User(Integer id, String username, String password, String email, String question, String answer, Integer role, String nickname, Integer gender, Date birthday, String picturePath, String introduce, Date createTime, Date updateTime) {
+    private Integer haspermission;
+
+    public User(Integer id, String username, String password, String email, String question, String answer, Integer role, String nickname, Integer gender, Date birthday, String picturePath, String introduce, Date createTime, Date updateTime, Integer haspermission) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -46,6 +48,25 @@ public class User {
         this.introduce = introduce;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.haspermission = haspermission;
+    }
+
+    public User(String username, String password, String email, Integer role, Integer haspermission) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.haspermission = haspermission;
+    }
+
+    public User(String username, String password, String email, Integer role, String nickname, String introduce, Integer haspermission) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.nickname = nickname;
+        this.introduce = introduce;
+        this.haspermission = haspermission;
     }
 
     public User() {
@@ -162,5 +183,13 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getHaspermission() {
+        return haspermission;
+    }
+
+    public void setHaspermission(Integer haspermission) {
+        this.haspermission = haspermission;
     }
 }

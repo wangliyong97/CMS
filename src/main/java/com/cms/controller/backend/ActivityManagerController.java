@@ -4,10 +4,10 @@ import com.cms.annotation.AccessLimit;
 import com.cms.annotation.SystemLog;
 import com.cms.pojo.Activity;
 import com.cms.pojo.ActivityType;
-import com.cms.pojo.BackendUser;
+import com.cms.pojo.User;
 import com.cms.service.ActivityService;
 import com.cms.service.ActivityTypeService;
-import com.cms.service.BackendUserService;
+import com.cms.service.UserService;
 import com.cms.util.ConstantUtil;
 import com.cms.util.subStringUtil;
 import com.github.pagehelper.PageHelper;
@@ -39,7 +39,7 @@ public class ActivityManagerController {
     @Autowired
     private ActivityTypeService activityTypeService;
     @Autowired
-    private BackendUserService backendUserService;
+    private UserService userService;
 
     /**
      * 编辑活动
@@ -317,8 +317,8 @@ public class ActivityManagerController {
     public Map<String, Object> updateActivity(String prarm, Activity activity,HttpSession session) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String)session.getAttribute("username");
-        BackendUser backendUser = backendUserService.findUserByLoginName(username);
-        if(backendUser.getHaspermission() == 0){
+        User user = userService.findUserByLoginName(username);
+        if(user.getHaspermission() == 0){
             map.put("status", 0);
             map.put("msg", "没有更新权限");
             return map;
@@ -353,8 +353,8 @@ public class ActivityManagerController {
     public Map<String, Object> updateActivityType(String prarm, HttpSession session, ActivityType activityType) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String) session.getAttribute("username");
-        BackendUser backendUser = backendUserService.findUserByLoginName(username);
-        if (backendUser.getHaspermission() == 0) {
+        User user = userService.findUserByLoginName(username);
+        if (user.getHaspermission() == 0) {
             map.put("status", 0);
             map.put("msg", "没有更新权限");
             return map;
@@ -387,8 +387,8 @@ public class ActivityManagerController {
     public Map<String, Object> deleteActivityType(String prarm, HttpSession session, ActivityType ActivityType) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String) session.getAttribute("username");
-        BackendUser backendUser = backendUserService.findUserByLoginName(username);
-        if (backendUser.getHaspermission() == 0) {
+        User user = userService.findUserByLoginName(username);
+        if (user.getHaspermission() == 0) {
             map.put("status", 0);
             map.put("msg", "没有删除权限");
             return map;
@@ -533,7 +533,7 @@ public class ActivityManagerController {
     public Map<String, Object> deletePic(String prarm, HttpSession session,String path, HttpServletRequest request) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String)session.getAttribute("username");
-        BackendUser user = backendUserService.findUserByLoginName(username);
+        User user = userService.findUserByLoginName(username);
         if(user.getHaspermission() == 0){
             map.put("status", 0);
             map.put("msg", "没有删除权限");

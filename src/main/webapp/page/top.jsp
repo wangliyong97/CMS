@@ -43,8 +43,13 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/resource">资源分享</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about">关于我</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/message">留言</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/">登录</a></li>
                         <li class="searchico"></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end loginOrRegist" id="loginOrRegist">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/webLogin">登录</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/register">注册</a></li>
                     </ul>
                 </div>
                 <div class="right" style="float: right">
@@ -53,7 +58,7 @@
                             <a href="#" class="dropdown-toggle"
                                data-toggle="dropdown"
                                style="height: 60px">
-                                <img alt="" class="img-circle" src="${pageContext.request.contextPath}/images/person.png" width="40px" height="40px" margin-left="50px"/>
+                                <img id="avator" alt="" class="img-circle" src="${pageContext.request.contextPath}/images/person.png" width="40px" height="40px" margin-left="50px"/>
                                 <%--<span style="color: #FFFFFF;font-size: 15px">--%>
                                 <%--<i>username</i>--%>
                             </span>
@@ -62,11 +67,11 @@
                                  style="background: #FFFFFF;width: 320px;overflow: hidden">
                                 <div style="margin-top: 16px;border-bottom: 1px solid #eeeeee">
                                     <div style="text-align: center">
-                                        <img class="img-circle" src="${pageContext.request.contextPath}/images/person.png"
+                                        <img id = "avatar_second" class="img-circle" src="${pageContext.request.contextPath}/images/person.png"
                                              style="width: 40px;height: 40px;"/>
                                     </div>
                                     <div style="color: #323534;text-align: center;line-height: 36px;font-size: 15px">
-                                        <span>未登录</span>
+                                        <span id = "spanusername">未登录</span>
                                     </div>
                                 </div>
 
@@ -145,7 +150,7 @@
         })
     })
 
-    //初始化所有类别信息
+//初始化所有类别信息
     var initAllActivityType = function() {
         //查询出活动类别
         //设置参数，表示查询所有的类别
@@ -174,4 +179,22 @@
     jQuery(document).ready(function($) {
         initAllActivityType();
     });
+</script>
+<script type="text/javascript">
+    function judgeSession()
+    {
+        var isLogin = '<%=(String)session.getAttribute("username")%>';
+        var avatarUrl = '<%=(String)session.getAttribute("avatar")%>';
+        if(isLogin != null && isLogin != "" && isLogin != "null"){
+            document.getElementById("loginOrRegist").style.visibility="hidden";
+            $("#spanusername").text(isLogin);
+        }
+        if(avatarUrl != null && avatarUrl != "null" && avatarUrl != ""){
+            $("#avator").attr('src',avatarUrl);
+            $("#avatar_second").attr('src',avatarUrl);
+        }
+
+
+    }
+    Window.onload = judgeSession();
 </script>

@@ -61,13 +61,13 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <!--<table tableName="user" domainObjectName="User"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-        <!--</table>-->
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
         <!--<table tableName="activity" domainObjectName="Activity"-->
                <!--enableCountByExample="false"-->
                <!--enableUpdateByExample="false"-->
@@ -89,14 +89,7 @@
                <!--enableSelectByExample="false"-->
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
-        <table tableName="blackip" domainObjectName="BlackIp"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-        <!--<table tableName="backend_user" domainObjectName="BackendUser"-->
+        <!--<table tableName="blackip" domainObjectName="BlackIp"-->
                <!--enableCountByExample="false"-->
                <!--enableUpdateByExample="false"-->
                <!--enableDeleteByExample="false"-->

@@ -1,14 +1,10 @@
 package com.cms.controller.backend;
 
 import com.cms.annotation.SystemLog;
-import com.cms.service.IUserManagerService;
 import com.cms.util.CipherUtil;
 import com.cms.util.ConstantUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.ShiroException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +22,8 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class UserManagerController {
-    @Autowired
-    private IUserManagerService iUserManagerService;
+//    @Autowired
+//    private IUserManagerService iUserManagerService;
 
     @RequestMapping("/login")
     public String tologin(HttpServletRequest request, HttpServletResponse response, Model model){

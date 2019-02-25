@@ -44,4 +44,6 @@ public class ConstantUtil {
 
     public static final String LOGIN_OUT="退出了系统";
 
+    public static final String REGISTER = "注册账号";
+
 }
