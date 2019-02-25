@@ -14,7 +14,7 @@
 <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
 </head>
-<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body>
   <%@ include file="top.jsp"%>
   <article>
     <div class="tool-box">

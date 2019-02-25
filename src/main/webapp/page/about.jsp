@@ -14,8 +14,7 @@
 	rel="stylesheet">
 
 </head>
-<body
-	style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body>
 	<%@ include file="top.jsp"%>
 	<article>
 		<div class="lbox">
@@ -57,7 +56,7 @@
 			<div class="aboutme m20 whitebg">
 				<h2 class="htitle">关于我</h2>
 				<div class="avatar1 animated fadeIn">
-					<img src="${pageContext.request.contextPath}/images/my.jpeg">
+					<img src="${pageContext.request.contextPath}/images/logo.png">
 				</div>
 				<div class="ab_con animated fadeIn">
 					<p>网名：我倾尽一生,囚你无期 | Luotf</p>
@@ -69,7 +68,7 @@
 			<div class="weixin animated fadeIn whitebg">
 				<h2 class="htitle">公众号</h2>
 				<ul>
-					<img src="${pageContext.request.contextPath}/images/wx.jpg">
+					<img src="${pageContext.request.contextPath}/images/logo.png">
 				</ul>
 			</div>
 		</div>

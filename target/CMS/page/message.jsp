@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
 </head>
-<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body>
 	<%@ include file="top.jsp" %>
 	<article>
 		<div class="lbox">

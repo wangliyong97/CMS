@@ -46,8 +46,7 @@
 }
 </style>
 </head>
-<body
-  style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body>
   <%@ include file="top.jsp"%>
   <article>
     <div class="lbox">
@@ -101,7 +100,7 @@
           <li class="wxgzh"><a href="javascript:void(0)"
             target="_blank"><span>微信号</span>luo849673404</a></li>
           <li class="wx" style="border:none"><img
-            src="${pageContext.request.contextPath}/images/wx.jpg"></li>
+            src="${pageContext.request.contextPath}/images/logo.png"></li>
         </ul>
       </div>
     </div>

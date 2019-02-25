@@ -54,31 +54,6 @@
             </div>
         </div>
 
-        <%--<div class="banbox">--%>
-            <%--<div class="banner">--%>
-                <%--<div id="banner" class="fader">--%>
-                    <%--<li class="slide tupian1" style=" ">--%>
-                        <%--<img src="images/t03.jpg">--%>
-                    <%--</li>--%>
-                    <%--<li class="slide tupian2" style=" ">--%>
-                        <%--<img src="images/t03.jpg">--%>
-                    <%--</li>--%>
-                    <%--<li class="slide tupian3" style=" ">--%>
-                        <%--<img src="images/t03.jpg">--%>
-                    <%--</li>--%>
-                    <%--<li class="slide tupian4" style=" ">--%>
-                        <%--<img src="images/t03.jpg">--%>
-                    <%--</li>--%>
-                    <%--<div class="fader_controls">--%>
-                        <%--<div class="pic_page prev" data-target="prev"></div>--%>
-                        <%--<div class="pic_page next" data-target="next"></div>--%>
-                        <%--<ul class="pager_list">--%>
-                        <%--</ul>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-
         <div class="clearblank"></div>
 
         <div class="zhuanti whitebg">
@@ -110,7 +85,7 @@
 
     <div class="rbox">
         <div class="applybtn">
-            <a href="${pageContext.request.contextPath}/page/">申请活动 - 入口</a>
+            <a href="${pageContext.request.contextPath}/page/apply.jsp">申请活动 - 入口</a>
         </div>
         <div class="dj paihang animated fadeIn" style="animation-delay:0.3s">
             <h2 class="htitle">点击排行</h2>

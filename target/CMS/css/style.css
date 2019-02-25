@@ -49,59 +49,6 @@ a:focus {
     outline: none;
 }
 
-/*.nav > li > a {*/
-    /*color: #a7b1c2;*/
-    /*font-weight: 600;*/
-    /*padding: 14px 20px 14px 25px;*/
-/*}*/
-
-/*.nav li>a {*/
-    /*display: block;*/
-    /*!*white-space: nowrap;*!*/
-/*}*/
-
-/*.nav.navbar-right > li > a {*/
-    /*color: #999c9e;*/
-/*}*/
-
-/*.nav > li.active > a {*/
-    /*color: #ffffff;*/
-/*}*/
-
-/*.navbar-default .nav > li > a:hover,*/
-/*.navbar-default .nav > li > a:focus {*/
-    /*background-color: #293846;*/
-    /*color: white;*/
-/*}*/
-
-/*.nav .open > a,*/
-/*.nav .open > a:hover,*/
-/*.nav .open > a:focus {*/
-    /*background: #fff;*/
-/*}*/
-
-/*.nav > li > a i {*/
-    /*margin-right: 6px;*/
-/*}*/
-
-/*.navbar {*/
-    /*border: 0;*/
-/*}*/
-
-/*.navbar-default {*/
-    /*background-color: transparent;*/
-    /*border-color: #2f4050;*/
-    /*position: relative;*/
-/*}*/
-
-/*.navbar-top-links li {*/
-    /*display: inline-block;*/
-/*}*/
-
-/*.navbar-top-links li:last-child {*/
-    /*margin-right: 30px;*/
-/*}*/
-
 body.body-small .navbar-top-links li:last-child {
     margin-right: 10px;
 }
@@ -3383,6 +3330,8 @@ body.boxed-layout #wrapper {
 .clear {
     display: block;
     overflow: hidden;
+    margin-left: 12px;
+    margin-top: 14px;
 }
 
 a {
@@ -7894,4 +7843,8 @@ body.skin-3 {
         width: 12.5%;
         font-size: 12px
     }
+}
+
+a {
+    color: white;
 }

@@ -23,7 +23,7 @@
 	}
 </style>
 </head>
-<body style="background:url(${pageContext.request.contextPath}/images/bj.png) repeat top left scroll">
+<body>
 <%@ include file="top.jsp" %>
   <article>
     <div class="lbox">

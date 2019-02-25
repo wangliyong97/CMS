@@ -97,7 +97,7 @@ a {
 /*#starlist ul.sub li a:hover { color: #00c1de }*/
 /*#starlist li:hover ul.sub { display: block }*/
 /*!*箭头*!*/
-/*#starlist li.menu:before { position: absolute; content: ""; top: 22px; right: 5px; background: url(../images/jt.png) no-repeat; width: 8px; height: 8px; -ms-transition: all .5s ease; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; -o-transition: all .5s ease; transition: all .5s ease; }*/
+/*#starlist li.menu:before { position: absolute; content: ""; top: 22px; right: 5px; background: url(../images/) no-repeat; width: 8px; height: 8px; -ms-transition: all .5s ease; -moz-transition: all .5s ease; -webkit-transition: all .5s ease; -o-transition: all .5s ease; transition: all .5s ease; }*/
 /*#starlist li.menu:hover:before { transform: rotate(180deg) }!*旋转*!*/
 #mnavh { display: none; margin: 5px 0 0 0; width: 24px; height: 40px; float: right; text-align: center; padding: 0 10px; }
 .navicon { display: block; position: relative; width: 30px; height: 5px; background-color: #fff; margin-top: 20px; }

@@ -241,7 +241,7 @@ var addActivity = function(id) {
 				initActivityType();
 				$("#myModal").modal('hide');
 				if (id == 1) {
-					swal("发布成功", "博客已在前端展示", "success");
+					swal("发布成功", "活动已在前端展示", "success");
 				} else if (id == -1) {
 					swal("放入草稿成功", "你可以前往草稿箱查看", "success");
 				}
