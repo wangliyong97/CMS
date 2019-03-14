@@ -37,9 +37,14 @@ public class Activity {
 
     private ActivityType type;
 
+    private User user;
+
     private String content;
 
-    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, ActivityType type, String content) {
+    public Activity() {
+    }
+
+    public Activity(Integer id, String title, String introduction, String keyword, String images, Integer clicknum, Integer commentnum, Integer agreenum, Integer istop, Integer isrecommend, Date updatetime, Date addtime, Integer status, ActivityType type, User user, String content) {
         this.id = id;
         this.title = title;
         this.introduction = introduction;
@@ -54,10 +59,8 @@ public class Activity {
         this.addtime = addtime;
         this.status = status;
         this.type = type;
+        this.user = user;
         this.content = content;
-    }
-
-    public Activity() {
     }
 
     public Integer getId() {
@@ -170,6 +173,14 @@ public class Activity {
 
     public void setType(ActivityType type) {
         this.type = type;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getContent() {

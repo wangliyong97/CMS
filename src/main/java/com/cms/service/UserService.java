@@ -20,4 +20,6 @@ public interface UserService {
 
     int updateNicknameById(Integer userId, String nickname);
 
+    User selectUserById(Integer id);
+
 }

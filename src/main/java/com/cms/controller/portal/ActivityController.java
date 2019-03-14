@@ -3,7 +3,9 @@ package com.cms.controller.portal;
 import com.cms.annotation.AccessLimit;
 import com.cms.annotation.SystemLog;
 import com.cms.pojo.Activity;
+import com.cms.pojo.User;
 import com.cms.service.ActivityService;
+import com.cms.service.UserService;
 import com.cms.util.ActivityIdSafeUtil;
 import com.cms.util.ConstantUtil;
 import com.github.pagehelper.PageHelper;
@@ -27,6 +29,8 @@ import java.util.Map;
 public class ActivityController {
     @Autowired
     private ActivityService activityService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/find/{id}.html")
     @SystemLog(description = ConstantUtil.ACTIVITY_SELECT,userType=ConstantUtil.USERTYPE_USER)
@@ -42,6 +46,8 @@ public class ActivityController {
                 model.addAttribute("status", 500);
             }else{
                 model.addAttribute("status", 200);
+                User user = userService.selectUserById(activity.getUser().getId());
+                model.addAttribute("user", user);
             }
             model.addAttribute("activity", activity);
         }

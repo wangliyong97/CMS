@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>所有活动列表</title>
+    <title>Activity sharing</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
@@ -38,17 +38,32 @@
 <body>
 <%@ include file="top.jsp"%>
 <article>
+    <div class="lbox">
+        <div class="newblogs bloglist">
+            <h2 class="hometitle">
+                <span class="tagTitle"> </span>活动列表
+            </h2>
+            <ul>
+
+            </ul>
+            <p class="page" style='display:none'>
+            <p>
+            <p class="pageMin">
+            <p>
+        </div>
+    </div>
+
     <div class="rbox">
         <input name="keyword" id="keyword" value="${keyword}"
                type="hidden">
         <div class="cloud animated fadeIn whitebg">
-            <h2 class="cloud_hometitle">标签云</h2>
+            <h2 class="cloud_hometitle">活动类别</h2>
             <ul>
 
             </ul>
         </div>
         <div class="tuijian2  animated fadeIn whitebg">
-            <h2 class="cloud_hometitle">推荐文章</h2>
+            <h2 class="cloud_hometitle">推荐活动</h2>
             <ul class="tjpic animated fadeIn">
                 <i><img src="images/t03.jpg"></i>
             </ul>

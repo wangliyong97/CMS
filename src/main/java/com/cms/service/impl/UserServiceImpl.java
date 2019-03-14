@@ -66,4 +66,9 @@ public class UserServiceImpl implements UserService {
         user.setNickname(nickname);
         return userMapper.updateByPrimaryKeySelective(user);
     }
+
+    @Override
+    public User selectUserById(Integer id) {
+        return userMapper.selectByPrimaryKey(id);
+    }
 }

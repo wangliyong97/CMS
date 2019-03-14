@@ -10,6 +10,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Activity sharing - 个人设置</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -29,7 +32,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <title>首页-个人设置</title>
 </head>
 <body>
 <div class="container border" style="min-height: 100%;background-color: white">
@@ -61,6 +63,9 @@
                     使修改生效。
                 </small>
             </div>
+            <br>
+            <br>
+            <a class="button-save" href="${pageContext.request.contextPath}/index">返回首页</a>
         </div>
 
         <div class="col-md-9">
@@ -269,7 +274,7 @@
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/setting.js"></script>
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/bootstrap-datetimepicker.min.js"></script>
 <script>
-        ${'#modifyBirthday'}.datepicker();
+    ${'#modifyBirthday'}.datepicker();
 </script>
 </body>
 </html>

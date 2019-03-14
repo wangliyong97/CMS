@@ -8,6 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Activity sharing - 注册</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -24,7 +27,6 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    <title>注册</title>
 </head>
 <body>
 
@@ -34,7 +36,7 @@
     <div class="row">
         <div class="col-md-5 register-left con">
             <p class="page-title">
-                活动管理系统
+                Activity sharing
             </p>
         </div>
         <div class="col-md-1 con"></div>

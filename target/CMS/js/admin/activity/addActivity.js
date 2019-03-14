@@ -180,7 +180,7 @@ var findPicList = function() {
 };
 
 
-var prevBlog = function() {
+var prevActivity = function() {
 	$(".newsview").find(".news_title").html($("#title").val());
 	$(".news_about").find(".news_intr").html($("#introduction").val());
 	var keyword = '';
@@ -227,6 +227,7 @@ var addActivity = function(id) {
 		'keyword' : $("#keyword").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
 		'content' : $(".news_infos").html(),
 		'images' : $(".imagePath").val(),
+		'user.id' : '1',
 		prarm : prarm,
 		'status' : id
 	};

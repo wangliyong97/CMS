@@ -10,15 +10,15 @@ public class ConstantUtil {
 
     public static final String ACTIVITY_ADD="新增活动";
 
-    public static final String BLOG_DELETE="删除博客";
+    public static final String BLOG_DELETE="删除活动";
 
     public static final String ACTIVITY_UPDATE="更新活动";
 
-    public static final String ACTIVITY_SELECT="查看博客";
+    public static final String ACTIVITY_SELECT="查看活动";
 
-    public static final String BLOG_FINDKEY="关键字查询博客";
+    public static final String BLOG_FINDKEY="关键字查询活动";
 
-    public static final String ACTIVITYTYPE_ADD="新增博客类别";
+    public static final String ACTIVITYTYPE_ADD="新增活动类别";
 
     public static final String ActivityType_UPDATE="修改活动类别";
 

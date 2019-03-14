@@ -147,7 +147,7 @@
 						</button>
 
 						<button id="prev2" type="button" style="display:none"
-								onclick="prevBlog()" data-target="#myModal" data-toggle="modal">
+								onclick="prevActivity()" data-target="#myModal" data-toggle="modal">
 						</button>
 						<button id="add_draft2" type="button"
 								class="btn btn-white btn-sm" data-toggle="tooltip"

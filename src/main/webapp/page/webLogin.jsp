@@ -10,6 +10,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="utf-8">
+    <title>Activity sharing - 登录</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,7 +30,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <title>登录-活动管理系统</title>
+
 </head>
 <body style="padding: 3% 4%">
 <div class="row">
@@ -71,9 +74,9 @@
 
         <p style="padding-top: 16px;line-height:25px;padding-left:32px;padding-right: 16px;color: dimgray"
            class="text-right">
-            创建自己的博文类别和标签，使用 Markdown 语法创作博文，将博文分类，贴上标签既可发布<br>
-            只要知道你的用户名，不论他/她是否注册，都能浏览和检索你的公开博文<br>
-            注册成为博主，就能评论、喜欢和收藏别人的博文<br>
+            在线分享活动，注册用户在线申请<br><br>
+            显示当前注册用户所参与的活动，及个人信息<br><br>
+            注册成为用户，就能参与活动或举办活动<br>
         </p>
         <br>
         <br>

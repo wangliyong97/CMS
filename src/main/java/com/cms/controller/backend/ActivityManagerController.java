@@ -121,6 +121,9 @@ public class ActivityManagerController {
         if (activity.getType() != null) {
             map.put("type_id", activity.getType().getId());
         }
+        if (activity.getUser() != null) {
+            map.put("user_id", activity.getUser().getId());
+        }
         if (activity.getStatus() != null) {
             map.put("status", activity.getStatus());
         }

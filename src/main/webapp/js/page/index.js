@@ -189,7 +189,7 @@ var initActivityByLike = function() {
           + data[i].title
           + '</b><span>'
           + data[i].introduction
-          + '</span><a href="find/' + id + '.html" target="_blank" class="readmore">阅读原文</a></li>'
+          + '</span></li>'
       }
       // 初始化数据
       $(".zhuanti").find("ul").html(likeActivity);
@@ -212,8 +212,7 @@ var initActivityByNew = function(page) {
     page : page,
     status : 1
   };
-  $
-    .ajax({
+  $.ajax({
       url : 'selectGroupLikeActivityListByPage',
       type : 'get',
       data : params,
@@ -229,20 +228,39 @@ var initActivityByNew = function(page) {
           parm += data[i].id + ",";
           var id = data[i].id.toString(8) * data[i].id;
           var keyword = "";
-          if (data[i].keyword != ""
-            && data[i].keyword != null) {
-            if (data[i].keyword.search(';') != -1) {
+          if (data[i].keyword != "" && data[i].keyword != null) {
+            if (data[i].keyword.search(';') != -1)
+            {
               keyword = data[i].keyword.replace(/;/g,
                 "|");
             } else {
               keyword = data[i].keyword;
             }
           }
+
+          var image_path = "";
+          var user_id = data[i].user.id;
+          var nickname = "";
+          var param3 = {
+              id : user_id
+          }
+            $.ajax({
+                url : '/selectUserById',
+                type : 'post',
+                data : param3,
+                async: false,
+                dataType : 'json',
+                success : function(data) {
+                    image_path = data.user.picturePath;
+                    nickname = data.user.nickname;
+                }
+            });
+
             newActivity += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="blogtitle"><a target="_blank" href="find/' + id + '.html"  >'
             + data[i].title
             + '</a></h3><span class="blogpic imgscale"><a href="find/' + id + '.html" title=""><img src="' + data[i].images + '"  /></a></span><p class="blogtext">'
             + data[i].introduction
-            + '</p><p class="bloginfo"><i class = "avatar"><img src="images/image_.jpg" border=0 width="30" height="30"></i><span>luotf</span><span><a href="javascript:void(0);">【'
+            + '</p><p class="bloginfo"><i class = "avatar"><img src="'+image_path+'" border=0 width="30" height="30"></i><span>'+nickname+'</span><span><a href="javascript:void(0);">【'
             + keyword
             + '】</a></span><span class="m_time">'
             + Format(data[i].addtime, "yyyy-MM-dd")
@@ -254,8 +272,7 @@ var initActivityByNew = function(page) {
           client_id : 'cytzg9rLH',
           topic_source_id : parm
         };
-        $
-          .ajax({
+        $.ajax({
             url : 'http://changyan.sohu.com/api/2/topic/count',
             type : 'get',
             data : p,

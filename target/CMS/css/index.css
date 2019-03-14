@@ -283,14 +283,14 @@ h3.blogtitle {
 }
 
 .cloud_hometitle {
-    font-size: 18px;
+    font-size: 16px;
     color: #282828;
-    font-weight: 600;
-    margin: 0;
     text-transform: uppercase;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
     position: relative;
+    line-height: 40px;
+    margin-left: 10px;
 }
 
 .cloud_hometitle:after {
@@ -314,7 +314,8 @@ h3.blogtitle {
 
 .cloud ul {
     overflow: hidden;
-    font-size: 14px
+    font-size: 14px;
+    margin-left: 10px;
 }
 
 .cloud ul a {
@@ -384,8 +385,7 @@ h3.blogtitle {
 .fenlei,
 .cloud,
 .dianji,
-.guanzhu,
-{
+.guanzhu {
     border-radius: 3 px;
     padding: 10 px 15 px;
     margin-bottom: 20 px;
@@ -595,7 +595,7 @@ h3.blogtitle {
     z-index: 999;
     position: fixed;
     _position: absolute;
-    _top: expression(documentElement.scrollTop + 0 + "px");
+    /*_top: expression(documentElement.scrollTop + 0 + "px");*/
     _margin-top: 100px;
 }
 
@@ -613,7 +613,7 @@ h3.blogtitle {
     font-size: 150%;
     position: relative;
     margin: 20px;
-    width: 1005
+    width: 1005px;
 }
 
 .ab_title a:hover {
@@ -1005,6 +1005,7 @@ h3.blogtitle {
     margin: 20px auto 15px auto;
     line-height: 23px;
     background: none repeat 0 0 #F6F6F6;
+    border-radius: 10px;
 }
 
 .news_about strong {
@@ -1027,10 +1028,11 @@ h3.blogtitle {
 }
 
 .tags a {
-    background: #F4650E;
+    background: #b4c0bc;
     padding: 3px 8px;
     margin: 0 5px 0 0;
     color: #fff;
+    border-radius: 50px;
 }
 
 .tags {
@@ -1054,7 +1056,7 @@ h3.blogtitle {
 
 .zhuanti ul {
     overflow: hidden;
-    padding: 10px 0 20px 10px;
+    padding: 10px 0 10px 10px;
     position: relative;
 }
 

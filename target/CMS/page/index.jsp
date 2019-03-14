@@ -4,9 +4,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>活动管理系统</title>
+    <title>Activity sharing</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-    <meta name="description" content="活动管理系统，一个基于ssm框架的活动分享" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/loaders.css" rel="stylesheet">
@@ -71,7 +70,7 @@
 
         <div class="newblogs bloglist whitebg animated fadeIn"
              style="display:none;animation-delay:0.3s">
-            <h2 class="htitle">最新活动</h2>
+            <h2 class="htitle"> 最新活动</h2>
             <ul class="animated ">
 
             </ul>
@@ -84,8 +83,8 @@
     </div>
 
     <div class="rbox">
-        <div class="applybtn">
-            <a href="${pageContext.request.contextPath}/page/apply.jsp">申请活动 - 入口</a>
+        <div class="applybtn" onclick="judgeApply()">
+            <a>发布活动 - 入口</a>
         </div>
         <div class="dj paihang animated fadeIn" style="animation-delay:0.3s">
             <h2 class="htitle">点击排行</h2>
@@ -106,6 +105,18 @@
 <script src="${pageContext.request.contextPath}/js/page/index.js"></script>
 <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
 <script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript">
+    function judgeApply()
+    {
+        var isLogin = '<%=(String)session.getAttribute("nickname")%>';
+        if(isLogin != null && isLogin != "" && isLogin != "null"){
+            window.location.href = "${pageContext.request.contextPath}/page/apply.jsp";
+        }else{
+            alert("请登录或注册！");
+        }
+
+    }
+</script>
 </body>
 
 </html>

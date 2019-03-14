@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="ibox-content mailbox-content">
 						<div class="file-manager">
 							<a class="btn btn-block btn-primary compose-mail"
-								href="javascript:void(0);">修改博客</a>
+								href="javascript:void(0);">修改活动</a>
 							<div class="space-25"></div>
 							<h5>数据信息</h5>
 							<ul class="folder-list m-b-md" style="padding: 0">
@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										&nbsp;置顶<span class="label label-danger pull-right" id="istop"></span>
 								</a></li>
 								<li><a href="javascript:void(0);"> <i
-										class="fa fa-hand-pointer-o"></i> 博主推荐 <span
+										class="fa fa-hand-pointer-o"></i> 管理员推荐 <span
 										class="label label-warning pull-right" id="isrecommend"></span>
 								</a></li>
 							</ul>
@@ -141,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="fa fa-reply"></i> 预览
 							</button>
 							<button id="prev2"  type="button" style="display:none"
-							onclick="prevBlog()" data-target="#myModal" data-toggle="modal">
+							onclick="prevActivity()" data-target="#myModal" data-toggle="modal">
 							</button>
 							<button id="add_draft2" type="button" 
 								class="btn btn-white btn-sm" data-toggle="tooltip"
@@ -166,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="newsview" style="padding-top:0px;">
 								<h3 class="news_title"></h3>
 								<div class="news_author">
-									<span class="au01">罗廷方</span><span class="au02"></span><span
+									<span class="au01">管理员</span><span class="au02"></span><span
 										class="au03">共<b></b>人围观
 									</span>
 								</div>
@@ -261,7 +261,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script
 		src="${pageContext.request.contextPath}/js/plugins/summernote/summernote-zh-CN.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/js/admin/blog/updateBlog.js"></script>
+		src="${pageContext.request.contextPath}/js/admin/activity/updateActivity.js"></script>
 
 </body>
 

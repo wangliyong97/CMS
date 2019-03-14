@@ -1,4 +1,4 @@
-// ------------------------------------------------------------------------------------------------------ 头像修改成功后回调回调
+// 头像修改成功后回调
 function funAfterAvatarUpdateSuccess(imgId) {
     var url = '<%=(String)session.getAttribute("avatar")%>';
     $('#avatar').attr('src', url);

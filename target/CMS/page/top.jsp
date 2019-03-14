@@ -11,8 +11,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>导航栏</title>
-    <link href="${pageContext.request.contextPath}/images/favicon.ico" rel="shortcut icon">
+    <title>Activity sharing - 导航栏</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/m.css" rel="stylesheet">
@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动介绍</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动列表</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/resource">资源分享</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about">关于我</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/message">留言</a></li>
@@ -52,7 +52,7 @@
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/register">注册</a></li>
                     </ul>
                 </div>
-                <div class="right" style="float: right">
+                <div class="right" style="float: right" id="baseInformation">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle"
@@ -66,27 +66,28 @@
                             <div class="dropdown-menu pull-right"
                                  style="background: #FFFFFF;width: 320px;overflow: hidden">
                                 <div style="margin-top: 16px;border-bottom: 1px solid #eeeeee">
-                                    <div style="text-align: center">
-                                        <img id = "avatar_second" class="img-circle" src="${pageContext.request.contextPath}/images/person.png"
-                                             style="width: 40px;height: 40px;"/>
-                                    </div>
-                                    <div style="color: #323534;text-align: center;line-height: 36px;font-size: 15px">
+                                    <%--<div style="text-align: center">--%>
+                                        <%--<img id = "avatar_second" class="img-circle" src="${pageContext.request.contextPath}/images/person.png"--%>
+                                             <%--style="width: 40px;height: 40px;"/>--%>
+                                    <%--</div>--%>
+                                    <div style="color: #323534;text-align: center;line-height: 36px;font-size: 20px">
                                         <span id = "spanusername">未登录</span>
                                     </div>
+                                    <br>
                                 </div>
 
                                 <div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
-                                    <div class="col-md-4 text-center grid">
+                                    <div class="col-md-4 text-center grid" id="personCenter">
                                         <i class="fa fa-user" style="font-size: 25px;line-height: 45px;"></i>
-                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
+                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px" >
                                             个人中心</p>
                                     </div>
-                                    <div class="col-md-4 text-center grid">
+                                    <div class="col-md-4 text-center grid" id="accountManage">
                                         <i class="fa fa-gear" style="font-size: 25px;line-height: 45px;"></i>
                                         <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
                                             账号管理</p>
                                     </div>
-                                    <div class="col-md-4 text-center grid">
+                                    <div class="col-md-4 text-center grid" id="changePassword">
                                         <i class="fa fa-key" style="font-size: 25px;line-height: 45px;"></i>
                                         <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
                                             密码修改</p>
@@ -95,25 +96,19 @@
 
                                 <div class="row" style="margin-left: 15px;margin-right: 15px;margin-top: 10px">
                                     <div class="col-md-4 text-center grid">
-                                        <i class="fa fa-user-circle" style="font-size: 25px;line-height: 45px;"></i>
+                                        <i class="fa fa-user-circle" style="font-size: 25px;line-height: 45px;" id="changeHead"></i>
                                         <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
                                             修改头像</p>
                                     </div>
-                                    <div class="col-md-4 text-center grid">
-                                        <i class="fa fa-comments" style="font-size: 25px;line-height: 45px;"></i>
-                                        <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
-                                            消息</p>
-                                    </div>
-                                    <div class="col-md-4 text-center grid">
+                                    <div class="col-md-4 text-center grid" id="helping">
                                         <i class="fa fa-heart-o" style="font-size: 25px;line-height: 45px;"></i>
                                         <p style="padding: 0px;margin-top: 6px;margin-bottom: 10px;font-size: 12px">
                                             帮助中心</p>
                                     </div>
                                 </div>
 
-                                <div class="row" style="margin-top: 20px">
-                                    <div class="text-center"
-                                         style="padding: 15px;margin: 0px;background: #f6f5f5;color: #323534;">
+                                <div class="row" style="margin-top: 20px" id="logout">
+                                    <div class="text-center" style="padding: 15px;margin: 0px;background: #f6f5f5;color: #323534;">
                                         <i class="fa fa-sign-out"></i> 退出登入界面
                                     </div>
                                 </div>
@@ -178,12 +173,42 @@
     }
     jQuery(document).ready(function($) {
         initAllActivityType();
+        $("#personCenter").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/page/setting.jsp";
+        });
+        $("#accountManage").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/page/setting.jsp";
+        });
+        $("#changePassword").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/page/setting.jsp";
+        });
+        $("#changeHead").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/page/setting.jsp";
+        });
+        $("#helping").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/page/setting.jsp";
+        });
+        $("#logout").click(function() {
+            //输入另一个页面的链接
+            //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
+            window.location.href = "${pageContext.request.contextPath}/user/logout";
+        });
     });
 </script>
 <script type="text/javascript">
     function judgeSession()
     {
-        var isLogin = '<%=(String)session.getAttribute("username")%>';
+        var isLogin = '<%=(String)session.getAttribute("nickname")%>';
         var avatarUrl = '<%=(String)session.getAttribute("avatar")%>';
         if(isLogin != null && isLogin != "" && isLogin != "null"){
             document.getElementById("loginOrRegist").style.visibility="hidden";
@@ -193,8 +218,9 @@
             $("#avator").attr('src',avatarUrl);
             $("#avatar_second").attr('src',avatarUrl);
         }
-
-
+        if(isLogin == null || isLogin == "" || isLogin == "null"){
+            document.getElementById("baseInformation").style.visibility="hidden";
+        }
     }
     Window.onload = judgeSession();
 </script>

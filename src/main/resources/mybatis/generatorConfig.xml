@@ -68,7 +68,7 @@
                <!--enableSelectByExample="false"-->
                <!--selectByExampleQueryId="false">-->
         <!--</table>-->
-        <table tableName="record_create" domainObjectName="Record"
+        <table tableName="activity" domainObjectName="Activity"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

@@ -93,6 +93,18 @@ public class UserController {
     }
 
     /**
+     * 退出登录状态
+     * @return
+     */
+    @RequestMapping("logout")
+    public String logout(){
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        String result = "index";
+        return result;
+    }
+
+    /**
      * 修改用户名
      */
     @RequestMapping(value = "/item=name", method = RequestMethod.POST)

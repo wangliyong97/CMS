@@ -1,6 +1,9 @@
 package com.cms.controller.backend;
 
 import com.cms.annotation.SystemLog;
+import com.cms.pojo.Activity;
+import com.cms.pojo.User;
+import com.cms.service.UserService;
 import com.cms.util.CipherUtil;
 import com.cms.util.ConstantUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -11,10 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by wangliyong on 2019/1/9.
@@ -22,8 +29,8 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 @Controller
 public class UserManagerController {
-//    @Autowired
-//    private IUserManagerService iUserManagerService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/login")
     public String tologin(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -58,6 +65,21 @@ public class UserManagerController {
         currentUser.logout();
         String result = "login";
         return result;
+    }
+
+    @RequestMapping(value = "/selectUserById", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> selectUserById(Integer id) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        User user = userService.selectUserById(id);
+        if (user != null) {
+            map.put("status", 200);
+        } else {
+            // 500表示：返回值为Null
+            map.put("status", 500);
+        }
+        map.put("user", user);
+        return map;
     }
 
 }
