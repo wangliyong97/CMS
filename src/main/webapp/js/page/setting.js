@@ -25,7 +25,6 @@ function showDiv(id, th) {
 
 }
 
-var mMainNavPos = mainNavPos;
 var maxIntroCount = 25;
 var maxAboutMeCount = 180;
 

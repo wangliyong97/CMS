@@ -62,3 +62,31 @@ div#modifyGender {
 .shadow-border-for-setting:hover {
     box-shadow: 0 0 30px #d7d7d7;
 }
+
+#photo {
+    max-width:100%;
+    max-height:350px;
+}
+.img-preview-box {
+    text-align: center;
+}
+.img-preview-box > div {
+    display: inline-block;;
+    margin-right: 10px;
+}
+.img-preview {
+    overflow: hidden;
+}
+.img-preview-box .img-preview-lg {
+    width: 150px;
+    height: 150px;
+}
+.img-preview-box .img-preview-md {
+    width: 100px;
+    height: 100px;
+}
+.img-preview-box .img-preview-sm {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
