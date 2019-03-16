@@ -68,6 +68,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateAvatarById(Integer userId, String avatarPath) {
+        User user = new User();
+        user.setId(userId);
+        user.setPicturePath(avatarPath);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
     public User selectUserById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
     }

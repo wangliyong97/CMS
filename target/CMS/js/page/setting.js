@@ -1,9 +1,3 @@
-// 头像修改成功后回调
-function funAfterAvatarUpdateSuccess(imgId) {
-    var url = '<%=(String)session.getAttribute("avatar")%>';
-    $('#avatar').attr('src', url);
-}
-
 //切换展示页面
 var currentShowDiv = 'divBase';
 
@@ -25,7 +19,6 @@ function showDiv(id, th) {
 
 }
 
-var mMainNavPos = mainNavPos;
 var maxIntroCount = 25;
 var maxAboutMeCount = 180;
 
@@ -191,12 +184,9 @@ function saveBaseDiv() {
 
 
 function initImportBlogListener() {
-
     $('#fileUploadDialog').on('hidden.bs.modal', function (e) {
-
         $('#progressbar').css('width', '0%');
         $('#progressbar').removeClass('active');
-
         $('#processStatus').html('');
         $('#importSucc').html('');
         $('#showChoosedFileName').html('');
@@ -204,7 +194,6 @@ function initImportBlogListener() {
 
     });
 }
-
 
 function confirmExe() {
 
@@ -229,7 +218,6 @@ function confirmExe() {
         }
     });
 }
-
 
 // 发送短信验证码
 function sendPhoneCode() {
@@ -295,17 +283,10 @@ function updatePwd() {
         error('验证码错误', 'errorMsgOperAccount', true, 3000);
         return;
     }
-
-    // TODO
-
 }
 
 
 $(document).ready(function () {
-
-    // 初始化修改头像模态框
-    initCropper();
-
     initImportBlogListener();
 
     initDeleteAccountConfirmDialog()

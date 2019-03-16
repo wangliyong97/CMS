@@ -3,9 +3,9 @@ import com.cms.annotation.SystemLog;
 import com.cms.pojo.User;
 import com.cms.service.UserService;
 import com.cms.util.CipherUtil;
-import com.cms.util.ConstantUtil;
 import com.cms.util.StringUtil;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -13,13 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.RequestContext;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by wangliyong on 2019/2/20.
@@ -149,7 +155,7 @@ public class UserController {
     }
 
     /**
-     * 修改邮箱
+     * 修改昵称
      */
     @RequestMapping(value = "/item=nickname", method = RequestMethod.POST)
     @ResponseBody
@@ -170,7 +176,59 @@ public class UserController {
         return map;
     }
 
+    /**
+     * 修改用户头像
+     * 将Base64位编码的图片进行解码，并保存到指定目录
+     */
+    @RequestMapping(value = "/changeAvatar", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> iconImageUpload(String image,@RequestParam(value = "userId") Integer userId , HttpSession session) throws IOException{
+        Map<String, Object> map = new HashMap<String, Object>();
+        String filePath = "d:\\upload\\avatar\\";
+        String imagePath = UUID.randomUUID().toString()+".png";
+        String avatarPath = "http://localhost:8080/upload/avatar/"+imagePath;
+        //图片相对路径
+        decodeBase64DataURLToImage(image.toString(),filePath + imagePath);
+        int result = userService.updateAvatarById(userId,avatarPath);
+        if(result < 0 ){
+            map.put("msg","更新失败!");
+        }else{
+            map.put("code",200);
+            map.put("msg","更新成功!");  //更新成功
+            session.setAttribute("avatar", avatarPath);
+        }
+        return map;
+    }
 
+    //base64字符串转化成图片
+    public static boolean decodeBase64DataURLToImage(String imgStr,String imgFilePath)
+    {   //对字节数组字符串进行Base64解码并生成图片
+        if (imgStr == null) //图像数据为空
+            return false;
+        BASE64Decoder decoder = new BASE64Decoder();
+        try
+        {
+            //Base64解码
+            imgStr = imgStr.split(",")[1];
+            byte[] b = decoder.decodeBuffer(imgStr);
+            for(int i=0;i<b.length;++i)
+            {
+                if(b[i]<0)
+                {//调整异常数据
+                    b[i]+=256;
+                }
+            }
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(b);
+            out.flush();
+            out.close();
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 
     /**
      * 检查用户名是否存在

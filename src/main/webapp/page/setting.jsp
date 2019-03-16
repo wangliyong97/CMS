@@ -14,17 +14,17 @@
     <title>Activity sharing - 个人设置</title>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/bootstrap/css/bootstrap3.3.7.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/page/setting.css"  rel="stylesheet">
-    <link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/page/common.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/page/paging.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/page/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
+
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 要在最前面引入-->
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/bootstrap3.3.7.min.js"></script>
 </head>
 <body>
 <div class="container border" style="min-height: 100%;background-color: white">
@@ -63,11 +63,8 @@
 
         <div class="col-md-9">
             <div id="divBase">
-
-
                 <img src="${sessionScope.avatar}" class="avatar-img" id="user-photo" >&nbsp;&nbsp;&nbsp;&nbsp;
                 <button class="button-edit-new" data-target="#changeModal" data-toggle="modal">更改头像</button>
-
                 <br>
                 <br>
                 <ul class="list-group group">
@@ -370,21 +367,38 @@
         }
     }
 
+    var sendPhoto = function () {
+        // 得到PNG格式的dataURL
+        var photo = $('#photo').cropper('getCroppedCanvas', {
+            width: 300,
+            height: 300
+        }).toDataURL('image/png');
 
-    var sendPhoto = function(){
-        $('#photo').cropper('getCroppedCanvas',{
-            width:300,
-            height:300
-        }).toBlob(function(blob){
-            // 转化为blob后更改src属性，隐藏模态框
-            $('#user-photo').attr('src',URL.createObjectURL(blob));
-            $('#changeModal').modal('hide');
+        $.ajax({
+            url: '/user/changeAvatar', // 要上传的地址
+            type: 'post',
+            data: {
+                'image': photo,
+                'userId' : userId
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    // 将上传的头像的地址填入，为保证不载入缓存加个随机数
+                    $('.user-photo').attr('src', '头像地址?t=' + Math.random());
+                    $('#changeModal').modal('hide');
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+            }
         });
     }
 
     $(function(){
         initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));
     });
+
 </script>
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/paging.js"></script>
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/comm.js"></script>
