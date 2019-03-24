@@ -19,4 +19,6 @@ public interface UserMapper {
 
     User findUserByEmail(String email);
 
+    User findUserById(Integer userId);
+
 }

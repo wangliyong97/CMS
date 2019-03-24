@@ -89,7 +89,6 @@ var selectPrevActivity = function() {
             });
         }
     });
-
 };
 
 var selectNextActivity = function() {

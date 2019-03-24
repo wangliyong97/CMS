@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -63,6 +65,7 @@ public class UserController {
             session.setAttribute("intro", user.getIntroduce());
             session.setAttribute("nickname", user.getNickname());
             session.setAttribute("gender", user.getGender());
+            session.setAttribute("birthday", user.getBirthday());
         } catch (Exception e) {
             map.put("code",0);
             map.put("msg","login"); //验证失败
@@ -231,6 +234,53 @@ public class UserController {
     }
 
     /**
+     * 修改用户个人信息
+     */
+    @RequestMapping(value = "/item=profile", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> modifyUsernameInformation(HttpServletRequest request,
+                                              @RequestParam(value = "userId") Integer userId,
+                                              @RequestParam(value = "intro") String introduction,
+                                              @RequestParam(value = "birthday") String birthday,
+                                              @RequestParam(value = "gender") Integer gender) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+        }catch (ParseException e){
+            System.out.println(e);
+        }
+        int result = userService.updateUserProfileById(userId, introduction,date,gender);
+        if (result < 0){
+            map.put("msg","更新失败！");
+        }else {
+            map.put("code",0);
+            // 更新session信息
+            HttpSession session = request.getSession();
+            session.setAttribute("intro", introduction);
+            session.setAttribute("birthday", birthday);
+            session.setAttribute("gender", gender);
+        }
+        return map;
+    }
+
+    /**
+     * 修改账号密码
+     */
+    @RequestMapping(value = "/item=password", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> modifyPassword(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "newPwd") String newPassword) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = userService.updateAccountPasswordById(userId, newPassword);
+        if (result < 0){
+            map.put("msg","密码修改失败！");
+        }else {
+            map.put("code",200);
+        }
+        return map;
+    }
+
+    /**
      * 检查用户名是否存在
      */
     @RequestMapping(value = "/checkUsername", method = RequestMethod.GET)
@@ -261,7 +311,6 @@ public class UserController {
             map.put("code",0);
         }
         return map;
-
     }
 
     // 检查用户名合法性
@@ -269,5 +318,19 @@ public class UserController {
         if (StringUtil.isEmpty_(userName) || !userService.checkUserName(userName)) ;
     }
 
-
+    /**邮箱发送验证码
+     */
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> sendEmailCode(@RequestParam(value = "email") String email, @RequestParam(value = "code") String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (userService.sendEmailCode(email,code)) {
+            map.put("code",200);
+            map.put("msg","发送成功!");
+        } else {
+            map.put("code",0);
+            map.put("msg","发送失败!");
+        }
+        return map;
+    }
 }

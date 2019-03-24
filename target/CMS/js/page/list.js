@@ -5,6 +5,7 @@ $(".top").click(function() {
     }, 1000);
     return false;
 });
+
 var pageNext = 1;
 var count = 1;
 var isEnd = false;
@@ -25,7 +26,6 @@ $(window).scroll(function() {
         initActivityByClick();
         count++;
     }
-
     if ($(document).scrollTop() > 1300 && width > 700) {
         $(".top").addClass('cd-is-visible fadeIn');
         $(".guanzhu").css("display", "block");
@@ -45,11 +45,11 @@ $(window).scroll(function() {
 var initActivity = function() {
     setTimeout(function() {
         initActivityListByPage(pageNext, "none", null);
-    }, 60);
+    }, 10);
 }
 
 $(document).ready(function() {
-    //初始化类别信息
+    //初始化活动类别信息
     initActivityType();
     initActivityByLike();
     initActivityByTop();
@@ -156,7 +156,6 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
                         + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">查看详情</a></span></li>'
 
                 }
-
             } else {
                 activityList = "<h1 style='font-size:110px;text-align:center;margin:20px;'>404</h1><h3 style='text-align:center;' class='font-bold'>抱歉，你所访问的资源不存在~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
             }
@@ -246,7 +245,7 @@ var pageNav = function(pageNum) {
     setTimeout(function() {
         window.scrollTo(0, 0); //滑动到浏览器顶部
         layer.close(index);
-    }, 200);
+    }, 100);
 
 }
 
@@ -260,7 +259,7 @@ var search = function() {
     initActivityListByPage(1, "none", null);
     setTimeout(function() {
         layer.close(index);
-    }, 200);
+    }, 100);
 }
 
 //初始化所有类别信息
@@ -291,7 +290,6 @@ var initActivityType = function() {
             for (var i = 0; i < length; i++) {
                 keyTitle += '<a href="javascript:void(0);" onclick="searchType(' + data[i].id + ',\'' + data[i].typename + '\')">' + data[i].typename + '</a>'
             }
-
             // 初始化数据
             $(".cloud").find('ul').html(typeName);
             $(".tagTitle").html(keyTitle);
@@ -315,7 +313,7 @@ var searchType = function(type_id, typename) {
     initActivityListByPage(1, type_id, typename);
     setTimeout(function() {
         layer.close(index);
-    }, 200);
+    }, 100);
 }
 
 //初始化推荐

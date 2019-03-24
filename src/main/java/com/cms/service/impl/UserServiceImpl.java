@@ -5,8 +5,12 @@ import com.cms.pojo.User;
 import com.cms.service.UserService;
 import com.cms.util.StringUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * Created by wangliyong on 2019/2/20.
@@ -76,7 +80,52 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int updateAccountPasswordById(Integer userId, String newPassword) {
+        User user = new User();
+        user.setId(userId);
+        user.setPassword(newPassword);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public int updateUserProfileById(Integer userId, String introduction, Date birthday, Integer gender) {
+        User user = new User();
+        user.setId(userId);
+        user.setIntroduce(introduction);
+        user.setBirthday(birthday);
+        user.setGender(gender);
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
     public User selectUserById(Integer id) {
         return userMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public boolean sendEmailCode(String email, String code) {
+        if(sendEmail(email,code)){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean sendEmail(String address, String code){
+        boolean flag = true;
+        try {
+            HtmlEmail email = new HtmlEmail();
+            email.setHostName("smtp.163.com");
+            email.setCharset("UTF-8");
+            email.addTo(address);
+            email.setFrom("18260095973@163.com","Activity sharing");
+            email.setAuthentication("18260095973@163.com","Gn270588");
+            email.setSubject("Activity sharing 验证码");
+            email.setMsg("尊敬的用户您好,您本次所需验证码是:" + code);
+            email.send();
+        } catch (EmailException e) {
+            e.printStackTrace();
+            flag = false;
+        }
+        return flag;
     }
 }

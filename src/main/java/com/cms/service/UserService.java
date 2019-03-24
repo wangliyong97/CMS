@@ -2,6 +2,8 @@ package com.cms.service;
 
 import com.cms.pojo.User;
 
+import java.util.Date;
+
 /**
  * Created by wangliyong on 2019/2/20.
  */
@@ -22,6 +24,11 @@ public interface UserService {
 
     int updateAvatarById(Integer userId, String avatarPath);
 
+    int updateUserProfileById(Integer userId, String introduction, Date birthday, Integer gender);
+
+    int updateAccountPasswordById(Integer userId, String newPassword);
+
     User selectUserById(Integer id);
 
+    boolean sendEmailCode(String email, String code);
 }

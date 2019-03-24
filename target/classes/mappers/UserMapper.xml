@@ -223,4 +223,10 @@
     from user
     where email = #{email,jdbcType=VARCHAR}
   </select>
+  <select id="findUserById" resultMap="BaseResultMap" parameterType="string" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

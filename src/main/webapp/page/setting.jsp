@@ -20,6 +20,7 @@
     <link href="${pageContext.request.contextPath}/css/page/paging.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/page/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 要在最前面引入-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -97,17 +98,15 @@
                         &nbsp;&nbsp;
                         <div class="col-sm-10" id="modifyGender" >
                             <label class="radio-inline">
-                                <input type="radio" name="gender" id="emp_add_gender1" value="M" checked="checked"> 男 </label>
+                                <input type="radio" name="gender" id="emp_add_gender1" checked="checked"> 男 </label>
                             <label class="radio-inline">
-                                <input type="radio" name="gender" id="emp_add_gender2" value="F" checked=""> 女 </label>
+                                <input type="radio" name="gender" id="emp_add_gender2" checked=""> 女 </label>
                         </div>
-
                     </li>
                     <li class="list-group-item">
                         <span class="li-title">生日</span>
                         &nbsp;&nbsp;
-                        <input class="jianshu-style-input" value="${sessionScope.birthday}"
-                               id="modifyBirthday">
+                        <input type='text' class="jianshu-style-input" id='datetimepicker'/>
                     </li>
                     <li class="list-group-item">
                         <div class="vertical-center">
@@ -124,21 +123,8 @@
 
             <div style="display: none" id="divAccount">
                 <ul class="list-group group">
-                    <li class="list-group-item" style="border: 0;">
-                        <span class="li-title">批量导入博文</span>
-                        &nbsp;&nbsp;
-                        <span class="button-edit-new" data-target="#fileUploadDialog"
-                              data-toggle="modal">导入</span>
-                    </li>
-                    <li class="list-group-item">
-                        <span class="li-title">打包下载</span>
-                        &nbsp;&nbsp;
-                        <span class="button-edit-check" data-target="#downloadAllBlogDialog"
-                              data-toggle="modal">下载所有博文</span>
-                    </li>
                     <li>
                         <br>
-
                         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
                                 <div class="panel-heading shadow-border-for-setting" role="tab" id="deleteAccountDiv"
@@ -155,18 +141,15 @@
                                         <br>
                                         <h4>永久删除帐号</h4>
                                         <br>
-                                        该操作将会清空您的所有博文和博文相关数据，创建的类别、标签，发表的评论，收藏和喜欢的博文以及账号相关数据，在此之前你可能需要
-                                        &nbsp;<a data-target="#downloadAllBlogDialog" data-toggle="modal">打包下载博文</a>&nbsp;。
-                                        <hr class="default-line">
-                                        如果你对&nbsp;<i>BLOG</i>&nbsp;的某些内容、功能不满意，你可以在&nbsp;<a
+                                        该操作将会清空您参与的所有活动相关数据以及举办的活动信息
+                                        &nbsp;<hr class="default-line">
+                                        如果你对&nbsp;<i>Activity Sharing</i>&nbsp;的某些内容、功能不满意，你可以在&nbsp;<a
                                             href="/help-feedback">帮助与反馈</a>&nbsp;页向我提出。
                                         <hr class="default-line">
                                         删除帐号是不可逆的操作，删除后将无法恢复。
                                         <br>
                                         <br>
-                                        <button class="button-dangerous" data-target="#confirmDialog"
-                                                data-toggle="modal">删除
-                                        </button>&nbsp;
+                                        <button class="button-dangerous" data-target="#confirmDialog" data-toggle="modal">删除</button>&nbsp;
                                         <small style="color: darkgray;">期待下次注册</small>
                                         <br>
                                         <br>
@@ -197,21 +180,16 @@
                                             <div>
                                                 <table>
                                                     <tr>
-                                                        <td><input type="number" class="form-input"
-                                                                   id="phoneCode"
-                                                                   placeholder="验证码"></td>
                                                         <td>
-                                                            &nbsp;&nbsp;<button class="button-info"
-                                                                                onclick="sendPhoneCode()"
-                                                                                id="sendPhoneCodeBtn">获取验证码
+                                                            <input type="number" class="form-input" id="emailCode" placeholder="验证码"></td>
+                                                        <td>&nbsp;&nbsp;
+                                                            <button class="button-info" onclick="sendEmailCode()" id="sendPhoneCodeBtn">获取验证码
                                                         </button>
                                                         </td>
                                                     </tr>
                                                 </table>
                                             </div>
-
                                             <br>
-
                                             <button class="button-save" id="saveNewPwd" onclick="updatePwd()">修改
                                             </button>
                                         </div>
@@ -221,20 +199,17 @@
                         </div>
                         <span class="error-msg" id="errorMsgOperAccount"></span>
                     </li>
-
                 </ul>
             </div>
 
             <div style="display: none" id="divStatistic">
             </div>
-
             <br>
             <span class="error-msg" id="settingErrorMsg"></span>
-
         </div>
     </div>
-
 </div>
+
 <div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -276,23 +251,29 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
     var userId = ${sessionScope.userId};
     // baseSetting
     var name = '${sessionScope.username}';
     var email = '${sessionScope.email}';
+    var birthday = '${sessionScope.birthday}';
     var nickName = '${sessionScope.nickname}';
+    var birthday = '${sessionScope.birthday}';
     var intro = '${sessionScope.intro}';
     var aboutMe = '${sessionScope.aboutMe}';
     var gender = '${sessionScope.gender}'
+
     function init(){
-        if(gender == 0){
-            $("emp_add_gender1").attr('checked',"checked");
-            $("emp_add_gender2").attr('checked',"");
+        if(gender == 0 || gender == null){
+            $('#emp_add_gender1').attr('checked',"checked");
+            $('#emp_add_gender2').attr('checked',"");
         }else{
-            $("emp_add_gender1").attr('checked',"");
-            $("emp_add_gender2").attr('checked',"checked");
+            $('#emp_add_gender1').attr('checked',"");
+            $('#emp_add_gender2').attr('checked',"checked");
         }
     }
 
@@ -397,6 +378,11 @@
 
     $(function(){
         initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));
+        init();
+        $('#datetimepicker').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
     });
 
 </script>
