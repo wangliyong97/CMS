@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.Date"%>
 <!doctype html>
 <html>
 <head>
@@ -12,6 +13,9 @@
     <link href="${pageContext.request.contextPath}/css/github-gist.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/font-awesome.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/page/subscribe.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/page/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
 </head>
 <body>
@@ -54,8 +58,26 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <div class="ds" style="text-align: center;opacity:0">
-                <div id="cyReward" role="cylabs" data-use="reward"></div>
+            <div class="subscribe" style="text-align: center">
+                <p><a href="javascript:void(0)" id="subscribeButton" onclick="subscribeToggle()" class="subscribe_button" title="订阅一下">订阅</a></p>
+                <div class="hide_box"></div>
+                <div class="subscribe_box">
+                    <a class="subscribe_close" href="javascript:void(0)" onclick="subscribeToggle()" title="关闭"><img src="${pageContext.request.contextPath}/images/page/close.jpg" alt="取消" /></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="subscribe_payimg">
+                        <img src="${activity.images}" title="活动图片" />
+                    </div>
+                    <div class="pay_explain">${activity.title}</div>
+                    <li class="subscribe-group-item">
+                        <span class="li-title">预约提醒时间：</span>
+                        <input type='text' class="jianshu-style-input" id='datetimepicker_subscribe'/>
+                        &nbsp;&nbsp;
+                        <button class="button-save" id="subscribeActivity" onclick="subscribeActivity()">确认订阅</button>
+                    </li>
+                    <div class="subscribe_info">
+                        <p>感谢您参与活动！祝您生活愉快！</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="nextinfo animated fadeIn">
@@ -80,8 +102,8 @@
                      sid="${activity.id }"></div>
             </div>
         </div>
-
     </div>
+
     <div class="rbox  ">
 
         <div class="dianji paihang whitebg">
@@ -96,7 +118,6 @@
             <ul class="click" style="padding:0px">
 
             </ul>
-
         </div>
         <script type="text/javascript" charset="utf-8" src="http://changyan.sohu.com/js/changyan.labs.https.js?appid=cytzg9rLH"></script>
     </div>
@@ -108,6 +129,23 @@
 <script src="${pageContext.request.contextPath}/js/page/info.js"></script>
 <script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
 <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
+<script src="${pageContext.request.contextPath}/js/page/comm.js" type="application/javascript"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript">
+    var activity_id = ${activity.id };
+    var user_id = ${sessionScope.userId};
+    function  subscribeToggle(){
+        $(".hide_box").fadeToggle();
+        $(".subscribe_box").fadeToggle();
+    }
+    $(function(){
+        $('#datetimepicker_subscribe').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: moment.locale('zh-cn')
+        });
+    });
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>

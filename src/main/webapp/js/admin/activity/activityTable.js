@@ -188,7 +188,7 @@ var selectActivity = function() {
 			},
 
 			{
-				title : '博主推荐',
+				title : '封面推荐',
 				field : 'isrecommend',
 				align : 'center',
 				width : '3%',
@@ -336,10 +336,10 @@ var getSelectRows = function(status) {
 		title = '确定要删除这' + date.length + '条信息吗';
 		text = '删除后前台将无法显示，请谨慎操作！';
 	} else if (status == 2) {
-		title = '确定要将这' + date.length + '条博客置顶吗';
+		title = '确定要将这' + date.length + '项活动置顶吗';
 		text = '置顶后,将显示在前台置顶栏目';
 	} else if (status == 3) {
-		title = '确定要将这' + date.length + '条博客推荐吗';
+		title = '确定要将这' + date.length + '项活动推荐吗';
 		text = '推荐后,将显示在前台推荐栏目';
 	}
 	swal({
@@ -407,17 +407,17 @@ var operation = function(id, op) {
 	});
 };
 
-//博客的操作
+//活动的操作
 var operationActivity = function(idArray, status, isrecommend, isTop) {
 	var param = '';
 	var prarm = '';
 	if (status != null) {
 		if (status == 1) {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客<span class="text-success">发表</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动<span class="text-success">发表</span>'
 		} else if (status == -1) {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客放入<span class="text-navy">草稿箱</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动放入<span class="text-navy">草稿箱</span>'
 		} else if (status == 2) {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客放入<span class="text-danger">垃圾箱</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动放入<span class="text-danger">垃圾箱</span>'
 		}
 		param = {
 			'id' : idArray,
@@ -427,9 +427,9 @@ var operationActivity = function(idArray, status, isrecommend, isTop) {
 	}
 	if (isrecommend != null) {
 		if (isrecommend == 1) {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客置为<span class="text-success">推荐</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动置为<span class="text-success">推荐</span>'
 		} else {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客<span class="text-navy">取消推荐</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动<span class="text-navy">取消推荐</span>'
 		}
 		param = {
 			'id' : idArray,
@@ -439,9 +439,9 @@ var operationActivity = function(idArray, status, isrecommend, isTop) {
 	}
 	if (isTop != null) {
 		if (isTop == 1) {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客<span class="text-success">置顶</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动<span class="text-success">置顶</span>'
 		} else {
-			prarm = '将ID为<span class="text-info">' + idArray + '</span>的博客<span class="text-navy">取消置顶</span>'
+			prarm = '将ID为<span class="text-info">' + idArray + '</span>的活动<span class="text-navy">取消置顶</span>'
 		}
 		param = {
 			'id' : idArray,
@@ -497,7 +497,7 @@ function Format(datetime, fmt) {
 	return fmt;
 }
 
-//查看博客内容
+//查看活动内容
 function selectActivityById(activityId) {
 	var param = {
 		id : activityId

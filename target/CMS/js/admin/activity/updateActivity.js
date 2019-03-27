@@ -13,7 +13,7 @@ setTimeout(function() {
 $(document).ready(function() {
 	var url = window.location.href;
 	var url_param = url.split("=")[1];
-	//编辑博客
+	//编辑活动
 	var param = {
 		id : url_param
 	}
@@ -232,9 +232,9 @@ var prevBlog = function() {
 var updateBlog = function(id) {
 	var url = window.location.href;
 	var url_param = url.split("=")[1];
-	var prarm = '将ID为<span class="text-info">' + url_param + '</span>的博客<span class="text-success">发表</span>';
+	var prarm = '将ID为<span class="text-info">' + url_param + '</span>的活动<span class="text-success">发表</span>';
 	if (id == -1) {
-		prarm = '将ID为<span class="text-info">' + url_param + '</span>的博客放入<span class="text-navy">草稿箱</span>';
+		prarm = '将ID为<span class="text-info">' + url_param + '</span>的活动放入<span class="text-navy">草稿箱</span>';
 	}
 	var params = {
 		'id' : url_param,
@@ -256,7 +256,7 @@ var updateBlog = function(id) {
 			if (data.status == 200) {
 				$("#myModal").modal('hide');
 				var title = "更新成功";
-				var text = "博客已在前端展示";
+				var text = "活动已在前端展示";
 				if (id == -1) {
 					title = "放入草稿成功";
 					text = "你可以前往草稿箱查看";

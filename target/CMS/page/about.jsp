@@ -22,29 +22,7 @@
 						href="about.jsp">关于我</a>
 				</h2>
 				<div class="news_infos m20 animated fadeIn">
-					<br>
-					<h3 style="color: #000;font-size: 15px;">关于站长</h3>
-					<br>
-					<p>罗廷方，男，一个95后站长，四川人。</p>
-					<p>建站时间：2018.03-2018.06。</p>
-					<p>15年09月至18年4月一直潜心研究Java，一边读书一边学习Java，完成该作品时、大三。</p>
-					<br>
-					<h3 style="color: #000;font-size: 15px;">为什么要做这个网站</h3>
-					<br>
-					<p>（1）如果学过某个知识的话，写成Blog，在未来某个时刻其实可以很轻易的找到这份笔记，然后查看一下之前所学，温故而知新。</p>
-					<p>（2）写文章或者Blog和看书是截然不同的。写文章的话，首先不仅要看懂书本上的内容，还要整理成自己的语言描述出来，其实能够在某种程度上加深自己对知识的理解。</p>
-					<p>（3）持续写Blog的话，其实在未来的时候可以翻看自己的成长记录。</p>
-					<p>（4）持续写Blog能够看到自己一点一点的进步。人生毕竟是一场马拉松，而不是一场百米冲刺。</p>
-					<br>
-					<h3 style="color: #000;font-size: 15px;">关于我的博客</h3>
-					<br>
-					<p>域名：www.luotf.com</p>
-					<p>服务器：阿里云服务器</p>
-					<p>备案号：蜀ICP备18001827号-1</p>
-					<p>程序：Java</p>
-					<a target= "_blank" href="http://www.luotf.com/find/13015.html"><span style="color: #12aae8;font-size: 13px;">查看更多</span></a>
-					<br>
-					<br>
+
 				</div>
 			</div>
 		</div>
@@ -56,17 +34,8 @@
 				<img src="${pageContext.request.contextPath}/images/logo.png">
 			</div>
 			<div class="ab_con animated fadeIn">
-				<p>网名：我倾尽一生,囚你无期 | Luotf</p>
-				<p>职业：Java开发工程师 | 全栈</p>
-				<p>籍贯：四川省—成都市</p>
-				<p>邮箱：849673404@qq.com</p>
+
 			</div>
-		</div>
-		<div class="weixin animated fadeIn whitebg">
-			<h2 class="htitle">公众号</h2>
-			<ul>
-				<img src="${pageContext.request.contextPath}/images/logo.png">
-			</ul>
 		</div>
 	</div>
 </article>

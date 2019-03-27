@@ -44,7 +44,9 @@ $(document).ready(function() {
         }, 800);
         return false;
     });
+    judgeIsSubscribe(); //判断文章是否被订阅
 });
+
 var Tags = function() {
     var tag = $(".tag").val();
     var keyword = "";
@@ -63,6 +65,7 @@ var Tags = function() {
     $(".newsview").find(".tags").append(keyword);
 }
 
+//前一项活动
 var selectPrevActivity = function() {
     var id = $(".id").val();
     var params = {
@@ -91,6 +94,7 @@ var selectPrevActivity = function() {
     });
 };
 
+//后一项活动
 var selectNextActivity = function() {
     var vid = $(".id").val();
     var id = parseInt(vid) + 1;
@@ -222,6 +226,56 @@ var initActivityByClick = function() {
         }
     });
 };
+
+//保存订阅信息
+var subscribeActivity = function () {
+    var reminder_time = $('#datetimepicker_subscribe').val();
+    var params = {
+        userId : user_id,
+        activityId : activity_id,
+        reminder_time : reminder_time
+    };
+    $.ajax({
+        url: '../saveSubscribeInformation',
+        type: 'post',
+        async: false,
+        data: params,
+        dataType: 'json',
+        success: function (result) {
+            if (result.code == 200) {
+                disableButton(false, 'subscribeActivity', '订阅成功', "button-disable");
+                setTimeout(function () {
+                    subscribeToggle();
+                }, 2000);
+                judgeIsSubscribe();
+            } else {
+                error(result.msg, 'settingErrorMsg', true, 1000);
+            }
+        }
+    });
+}
+
+//判断当前账户是否已订阅当前活动
+var judgeIsSubscribe = function () {
+    var params = {
+        userId : user_id,
+        activityId : activity_id,
+    };
+    $.ajax({
+        url: '../judgeIsSubscribe',
+        type: 'post',
+        async: false,
+        data: params,
+        dataType: 'json',
+        success: function (result) {
+            if (result.flag == true) {
+                document.getElementById("subscribeButton").innerHTML="已订阅";
+                document.getElementById("subscribeButton").onclick = function(){}
+            }
+        }
+    });
+
+}
 
 //格式化时间
 var Format = function() {

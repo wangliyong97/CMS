@@ -263,7 +263,7 @@ var deleteActivityType = function(id, name) {
 					initType();
 					swal("删除成功！", "", "success");
 				} else if (data.status == 2) {
-					swal("删除失败", "该类别下有博客,不能删除", "error");
+					swal("删除失败", "该类别下有活动,不能删除", "error");
 				} else {
 					swal("删除失败", data.msg, "error");
 				}

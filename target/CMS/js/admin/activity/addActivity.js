@@ -81,7 +81,7 @@ var initActivityType = function() {
 }
 
 var initActivityCountBystatus = function() {
-	//初始化博客数目
+	//初始化活动数目
 	$.ajax({
 		url : '../selectActivityListByStatus',
 		type : 'post',

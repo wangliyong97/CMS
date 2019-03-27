@@ -381,10 +381,10 @@
         init();
         $('#datetimepicker').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn')
+            locale: moment.locale('zh-cn'),
+            initialDate: birthday
         });
     });
-
 </script>
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/paging.js"></script>
 <script type="application/javascript" src="${pageContext.request.contextPath}/js/page/comm.js"></script>

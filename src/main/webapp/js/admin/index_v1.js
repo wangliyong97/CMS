@@ -13,9 +13,9 @@ setTimeout(function() {
 $(document).ready(function() {
 	$("#end").val(Format(new Date(), "yyyy-MM-dd"));
 	$("#start").val(Format(new Date().getTime() - 6 * 24 * 60 * 60 * 1000, "yyyy-MM-dd"));
-	initActivityCountByStatus(), //初始化已发表/草稿箱博客数目
+	initActivityCountByStatus(), //初始化已发表/草稿箱活动数目
 	initResourceCountByStatus() //初始化已发布资源数目
-	initActivityCountByDate() //初始化昨日/今日博客发表数目
+	initActivityCountByDate() //初始化昨日/今日活动发表数目
 	initVisitCount("now") //初始化今日访客
 	initVisitCount("history") //初始化历史访客
 	initVisitCountByWeek(7) //初始化num日访客 
@@ -189,13 +189,13 @@ var initResourceCountByStatus = function() {
 			returnAllCount();
 		},
 		error : function() {
-			// swal("博客总数错误", "请重新操作", "error");
+			// swal("活动总数错误", "请重新操作", "error");
 		}
 	});
 };
 
 var initActivityCountByStatus = function() {
-	//初始化博客数目
+	//初始化活动数目
 	$.ajax({
 		url : 'selectActivityListByStatus',
 		type : 'post',

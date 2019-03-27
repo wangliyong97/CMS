@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>更新博客</title>
+<title>更新活动</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 	<link rel="shortcut icon" href="favicon.ico">
@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<i class="fa fa-times"></i> 返回
 							</button>
 						</div>
-						<h2>修改博客</h2>
+						<h2>修改活动</h2>
 					</div>
 					<div class="mail-box">
 						<div class="mail-body">

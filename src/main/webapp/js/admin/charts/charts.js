@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	$("#startActivity").val(start);
 	$("#endBActivity").val(end);
-	initActivityCountByDate(start, end); //初始化7日博客数量
+	initActivityCountByDate(start, end); //初始化7日活动数量
 
 	$("#startUserLogClick").val(start);
 	$("#endUserLogClick").val(end);
@@ -75,7 +75,7 @@ $('#endTime').datepicker({
 
 });
 
-//博客时间
+//活动时间
 $('#startBlog').datepicker({
 	keyboardNavigation : false,
 	forceParse : false,
@@ -236,7 +236,7 @@ var initEchartsByVisit = function(days, counts) {
 };
 
 
-//最近的num日博客发表数
+//最近的num日活动发表数
 var initActivityCountByDate = function(startTime, endTime) {
 	var start = Date.parse(new Date(startTime));
 	var end = Date.parse(new Date(endTime));
