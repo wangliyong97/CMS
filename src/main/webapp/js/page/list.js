@@ -79,7 +79,7 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
         }
         typeStatus = false;
         params = {
-            pageSize : 8,
+            pageSize : 4,
             page : pageNum,
             title : keyword,
             content : keyword,

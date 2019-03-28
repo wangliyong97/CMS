@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: wangliyong
+  Date: 2019/2/14
+  Time: 13:53
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
@@ -85,6 +92,5 @@
 </article>
 <script src="${pageContext.request.contextPath}/js/page/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
-<script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytzg9rLH"></script>
 </body>
 </html>

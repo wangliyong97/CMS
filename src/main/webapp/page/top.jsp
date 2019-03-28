@@ -40,9 +40,8 @@
                     <ul class="navbar-nav">
                         <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动列表</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/resource">资源分享</a></li>
+                        <li class="nav-item" id="subscribe_item"><a class="nav-link" href="${pageContext.request.contextPath}/subscribe">订阅列表</a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about">关于我</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/message">留言</a></li>
                         <li class="searchico"></li>
                     </ul>
                 </div>
@@ -66,10 +65,6 @@
                             <div class="dropdown-menu pull-right"
                                  style="background: #FFFFFF;width: 320px;overflow: hidden">
                                 <div style="margin-top: 16px;border-bottom: 1px solid #eeeeee">
-                                    <%--<div style="text-align: center">--%>
-                                        <%--<img id = "avatar_second" class="img-circle" src="${pageContext.request.contextPath}/images/person.png"--%>
-                                             <%--style="width: 40px;height: 40px;"/>--%>
-                                    <%--</div>--%>
                                     <div style="color: #323534;text-align: center;line-height: 36px;font-size: 20px">
                                         <span id = "spanusername">未登录</span>
                                     </div>

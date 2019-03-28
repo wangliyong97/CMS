@@ -137,8 +137,8 @@ public class ActivityController {
     @RequestMapping(value = "/selectLikeActivityListByPage")
     @ResponseBody
     @AccessLimit(seconds=1,maxCount=15)
-    @SystemLog(description = ConstantUtil.BLOG_FINDKEY,userType=ConstantUtil.USERTYPE_USER)
-    public Map<String, Object> selectLikeBlogListByPage(String param,Activity activity,@RequestParam(value="sort", required=true,defaultValue="addTime") String sort,@RequestParam(value="page", required=true,defaultValue="1") Integer page,@RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception{
+    @SystemLog(description = ConstantUtil.ACTIVITY_FINDKEY,userType=ConstantUtil.USERTYPE_USER)
+    public Map<String, Object> selectLikeActivityListByPage(String param,Activity activity,@RequestParam(value="sort", required=true,defaultValue="addTime") String sort,@RequestParam(value="page", required=true,defaultValue="1") Integer page,@RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception{
         Map<String, Object> map=new HashMap<String, Object>();
         map.put("sort", sort);
         if(activity.getTitle()!=null&&activity.getTitle()!=""){
@@ -187,7 +187,7 @@ public class ActivityController {
 
     @RequestMapping(value = "/selectActivityByAllType")
     @ResponseBody
-    public Map<String, Object> selectBlogByAllType() throws Exception{
+    public Map<String, Object> selectActivityByAllType() throws Exception{
         Map<String,List<Activity>> activityMap=activityService.selectActivityByAllType();
         Map<String, Object> returnMap=new HashMap<String, Object>();
         if(activityMap.size()>0){

@@ -16,7 +16,7 @@ public class ConstantUtil {
 
     public static final String ACTIVITY_SELECT="查看活动";
 
-    public static final String BLOG_FINDKEY="关键字查询活动";
+    public static final String ACTIVITY_FINDKEY="关键字查询活动";
 
     public static final String ACTIVITYTYPE_ADD="新增活动类别";
 
@@ -45,5 +45,7 @@ public class ConstantUtil {
     public static final String LOGIN_OUT="退出了系统";
 
     public static final String REGISTER = "注册账号";
+
+    public static final String ACTIVITY_SUBSCRIBE="查询用户订阅活动";
 
 }

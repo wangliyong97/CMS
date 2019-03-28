@@ -116,12 +116,9 @@ a.viewmore { display: block; right: 10px; bottom: 20px; position: absolute; padd
 .bloginfo span { margin: 0 5px }
 .bloginfo span a { color: #096 }
 .avatar {position: relative;float: left;width: 30px;height: 30px;border-radius: 100%;padding: 2px;display: block;
-    /*background: -webkit-linear-gradient(bottom left, rgba(0,153,255,.9), rgba(42,228,197,.7));
-    background: -o-linear-gradient(bottom left, rgba(0,153,255,.9), rgba(42,228,197,.7));
-    background: linear-gradient(to top right, rgba(0,153,255,.9), rgba(42,228,197,.7));
-    */
 }
-.avatar img { width: 100%; border-radius: 50%; }
+/*.avatar img { width: 100%; border-radius: 50%; }*/
+.avatar img { border-radius: 50%; }
 .avatar::after { content: ""; position: absolute; background: url(https://www.yangqq.com/skin/jxhx/images/v.png) no-repeat; background-size: 12px; width: 12px; height: 12px; right: 0; bottom: 0 }
 
 .whitebg {
@@ -271,80 +268,6 @@ img.img-circle {
     width: 348px;
 }
 
-
-/*phone  nav *//*
-#mnav {
-  display: none;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-}
-
-#mnav h2 {
-  text-align: right;
-  color: #fff;
-  font-size: 18px;
-  height: 52px;
-  line-height: 52px;
-  padding-left: 10px;
-  width: 100%
-}
-
-#mnav h2.open {
-  text-align: right;
-  background: rgba(1, 1, 1, 0.8);
-  width: 100%;
-}
-
-#mnav ul {
-  display: none;
-  background: rgba(1, 1, 1, 0.8);
-  width: 100%;
-  padding-bottom: 40px
-}
-
-#mnav li {
-  height: 40px;
-  line-height: 40px;
-  vertical-align: top;
-  font-size: 15px;
-  display: block;
-  overflow: hidden;
-  text-align: center
-}
-
-#mnav li a {
-  color: #fff
-}
-/* 默认菜单栏 *//*
-#mnav h2 .navicon {
-  margin-right: 15px;
-}
-
-.navicon {
-  display: inline-block;
-  position: relative;
-  width: 30px;
-  height: 5px;
-  background-color: #000;
-}
-
-.navicon:before, .navicon:after {
-  content: '';
-  display: block;
-  width: 30px;
-  height: 5px;
-  position: absolute;
-  background: #000;
-  -webkit-transition-property: margin, -webkit-transform;
-  transition-property: margin, -webkit-transform;
-  transition-property: margin, transform;
-  transition-property: margin, transform, -webkit-transform;
-  -webkit-transition-duration: 300ms;
-  transition-duration: 300ms;
-}
-*/
 .navicon:before {
     margin-top: -10px;
 }
@@ -357,38 +280,7 @@ img.img-circle {
     clear: both;
     width: 100%;
     overflow: hidden;
-}/*
-/* 展开后导航栏目 *//*
-#mnav h2.open .navicon {
-  background: rgba(1, 1, 1, 0.8)
-} /* 使用背景色隐藏中间的红线 *//*
-#mnav h2.open .navicon:before {
-  margin-top: 0;
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
-
-#mnav h2.open .navicon:after {
-  margin-top: 0;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-#mnav h2.open .navicon:before, #mnav h2.open .navicon:after {
-  content: '';
-  display: block;
-  width: 30px;
-  height: 5px;
-  position: absolute;
-  background: #FFFFFF;
-  -webkit-transition-property: margin, -webkit-transform;
-  transition-property: margin, -webkit-transform;
-  transition-property: margin, transform;
-  transition-property: margin, transform, -webkit-transform;
-  -webkit-transition-duration: 300ms;
-  transition-duration: 300ms;
-}
-*/
 
 article {
     width: 1200px;
@@ -584,29 +476,6 @@ form#searchform {
     text-align: center;
 }
 
-/*.linkmore {*/
-/*margin: 15px*/
-/*}*/
-
-/*.linkmore li {*/
-/*width: 25%;*/
-/*float: left*/
-/*}*/
-
-/*.linkmore li a {*/
-/*height: 53px;*/
-/*display: block;*/
-/*overflow: hidden;*/
-/*box-shadow: 0px 1px 0px rgba(255, 255, 255, .1), inset 0px 1px 1px*/
-/*rgba(0, 0, 0, .7);*/
-/*border-radius: 50%;*/
-/*margin: 0 5px;*/
-/*}*/
-
-/*.linkmore li a:hover {*/
-/*opacity: 0.5;*/
-/*}*/
-
 .iconfont {
     font-family: "iconfont" !important;
     font-size: 30px;
@@ -674,26 +543,6 @@ a.iconfont.icon--- {
 a.iconfont.icon-weixin {
     color: #07AF12;
 }
-
-/*#weixin {*/
-/*position: relative*/
-/*}*/
-
-/*#weixin i {*/
-/*display: block;*/
-/*position: absolute;*/
-/*bottom: 55px;*/
-/*right: 0*/
-/*}*/
-
-/*#weixin i img {*/
-/*height: 100px;*/
-/*display: none*/
-/*}*/
-
-/*#weixin:hover i img {*/
-/*display: block*/
-/*}*/
 
 .fixed-menu-list {
     display: none;
@@ -959,6 +808,8 @@ a.iconfont.icon-weixin {
     }
 }
 
-
+.fa:hover{
+    color: green;
+}
 
 

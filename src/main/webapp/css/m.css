@@ -32,6 +32,9 @@
         display: none;
     }
     .carousel-inner img{width:900px; height:200px}
+    li#subscribe_item {
+        display: none;
+    }
 }
 @media only screen and (max-width: 768px) {
     .zhuanti li { padding: 15px; }

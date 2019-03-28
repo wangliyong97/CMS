@@ -4,10 +4,13 @@ import com.cms.dao.SubscribeMapper;
 import com.cms.pojo.Subscribe;
 import com.cms.service.SubscribeService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by wangliyong on 2019/3/25.
@@ -32,5 +35,10 @@ public class SubscribeServiceImpl implements SubscribeService{
         }else{
             return true;
         }
+    }
+
+    @Override
+    public List<Subscribe> selectSubscribeActivityList(Integer userId) {
+        return subscribeMapper.selectSubscribeActivityList(userId);
     }
 }

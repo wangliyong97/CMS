@@ -1,0 +1,85 @@
+.box {
+    width: 100%;
+    overflow: hidden;
+}
+
+.subscribeList {
+    padding: 20px;
+    clear: both;
+    border-radius: 3px;
+}
+
+h3.activityTitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 30px;
+    height: 30px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.activityText {
+    font-size: 14px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    margin-top: 20px;
+    width: 50%;
+}
+
+.activityPic {
+    overflow: hidden;
+    width: 25%;
+    display: block;
+    float: left;
+    margin-right: 20px;
+    border-radius: 3px;
+    background: #333333;
+    position: relative;
+}
+
+.activityInfo {
+    margin-top: 20px;
+    overflow: hidden;
+    color: #999;
+    line-height: 34px;
+    bottom: 8px;
+    position: fixed;
+    padding-left: 27%;
+}
+
+.subscribeList li {
+    overflow: hidden;
+    margin-bottom: 10px;
+    border-bottom: #ccc 1px solid;
+    padding-bottom: 10px;
+    position: relative;
+    min-height: 120px;
+    z-index: 1;
+}
+
+span.reminder_time {
+    line-height: 34px;
+    bottom: 63%;
+    position: fixed;
+    padding-left: 58%;
+}
+
+a#settingSubscribeActivty {
+    bottom: 38%;
+    position: fixed;
+    width: 85px;
+    margin-left: 65%;
+    padding: 3px 10px;
+    background: #a9a4a4c2;
+    color: #fff;
+    border-radius: 3px;
+}
+
+a#settingSubscribeActivty:hover{
+    color: blue;
+}
