@@ -83,4 +83,50 @@ public class SubscribeActivityController {
         returnMap.put("subscribeActivityVos", subscribeActivityVos);
         return returnMap;
     }
+
+    @RequestMapping(value = "/selectSubscribeFutureActivityList")
+    @ResponseBody
+    @AccessLimit(seconds=1,maxCount=10)
+    @SystemLog(description = ConstantUtil.ACTIVITY_SUBSCRIBE,userType=ConstantUtil.USERTYPE_USER)
+    public Map<String, Object> selectSubscribeFutureActivityList(Integer userId, @RequestParam(value="page", required=true,defaultValue="1") Integer page, @RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception {
+        Map<String, Object> returnMap=new HashMap<String, Object>();
+        List<SubscribeActivityVo> subscribeActivityVos = new ArrayList<>();
+        List<Subscribe> subActivityList = subscribeService.selectSubscribeFutureActivityList(userId);
+        if(subActivityList.size() > 0){
+            Collections.sort(subActivityList, new Comparator<Subscribe>() {
+                DateFormat dateFormat=new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", java.util.Locale.US);
+                @Override
+                public int compare(Subscribe o1, Subscribe o2) {
+                    Date date1 = new Date();
+                    Date date2 = new Date();
+                    try{
+                        date1 = dateFormat.parse(o1.getReminderTime().toString());
+                        date2 = dateFormat.parse(o2.getReminderTime().toString());
+                    }catch (Exception e){
+                        System.out.println(e);
+                    }
+                    return date1.compareTo(date2);
+                }
+            });
+            for(Subscribe subActivity : subActivityList){
+                Activity activity = activityService.selectActivityById(subActivity.getActivityId());
+                if(activity != null){
+                    SubscribeActivityVo subscribeActivityVo = new SubscribeActivityVo(subActivity.getActivityId(),activity.getTitle(),activity.getIntroduction(),
+                            activity.getKeyword(),activity.getImages(),activity.getClicknum(),
+                            activity.getCommentnum(),activity.getAgreenum(),activity.getIstop(),
+                            activity.getIsrecommend(),activity.getUpdatetime(),activity.getAddtime(),
+                            activity.getStatus(),activity.getType(),activity.getUser(),
+                            activity.getContent(),subActivity.getUserId(),subActivity.getStatus(),
+                            subActivity.getReminderTime());
+                    subscribeActivityVos.add(subscribeActivityVo);
+                }
+            }
+            //分页显示：第1页开始，每页显示10条记录
+            PageHelper.startPage(page, pageSize);
+            PageInfo<SubscribeActivityVo> pageInfo=new PageInfo<SubscribeActivityVo>(subscribeActivityVos);
+            returnMap.put("pageInfo", pageInfo);
+        }
+        returnMap.put("subscribeActivityVos", subscribeActivityVos);
+        return returnMap;
+    }
 }

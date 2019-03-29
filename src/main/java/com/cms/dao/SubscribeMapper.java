@@ -21,4 +21,6 @@ public interface SubscribeMapper {
     Subscribe judgeIsSubscribe(@Param("user_id") Integer user_id, @Param("activity_id") Integer activity_id);
 
     List<Subscribe> selectSubscribeActivityList(@Param("user_id") Integer user_id);
+
+    List<Subscribe> selectSubscribeFutureActivityList(@Param("user_id") Integer user_id);
 }

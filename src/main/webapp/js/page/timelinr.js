@@ -1,4 +1,7 @@
 /**
+ * Created by wangliyong on 2019/3/29.
+ */
+/**
  * Created by wangliyong on 2019/3/27.
  */
 var globalCount = 0;
@@ -20,30 +23,6 @@ if (width < 960) {
     $(".tag").css('display', 'none');
 }
 
-$(window).scroll(function() {
-    if (isEnd == true) {
-        return;
-    }
-    if ($(document).scrollTop() > 200 && count == 1) {
-        $(".dj").css("display", "block");
-        count++;
-    }
-    if ($(document).scrollTop() > 1300 && width > 700) {
-        $(".top").addClass('cd-is-visible fadeIn');
-        $(".guanzhu").css("display", "block");
-    } else {
-        $(".top").removeClass('cd-is-visible fadeOut');
-        $(".guanzhu").css("display", "none");
-    }
-    if ($(document).scrollTop() + 50 >= $(document).height() - $(window).height() && width > 700) {
-        isEnd = true;
-        $('.page').css('display', 'block');
-        setTimeout(function() {
-            initActivityListByPage(pageNext, "none", null);
-        }, 500);
-    }
-});
-
 var initActivity = function() {
     initActivityListByPage(pageNext, "none", null);
 }
@@ -56,16 +35,18 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
     //查询订阅活动
     params = {
         userId : userId,
-        pageSize : 4,
-        page : pageNum
+        pageSize : 10,
+        page : pageNum,
     };
     $.ajax({
-        url : 'selectSubscribeActivityList',
+        url : 'selectSubscribeFutureActivityList',
         type : 'get',
         data : params,
+        async: false,
         dataType : 'json',
         success : function(data) {
             var subscribeActivityVos = '';
+            var subscribeActivityIds = '';
             var page = data.pageInfo;
             var data = data.subscribeActivityVos;
             if (data.length > 0) {
@@ -102,24 +83,23 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
                         }
                     });
 
-                    subscribeActivityVos += '<li style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="activityTitle"><a target="_blank" href="find/' + id + '.html"  >'
+                    subscribeActivityIds += '<li><a href="# ' + data[i].id + '">' + Format(data[i].reminderTime, "yyyy-MM-dd") + '</a></li>';
+                    subscribeActivityVos += '<li ' + data[i].id + 'style="animation-delay:0.' + i + 's" class="animated fadeInDown"><h3 class="activityTitle"><a target="_blank" href="find/' + id + '.html"  >'
                         + data[i].title
                         + '</a></h3><span class="activityPic imgscale"><a href="find/' + id + '.html" title=""><img src="' + data[i].images + '"  /></a></span><p class="activityText">'
                         + data[i].introduction
-                        + '</p><p class="activityInfo"><i class = "avatar"><img src="'+image_path+'" border=0 width="30" height="30"></i><span>'+'&nbsp;'+nickname+'</span><span><a href="javascript:void(0);">【'
-                        + keyword
-                        + '】</a></span><span class="m_time">'
-                        + Format(data[i].addtime, "yyyy-MM-dd")
-                        + '</span><span  class="clicknum">&nbsp;浏览('
-                        + data[i].clicknum
-                        + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">查看详情</a>' +
-                        '<span  class="reminder_time">&nbsp;预约时间：' + Format(data[i].reminderTime, "yyyy-MM-dd") + '</span>' +
-                        '<a class="settingSubscribe" id="settingSubscribeActivty" onclick="">取消订阅</a>' + '</span></li>'
+                        + '</p><span  class="reminder_time">&nbsp;预约时间：' + Format(data[i].reminderTime, "yyyy-MM-dd") + '</li>'
                 }
             } else {
                 subscribeActivityVos = "<h1 style='font-size:110px;text-align:center;margin:20px;'>~(●'◡'●ノ~</h1><h3 style='text-align:center;' class='font-bold'>抱歉！当前用户尚未订阅活动~~~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
             }
-            $(".subscribeList").find("ul").append(subscribeActivityVos);
+            if (page.pageNum >= 2) {
+                $("#timeline").find("#dates").append(subscribeActivityIds);
+                $("#timeline").find("#issues").append(subscribeActivityVos);
+            } else {
+                $("#timeline").find("#dates").html(subscribeActivityIds);
+                $("#timeline").find("#issues").html(subscribeActivityVos);
+            }
             if (page.total > 8) {
                 var pagenav = '';
                 if (page.pageNum == page.pages) {
@@ -150,19 +130,6 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
         }
     });
 };
-
-var search = function() {
-    var index = '';
-    layer.ready(function() {
-        index = layer.load(2, {
-            shade : [ 0.1, '#eee' ] //0.1透明度的白色背景
-        });
-    });
-    initActivityListByPage(1, "none", null);
-    setTimeout(function() {
-        layer.close(index);
-    }, 100);
-}
 
 //格式化时间
 function Format(datetime, fmt) {

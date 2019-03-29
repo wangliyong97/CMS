@@ -15,7 +15,6 @@ function showDiv(id, th) {
             currentShowDiv = id;
         });
     }
-
 }
 
 var maxAboutMeCount = 180;

@@ -41,4 +41,9 @@ public class SubscribeServiceImpl implements SubscribeService{
     public List<Subscribe> selectSubscribeActivityList(Integer userId) {
         return subscribeMapper.selectSubscribeActivityList(userId);
     }
+
+    @Override
+    public List<Subscribe> selectSubscribeFutureActivityList(Integer userId) {
+        return subscribeMapper.selectSubscribeFutureActivityList(userId);
+    }
 }

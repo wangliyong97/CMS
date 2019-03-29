@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,span,h1,h2,h3,h4,h5,h6,p,pre,a,code,em,img,small,strong,sub,sup,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
+a{color:#007bc4/*#424242*/; text-decoration:none;outline: none;}
+a:hover{text-decoration:underline}
+a:focus {outline:none; -moz-outline:none;}
+ol,ul{list-style:none}
+table{border-collapse:collapse;border-spacing:0}
+body{height:100%; font:14px/18px "Microsoft Yahei", Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif; color:#51555C;}
+img{border:none}
+
+h3.activityTitle {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 30px;
+    height: 30px;
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.activityText {
+    font-size: 14px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    width: 60%;
+}
+
+.activityPic {
+    overflow: hidden;
+    width: 58%;
+    display: block;
+    float: left;
+    margin-right: 20px;
+    border-radius: 3px;
+    background: #333333;
+    position: relative;
+}
+
+.activityInfo {
+    margin-top: 20px;
+    overflow: hidden;
+    color: #999;
+    line-height: 34px;
+    bottom: 8px;
+    position: fixed;
+    padding-left: 27%;
+}
+
+#timelinr_article {
+    background-image: url(/images/page/timelinr_bg.jpg);
+}
+

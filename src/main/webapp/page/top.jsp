@@ -41,7 +41,7 @@
                         <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动列表</a></li>
                         <li class="nav-item" id="subscribe_item"><a class="nav-link" href="${pageContext.request.contextPath}/subscribe">订阅列表</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/about">关于我</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/timelinr">时间轴</a></li>
                         <li class="searchico"></li>
                     </ul>
                 </div>

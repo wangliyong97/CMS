@@ -22,10 +22,6 @@
     <link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 要在最前面引入-->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/bootstrap3.3.7.min.js"></script>
 </head>
 <body>
 <div class="container border" style="min-height: 100%;background-color: white">
@@ -190,8 +186,7 @@
                                                 </table>
                                             </div>
                                             <br>
-                                            <button class="button-save" id="saveNewPwd" onclick="updatePwd()">修改
-                                            </button>
+                                            <button class="button-save" id="saveNewPwd" onclick="updatePwd()">修改</button>
                                         </div>
                                     </div>
                                 </div>
@@ -252,12 +247,14 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap3.3.7.min.js"></script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>
 <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment-with-locales.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript">
     var userId = ${sessionScope.userId};
-    // baseSetting
     var name = '${sessionScope.username}';
     var email = '${sessionScope.email}';
     var birthday = '${sessionScope.birthday}';
@@ -381,8 +378,7 @@
         init();
         $('#datetimepicker').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: moment.locale('zh-cn'),
-            initialDate: birthday
+            locale: moment.locale('zh-cn')
         });
     });
 </script>

@@ -57,9 +57,8 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
     params = {
         userId : userId,
         pageSize : 4,
-        page : pageNum,
+        page : pageNum
     };
-
     $.ajax({
         url : 'selectSubscribeActivityList',
         type : 'get',
@@ -120,11 +119,7 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
             } else {
                 subscribeActivityVos = "<h1 style='font-size:110px;text-align:center;margin:20px;'>~(●'◡'●ノ~</h1><h3 style='text-align:center;' class='font-bold'>抱歉！当前用户尚未订阅活动~~~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
             }
-            if (page.pageNum >= 2) {
-                $(".subscribeList").find("ul").append(subscribeActivityVos);
-            } else {
-                $(".subscribeList").find("ul").html(subscribeActivityVos);
-            }
+            $(".subscribeList").find("ul").append(subscribeActivityVos);
             if (page.total > 8) {
                 var pagenav = '';
                 if (page.pageNum == page.pages) {
