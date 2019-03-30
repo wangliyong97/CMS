@@ -34,8 +34,6 @@ public class SubscribeActivityController {
     @Autowired
     private ActivityService activityService;
     @Autowired
-    private UserService userService;
-    @Autowired
     private SubscribeService subscribeService;
 
     @RequestMapping(value = "/selectSubscribeActivityList")
