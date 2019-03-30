@@ -64,4 +64,18 @@ public class SubscribeController {
         }
         return map;
     }
+
+    @RequestMapping(value = "/cancelSubscribe", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> cancelSubscribe(Integer userId , Integer activityId) throws Exception{
+        Map<String, Object> map=new HashMap<String, Object>();
+        boolean result = subscribeService.cancelSubscribe(userId,activityId);
+        if(result){
+            map.put("code", 200);
+        }else{
+            //500表示：返回值为Null
+            map.put("code", 500);
+        }
+        return map;
+    }
 }

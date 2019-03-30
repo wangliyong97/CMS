@@ -72,7 +72,7 @@
         <div class="tuijian2  animated fadeIn whitebg">
             <h2 class="cloud_hometitle">推荐活动</h2>
             <ul class="tjpic animated fadeIn">
-                <i><img src="images/t03.jpg"></i>
+
             </ul>
             <ul class="sidenews">
 
@@ -90,6 +90,7 @@
     </div>
     <a href="#" class="top cd-top animated ">Top</a>
 </article>
+
 <script src="${pageContext.request.contextPath}/js/page/list.js"></script>
 <script src="${pageContext.request.contextPath}/js/layer/layer.js"></script>
 </body>

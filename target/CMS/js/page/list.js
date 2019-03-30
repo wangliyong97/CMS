@@ -38,7 +38,7 @@ $(window).scroll(function() {
         $('.page').css('display', 'block');
         setTimeout(function() {
             initActivityListByPage(pageNext, "none", null);
-        }, 500);
+        }, 200);
     }
 });
 
@@ -186,11 +186,6 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
                     $(".pageMin").html("");
                 }
             }
-        },
-        error : function() {
-            layer.msg('请求太快，请稍后再试！', {
-                icon : 5
-            });
         }
     });
 };
@@ -348,11 +343,6 @@ var initActivityByLike = function() {
             // 初始化数据
             $(".tuijian2").find(".tjpic").html(likeActivity_1);
             $(".tuijian2").find(".sidenews").html(likeActivity_2);
-        },
-        error : function() {
-            layer.msg('请求太快，请稍后再试！', {
-                icon : 5
-            });
         }
     });
 };
@@ -386,11 +376,6 @@ var initActivityByClick = function() {
             }
             // 初始化数据
             $(".dj").find(".click").html(clickActivity);
-        },
-        error : function() {
-            layer.msg('请求太快，请稍后再试！', {
-                icon : 5
-            });
         }
     });
 };

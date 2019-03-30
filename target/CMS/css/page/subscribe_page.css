@@ -69,17 +69,33 @@ span.reminder_time {
     padding-left: 58%;
 }
 
-a#settingSubscribeActivty {
+.settingSubscribe{
     bottom: 38%;
     position: fixed;
     width: 85px;
     margin-left: 65%;
     padding: 3px 10px;
-    background: #a9a4a4c2;
-    color: #fff;
-    border-radius: 3px;
+    background: #1cb14f;
+    color: #fff !important;
+    border-radius: 50px;
+    text-align:center;
 }
 
-a#settingSubscribeActivty:hover{
-    color: blue;
+.settingSubscribe:hover{
+    color: blue !important;
 }
+
+.nothing-banner {
+    line-height: 46px;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: #999;
+    padding-left: 35%;
+    padding-top: 3%;
+}
+
+.nothing-banner>img {
+    position: relative;
+    left: 58px;
+}
+

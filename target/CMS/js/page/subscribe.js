@@ -49,6 +49,24 @@ var initActivity = function() {
 }
 
 $(document).ready(function() {
+    if (typeof(userId) == "undefined" ||userId == null || userId == 'null'){
+        // var subscribeList = document.getElementById("subscribeList");
+        // subscribeList.parentNode.removeChild(subscribeList);
+        $(".box").append('<div class="nothing-banner"><img id="subscribe_error_bg" src="/upload/background/offshelf.png" alt="未找到相关活动"></div>');
+    }else {
+        $(".box").append('<div class="subscribeList" id="subscribeList">\n' +
+            '            <h2 class="hometitle">\n' +
+            '                <span class="tagTitle"> </span>订阅活动\n' +
+            '            </h2>\n' +
+            '            <ul>\n' +
+            '\n' +
+            '            </ul>\n' +
+            '            <p class="page" style=\'display:none\'>\n' +
+            '            <p>\n' +
+            '            <p class="pageMin">\n' +
+            '            <p>\n' +
+            '        </div>');
+    }
     initActivityListByPage(pageNext, "none", null);
 });
 
@@ -114,7 +132,7 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
                         + data[i].clicknum
                         + ')</span><span class="f_r"></p><a href="find/' + id + '.html" class="viewmore">查看详情</a>' +
                         '<span  class="reminder_time">&nbsp;预约时间：' + Format(data[i].reminderTime, "yyyy-MM-dd") + '</span>' +
-                        '<a class="settingSubscribe" id="settingSubscribeActivty" onclick="">取消订阅</a>' + '</span></li>'
+                        '<a class="settingSubscribe" id="settingSubscribeActivty' + data[i].id + '" onclick="cancelSubscribe(' + data[i].id + ')">取消订阅</a>' + '</span></li>'
                 }
             } else {
                 subscribeActivityVos = "<h1 style='font-size:110px;text-align:center;margin:20px;'>~(●'◡'●ノ~</h1><h3 style='text-align:center;' class='font-bold'>抱歉！当前用户尚未订阅活动~~~</h3><h4 style='margin-bottom:110px;margin-top:55px;text-align:center;'><a style='background-color: #676a6c;padding: 5px 10px;color: #fff;border-radius: 10px;' href='index.jsp'>去首页</a></h4>";
@@ -150,6 +168,33 @@ var initActivityListByPage = function(pageNum, type_id, typename) {
         }
     });
 };
+
+var cancelSubscribe = function(activityId) {
+    $.ajax({
+        url: '/cancelSubscribe',
+        type: 'post',
+        async: false,
+        data:
+            {
+                userId : userId,
+                activityId :activityId
+            },
+        dataType: 'json',
+        success: function (result) {
+            if (result.code === 200) {
+                document.getElementById("settingSubscribeActivty"+activityId).innerHTML = "已取消";
+                document.getElementById("settingSubscribeActivty"+activityId).style.backgroundColor = "gray";
+            } else {
+                document.getElementById("settingSubscribeActivty"+activityId).innerHTML = "取消失败";
+                document.getElementById("settingSubscribeActivty"+activityId).style.backgroundColor = "red";
+                setTimeout(function() {
+                    document.getElementById("settingSubscribeActivty"+activityId).innerHTML = "取消订阅";
+                    document.getElementById("settingSubscribeActivty"+activityId).style.backgroundColor = "#1cb14f";
+                }, 300);
+            }
+        }
+    });
+}
 
 var search = function() {
     var index = '';

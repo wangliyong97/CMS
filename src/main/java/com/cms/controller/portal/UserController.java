@@ -109,8 +109,7 @@ public class UserController {
     public String logout(){
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        String result = "index";
-        return result;
+        return "/";
     }
 
     /**

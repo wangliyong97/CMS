@@ -113,6 +113,12 @@
     activity_id = #{activity_id,jdbcType=INTEGER} and
     status = 1
   </select>
+  <delete id="cancelSubscribe" parameterType="java.lang.Integer" >
+    delete from subscribe
+    where user_id = #{user_id,jdbcType=INTEGER} and
+    activity_id = #{activity_id,jdbcType=INTEGER} and
+    status = 1
+  </delete>
   <select id="selectSubscribeActivityList" resultMap="BaseResultMap" parameterType="Integer" >
     select
     <include refid="Base_Column_List" />

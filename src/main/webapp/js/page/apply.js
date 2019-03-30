@@ -10,6 +10,10 @@ setTimeout(function() {
     $('body').attr("class", "gray-bg") //添加样式
 }, 100);
 
+function backHome() {
+    window.location.href = "/";
+}
+
 $(document).ready(function() {
     initActivityCountBystatus();
     initActivityType();
@@ -41,7 +45,7 @@ var initActivityType = function() {
         "data" : "all"
     };
     $.ajax({
-        url : '/admin/selectActivityType',
+        url : '../selectActivityType',
         type : 'post',
         data : params,
         dataType : 'json',
@@ -81,9 +85,9 @@ var initActivityType = function() {
 }
 
 var initActivityCountBystatus = function() {
-    //初始化项目数目
+    //初始化活动数目
     $.ajax({
-        url : '/admin/selectActivityListByStatus',
+        url : '/user/selectActivityListByStatus',
         type : 'post',
         dataType : 'json',
         success : function(data) {
@@ -128,7 +132,7 @@ function sendFile(file, editor, $editable) {
     $.ajax({
         data : data,
         type : "POST",
-        url : "/admin/uploadActivityImages",
+        url : "/user/uploadActivityImages",
         dataType : "json",
         cache : false,
         contentType : false,
@@ -149,18 +153,18 @@ function sendFile(file, editor, $editable) {
 }
 
 //弹出模态框 选择图片
-var selectWebImgPath = function(img) {
-    $("#picture").modal('hide');
+var selectImgPath = function(img) {
+    $("#pic").modal('hide');
     var imgPath = '<img class="picPath animated fadeInRight"  style="width: 190px; height: 115px;" alt="封面" title="点击更换封面" src="' + img.src + '" />';
     $(".picPath").html(imgPath)
-    $(".webImagePath").val(img.src);
+    $(".imagePath").val(img.src);
 };
 
 //查找服务器图库
-var findWebPicList = function() {
+var findPicList = function() {
     $.ajax({
         //此处使用的是自己封装的JAVA类
-        url : "/admin/getFileList",
+        url : "/getFileList",
         type : "POST",
         success : function(data) {
             if (data.status == 0) {
@@ -168,7 +172,7 @@ var findWebPicList = function() {
             } else {
                 var pics = '';
                 for (var i = 0; i < data.fileList.length; i++) {
-                    pics += '<a class="fancybox" href="javascript:void(0);"><img onclick="selectWebImgPath(this)" style="width: 190px; height: 115px;float:left;margin-right:3px;" alt="image" src="' + data.fileList[i] + '" /></a>'
+                    pics += '<a class="fancybox" href="javascript:void(0);"><img onclick="selectImgPath(this)" style="width: 190px; height: 115px;float:left;margin-right:3px;" alt="image" src="' + data.fileList[i] + '" /></a>'
                 }
             }
             $(".picsList").html(pics);
@@ -179,9 +183,9 @@ var findWebPicList = function() {
     });
 };
 
-
-var prevWebActivity = function() {
+var prevActivity = function() {
     $(".newsview").find(".news_title").html($("#title").val());
+    $(".newsview").find(".news_author").html('<span class="au01">'+ nickName +'</span>');
     $(".news_about").find(".news_intr").html($("#introduction").val());
     var keyword = '';
     var inputKeyword = $("#keyword").val();
@@ -207,7 +211,7 @@ var prevWebActivity = function() {
         $(this).attr("id", 'nav1_' + topNum + '');
         topNum++;
     });
-    var add = '<a  class="btn btn-white" href="javascript:void(0);" onclick="addActivity(1)">发表</a>';
+    var add = '<a  class="btn btn-white" href="javascript:void(0);" onclick="addActivity(-1)">发布</a>';
     $(".modal-footer").find(".add").html(add);
     $('pre').each(function(i, block) {
         hljs.highlightBlock(block);
@@ -217,6 +221,7 @@ var prevWebActivity = function() {
 
 var addActivity = function(id) {
     var prarm = '新增了一场活动';
+    var user_id = userId;
     if (id == -1) {
         prarm = '将活动放入<span class="text-navy">草稿箱</span>';
     }
@@ -227,12 +232,12 @@ var addActivity = function(id) {
         'keyword' : $("#keyword").val().replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, "&quot;").replace(/'/g, "&#039;"),
         'content' : $(".news_infos").html(),
         'images' : $(".imagePath").val(),
-        'user.id' : '1',
+        'user.id' : user_id,
         prarm : prarm,
         'status' : id
     };
     $.ajax({
-        url : "/admin/addActivity",
+        url : "/user/addActivity",
         type : "POST",
         data : params,
         dataType : 'json',
@@ -241,10 +246,8 @@ var addActivity = function(id) {
                 initActivityCountBystatus();
                 initActivityType();
                 $("#myModal").modal('hide');
-                if (id == 1) {
-                    swal("发布成功", "活动已在前端展示", "success");
-                } else if (id == -1) {
-                    swal("放入草稿成功", "你可以前往草稿箱查看", "success");
+                if (id == -1) {
+                    swal("发布成功", "等待后台审核", "success");
                 }
                 $("#summernote").code()
                 $("#title").val("");
@@ -252,18 +255,14 @@ var addActivity = function(id) {
                 $("#keyword").val("");
                 $("#summernote").code("");
             } else {
-                if (id == 1) {
+                if (id == -1) {
                     swal("发布失败", "请重新操作", "error");
-                } else if (id == -1) {
-                    swal("放入草稿失败", "请重新操作", "error");
                 }
             }
         },
         error : function() {
-            if (id == 1) {
+            if (id == -1) {
                 swal("发布错误", "请重新操作", "error");
-            } else if (id == -1) {
-                swal("放入草稿错误", "请重新操作", "error");
             }
         }
     });

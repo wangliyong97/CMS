@@ -36,12 +36,12 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav_item">
                     <ul class="navbar-nav">
-                        <li class="nav-item active"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动列表</a></li>
                         <li class="nav-item" id="subscribe_item"><a class="nav-link" href="${pageContext.request.contextPath}/subscribe">订阅列表</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/timelinr">时间轴</a></li>
+                        <li class="nav-item" id="timelinr_item"><a class="nav-link" href="${pageContext.request.contextPath}/timelinr">时间轴</a></li>
                         <li class="searchico"></li>
                     </ul>
                 </div>
@@ -58,8 +58,6 @@
                                data-toggle="dropdown"
                                style="height: 60px">
                                 <img id="avator" alt="" class="img-circle" src="${pageContext.request.contextPath}/images/person.png" width="40px" height="40px" margin-left="50px"/>
-                                <%--<span style="color: #FFFFFF;font-size: 15px">--%>
-                                <%--<i>username</i>--%>
                             </span>
                             </a>
                             <div class="dropdown-menu pull-right"
@@ -130,6 +128,16 @@
 
 <script type="text/javascript" color="255,140,0" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 <script type="text/javascript">
+    var pn = location.pathname;
+    var item = document.getElementById('navbarNav_item').getElementsByTagName('a'),find=false;
+    for (var i = 0 , j = item.length ; i<j ; i++){
+        if(item[i].href.indexOf(pn) != -1){
+            item[i].className = 'nav-link active';
+            find = true;
+            break;
+        }
+    }
+
     $(function () {
         $(".dropdown").mouseover(function () {
             $(this).addClass("open");
@@ -140,7 +148,7 @@
         })
     })
 
-//初始化所有类别信息
+    //初始化所有类别信息
     var initAllActivityType = function() {
         //查询出活动类别
         //设置参数，表示查询所有的类别
@@ -196,7 +204,15 @@
         $("#logout").click(function() {
             //输入另一个页面的链接
             //我的跳转到controller中的toIntroduction这个方法中进行的页面跳转
-            window.location.href = "${pageContext.request.contextPath}/user/logout";
+            $.ajax({
+                type : "get",
+                url : '/user/logout',
+                dataType : "json",
+                success : function() {
+
+                }
+            });
+            window.location.href = "${pageContext.request.contextPath}/index";
         });
     });
 </script>

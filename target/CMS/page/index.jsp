@@ -110,7 +110,7 @@
     {
         var isLogin = '<%=(String)session.getAttribute("nickname")%>';
         if(isLogin != null && isLogin != "" && isLogin != "null"){
-            window.location.href = "${pageContext.request.contextPath}/page/apply.jsp";
+            window.location.href = "${pageContext.request.contextPath}/apply";
         }else{
             alert("请登录或注册！");
         }

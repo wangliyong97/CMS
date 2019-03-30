@@ -8,19 +8,25 @@ import com.cms.service.ActivityService;
 import com.cms.service.UserService;
 import com.cms.util.ActivityIdSafeUtil;
 import com.cms.util.ConstantUtil;
+import com.cms.util.subStringUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by wangliyong on 2019/1/15.
@@ -198,6 +204,183 @@ public class ActivityController {
         }
         returnMap.put("activityMap", activityMap);
         return returnMap;
+    }
+
+    /**
+     * 通过活动状态进行搜索
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/user/selectActivityListByStatus", method = RequestMethod.POST)
+    @ResponseBody
+    @AccessLimit(seconds = 1, maxCount = 10)
+    public Map<String, Object> selectActivityListByStatus() throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<?> list = activityService.selectActivityListByStatus();
+        if (list.size() > 0) {
+            map.put("status", 200);
+        } else {
+            // 500表示：返回值为Null
+            map.put("status", 500);
+        }
+        map.put("list", list);
+        return map;
+    }
+
+    /**
+     *结合summernote实现图片上传
+     * @param prarm
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/user/uploadActivityImages", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> uploadActivityImages(String prarm, HttpServletRequest request) throws Exception {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (multipartResolver.isMultipart(request)) {
+            MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) request;
+            Iterator<String> fileNamesIter = mreq.getFileNames();
+            while (fileNamesIter.hasNext()) {
+                MultipartFile file = mreq.getFile(fileNamesIter.next());
+                if (file != null) {
+                    String myFileName = file.getOriginalFilename();
+                    if (myFileName.trim() != "") {
+                        String fileName = file.getOriginalFilename();
+                        String fileBaseName = fileName.substring(0, fileName.lastIndexOf("."));
+                        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        String newFileName = df.format(new Date());
+                        String fileNames = newFileName + new Random().nextInt(1000000) + "." + fileExt;
+                        String filePath = "d:\\upload\\activity\\" + newFileName + "\\" + fileNames;
+                        File localFile = new File(filePath);
+                        if (!localFile.exists()) {
+                            localFile.mkdirs();
+                        }
+                        file.transferTo(localFile);
+                        fileNames = "/upload/activity/" + newFileName + "/" + fileNames;
+                        map.put("name", fileBaseName);
+                        map.put("path", fileNames);
+                        map.put("status", 200);
+                    }
+                }
+            }
+        }
+        return map;
+    }
+
+    @RequestMapping("/getFileList")
+    @ResponseBody
+    protected Map<String, Object> CalculateGeoServlet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, MalformedURLException {
+        ArrayList<String> fileList=new ArrayList<String>();
+        String params="d:\\upload\\background";
+        fileList=getFiles(params,fileList);
+        Map<String, Object> map=new HashMap<String, Object>();
+        if(fileList.size()>0){
+            map.put("status", 200);
+        }else{
+            map.put("status", 0);
+        }
+        map.put("fileList", fileList);
+        return map;
+    }
+
+    /**
+     * 通过递归得到某一路径下所有的目录及其文件
+     * @param filePath 文件路径
+     * @return
+     */
+    public static ArrayList<String> getFiles(String filePath, ArrayList<String> fileList) {
+        ArrayList<String> fileListAll =fileList;
+        File root = new File(filePath);
+        File[] files = root.listFiles();
+        String[] arr=new String[10];
+        if(files!=null){
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    /*
+                     * 递归调用
+                     */
+                    arr=file.getAbsolutePath().split(":");
+                    getFiles(arr[1].replace("\\","/"),fileListAll);
+                } else {
+                    arr=file.getAbsolutePath().split(":");
+                    fileList.add(arr[1].replace("\\","/"));
+                }
+            }
+        }
+        return fileListAll;
+    }
+
+    /**
+     * 编辑活动
+     * @param prarm
+     * @param activity
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/user/addActivity", method = RequestMethod.POST)
+    @ResponseBody
+    @SystemLog(description = ConstantUtil.ACTIVITY_ADD, userType = ConstantUtil.USERTYPE_ADMIN)
+    public Map<String, Object> addActivity(String prarm, Activity activity) throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        // 将中文的分号转换成英文的分号
+        if (activity.getKeyword() != null && activity.getKeyword() != "") {
+            activity.setKeyword(subStringUtil.subKeyword(activity.getKeyword()));
+        }
+        activity.setAddtime(new Date());
+        if (activityService.insertActivity(activity) != 0) {
+            map.put("status", 200);
+        } else {
+            // 0表示：插入失败
+            map.put("status", 0);
+        }
+        return map;
+    }
+
+    /**
+     * 添加封面图片
+     * @param prarm
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/uploadBg", method = RequestMethod.POST)
+    @ResponseBody
+    @SystemLog(description = ConstantUtil.UPLOAD_IMAGES, userType = ConstantUtil.USERTYPE_ADMIN)
+    public Map<String, Object> uploadBg(String prarm, HttpServletRequest request) throws Exception {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (multipartResolver.isMultipart(request)) {
+            MultipartHttpServletRequest mreq = (MultipartHttpServletRequest) request;
+            Iterator<String> fileNamesIter = mreq.getFileNames();
+            while (fileNamesIter.hasNext()) {
+                MultipartFile file = mreq.getFile(fileNamesIter.next());
+                if (file != null) {
+                    String myFileName = file.getOriginalFilename();
+                    if (myFileName.trim() != "") {
+                        String fileName = file.getOriginalFilename();
+                        String fileBaseName = fileName.substring(0, fileName.lastIndexOf("."));
+                        String fileExt = fileName.substring(fileName.lastIndexOf(".") + 1).toUpperCase();
+                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                        String newFileName = df.format(new Date());
+                        String fileNames = newFileName + new Random().nextInt(1000000) + "." + fileExt;
+                        String filePath = "d:\\upload\\background\\" + fileNames;
+                        File localFile = new File(filePath);
+                        if (!localFile.exists()) {
+                            localFile.mkdirs();
+                        }
+                        file.transferTo(localFile);
+                        fileNames = "/upload/background/" + newFileName + "/" + fileNames;
+                        map.put("name", fileBaseName);
+                        map.put("path", fileNames);
+                        map.put("status", 200);
+                    }
+                }
+            }
+        }
+        return map;
     }
 
 }

@@ -38,6 +38,16 @@ public class SubscribeServiceImpl implements SubscribeService{
     }
 
     @Override
+    public boolean cancelSubscribe(Integer userId, Integer activityId) {
+        int result = subscribeMapper.cancelSubscribe(userId,activityId);
+        if(result <= 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    @Override
     public List<Subscribe> selectSubscribeActivityList(Integer userId) {
         return subscribeMapper.selectSubscribeActivityList(userId);
     }

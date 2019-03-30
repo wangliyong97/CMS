@@ -22,8 +22,6 @@ $(window).scroll(
       return;
     }
     if ($(document).scrollTop() > 110 && count == 1) {
-      //$(".dj").css("display", "block");
-      //initActivityByClick(); //初始化点击排行5项活动
       count++;
     }
     if ($(document).scrollTop() > 350 && count == 2) {
@@ -56,30 +54,30 @@ $(window).scroll(
 
 $(document).ready(function() {
     initActivityByLikebg(); //初始化滚动图片
-    initActivityByTop(); //初始化置顶的3篇文章
+    initActivityByTop(); //初始化置顶的3项活动
     initActivityByAllType();
     initActivityByLike(); //初始化特别推荐6项活动
-    initActivityByClick(); //初始化点击排行5篇文章
+    initActivityByClick(); //初始化点击排行5项活动
 });
 
 var initActivityByClickMore = function() {
   setTimeout(function() {
       initActivityByNew(pageNext);
-  }, 200);
+  }, 100);
 }
 
 var returnAllCount = function() {
   if (globalCount == 2) {
     setTimeout(function() {
       $('article').css('opacity', '1');
-    }, 200);
+    }, 100);
   }
 }
 
 var initActivityByTop = function() {
   //设置参数
   var params = {
-    pageSize : 5,
+    pageSize : 10,
     page : 1,
     istop : 1, //1 表示置顶
     status : 1
@@ -94,7 +92,7 @@ var initActivityByTop = function() {
       var data = data.activityList;
       for (var i = 0; i < data.length; i++) {
         var id = data[i].id.toString(8) * data[i].id;
-          topActivity += '<li><a href="find/' + id + '.html" title=' + data[i].title + ' target="_blank">' + data[i].title + '</a></li>';
+          topActivity += '<li class="text-navy" ><a href="find/' + id + '.html" title=' + data[i].title + ' target="_blank">' + data[i].title + '</a></li>';
       }
       // 初始化数据
       $(".notice").find("ul").html(topActivity);
@@ -156,11 +154,6 @@ var initActivityByAllType= function() {
         newsitem += "</ul></div>"
       }
       $('.newstab').html(newsitem);
-    },
-    error : function() {
-      layer.msg('请求太快，请稍后再试！', {
-        icon : 5
-      });
     }
   });
 };
@@ -195,11 +188,6 @@ var initActivityByLike = function() {
       $(".zhuanti").find("ul").html(likeActivity);
       globalCount++;
       returnAllCount();
-    },
-    error : function() {
-      layer.msg('请求太快，请稍后再试！', {
-        icon : 5
-      });
     }
   });
 };
@@ -314,11 +302,6 @@ var initActivityByNew = function(page) {
           $(".page").html("");
         }
 
-      },
-      error : function() {
-        layer.msg('请求太快，请稍后再试！', {
-          icon : 5
-        });
       }
     });
 };
@@ -352,11 +335,6 @@ var initActivityByClick = function() {
         }
         // 初始化数据
         $(".paihang").find("ul").html(clickActivity);
-      },
-      error : function() {
-        layer.msg('请求太快，请稍后再试！', {
-          icon : 5
-        });
       }
     });
 };
@@ -407,11 +385,6 @@ var initActivityByLikebg = function() {
                     }
                 }
             }
-        },
-        error : function() {
-            layer.msg('请求太快，请稍后再试！', {
-                icon : 5
-            });
         }
     });
 };

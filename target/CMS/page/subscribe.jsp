@@ -40,18 +40,18 @@
 <%@ include file="top.jsp"%>
 <article>
     <div class="box">
-        <div class="subscribeList">
-            <h2 class="hometitle">
-                <span class="tagTitle"> </span>订阅活动
-            </h2>
-            <ul>
+<%--        <div class="subscribeList" id="subscribeList">--%>
+<%--            <h2 class="hometitle">--%>
+<%--                <span class="tagTitle"> </span>订阅活动--%>
+<%--            </h2>--%>
+<%--            <ul>--%>
 
-            </ul>
-            <p class="page" style='display:none'>
-            <p>
-            <p class="pageMin">
-            <p>
-        </div>
+<%--            </ul>--%>
+<%--            <p class="page" style='display:none'>--%>
+<%--            <p>--%>
+<%--            <p class="pageMin">--%>
+<%--            <p>--%>
+<%--        </div>--%>
     </div>
     <a href="#" class="top cd-top animated ">Top</a>
 </article>
