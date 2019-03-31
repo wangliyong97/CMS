@@ -96,4 +96,23 @@ public class LogManagerController {
         returnMap.put("pageInfo", pageInfo);
         return returnMap;
     }
+
+    /**
+     * 更新日志
+     * @param log
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/updateLog",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object>  updateVisit(Log log) throws Exception{
+        Map<String,Object>  map=new HashMap<String,Object> ();
+        if(logService.updateByPrimaryKeySelective(log)!=0){
+            map.put("status", 200);
+        }else{
+            //0表示：更新失败
+            map.put("status", 0);
+        }
+        return map;
+    }
 }

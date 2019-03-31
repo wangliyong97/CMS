@@ -36,7 +36,7 @@ public class VisitManagerController {
     @RequestMapping(value = "/selectVisitListByDate",method = RequestMethod.POST)
     @ResponseBody
     @AccessLimit(seconds=1,maxCount=10)
-    public Map<String, Object> selectBlogListByDate(@RequestParam(value="format") String format, @RequestParam(value="startTime") String startTime, @RequestParam(value="endTime") String endTime) throws Exception{
+    public Map<String, Object> selectVisitListByDate(@RequestParam(value="format") String format, @RequestParam(value="startTime") String startTime, @RequestParam(value="endTime") String endTime) throws Exception{
         Map<String, Object> map=new HashMap<String, Object>();
         if(format!=""&&format!=null){
             map.put("format", format);
@@ -59,6 +59,11 @@ public class VisitManagerController {
         return returnMap;
     }
 
+    /**
+     * 通过Ip获取用户信息
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/selectVisitListByIp",method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> selectVisitListByIp() throws Exception{
@@ -168,5 +173,24 @@ public class VisitManagerController {
         returnMap.put("visitList", visitList);
         returnMap.put("pageInfo", pageInfo);
         return returnMap;
+    }
+
+    /**
+     * 更新访客
+     * @param visit
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "/updateVisit",method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> updateVisit(Visit visit) throws Exception{
+        Map<String, Object> map=new HashMap<String, Object>();
+        if(visitService.updateByPrimaryKeySelective(visit)!=0){
+            map.put("status", 200);
+        }else{
+            //0表示：更新失败
+            map.put("status", 0);
+        }
+        return map;
     }
 }

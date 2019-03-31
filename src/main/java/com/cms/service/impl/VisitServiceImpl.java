@@ -38,6 +38,11 @@ public class VisitServiceImpl implements VisitService{
     }
 
     @Override
+    public int updateByPrimaryKeySelective(Visit record) {
+        return visitMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
     public Long findVisitTimes(Visit visit) {
         return visitMapper.findVisitTimes(visit);
     }
@@ -45,5 +50,25 @@ public class VisitServiceImpl implements VisitService{
     @Override
     public int insert(Visit record) {
         return visitMapper.insert(record);
+    }
+
+    @Override
+    public int insertSelective(Visit record) {
+        return visitMapper.insertSelective(record);
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return visitMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public Visit selectByPrimaryKey(Integer id) {
+        return visitMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKey(Visit record) {
+        return visitMapper.updateByPrimaryKey(record);
     }
 }

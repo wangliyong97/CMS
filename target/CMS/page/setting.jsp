@@ -102,7 +102,7 @@
                     <li class="list-group-item">
                         <span class="li-title">生日</span>
                         &nbsp;&nbsp;
-                        <input type='button' class="jianshu-style-input" id='datetimepicker'/>
+                        <input type='text' class="jianshu-style-input" id='datetimepicker'/>
                     </li>
                     <li class="list-group-item">
                         <div class="vertical-center">

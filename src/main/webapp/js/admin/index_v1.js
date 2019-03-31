@@ -14,7 +14,6 @@ $(document).ready(function() {
 	$("#end").val(Format(new Date(), "yyyy-MM-dd"));
 	$("#start").val(Format(new Date().getTime() - 6 * 24 * 60 * 60 * 1000, "yyyy-MM-dd"));
 	initActivityCountByStatus(), //初始化已发表/草稿箱活动数目
-	initResourceCountByStatus() //初始化已发布资源数目
 	initActivityCountByDate() //初始化昨日/今日活动发表数目
 	initVisitCount("now") //初始化今日访客
 	initVisitCount("history") //初始化历史访客
@@ -170,28 +169,6 @@ var initEcharts = function(days, counts) {
 	$(".all").html(all);
 	globalCount++;
 	returnAllCount();
-};
-
-var initResourceCountByStatus = function() {
-	//初始化资源数目
-	$.ajax({
-		url : 'selectResourceListByStatus',
-		type : 'post',
-		dataType : 'json',
-		success : function(data) {
-			for (var i = 0; i < data.list.length; i++) {
-				//已发表
-				if (data.list[i].status == 1) {
-					$(".resource").html(data.list[i].count);
-				}
-			}
-			globalCount++;
-			returnAllCount();
-		},
-		error : function() {
-			// swal("活动总数错误", "请重新操作", "error");
-		}
-	});
 };
 
 var initActivityCountByStatus = function() {

@@ -18,7 +18,17 @@ public interface VisitService {
 
     List<?> selectLikeVisitListGroupByIp(Map<String, Object> map);
 
+    int updateByPrimaryKeySelective(Visit record);
+
     Long findVisitTimes(Visit visit);
 
     int insert(Visit record);
+
+    int insertSelective(Visit record);
+
+    int deleteByPrimaryKey(Integer id);
+
+    Visit selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKey(Visit record);
 }

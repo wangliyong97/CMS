@@ -81,9 +81,9 @@
     <!--<listener>-->
         <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
     <!--</listener>-->
-    <!--<listener>-->
-        <!--<listener-class>com.cms.listener.VisitTimesListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>com.cms.listener.VisitTimeListener</listener-class>
+    </listener>
     <!-- 配置session超时时间，单位分钟 -->
     <session-config>
         <session-timeout>15</session-timeout>

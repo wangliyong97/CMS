@@ -15,10 +15,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit">
-	<title>活动管理系统后台 - 主页</title>
+	<title>Activity sharing - 后台</title>
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
 	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
@@ -85,9 +83,6 @@
 						<li><a class="J_menuItem" href="${pageContext.request.contextPath}/admin/visit/black.jsp">黑名单
 						</a></li>
 					</ul>
-				</li>
-				<li>
-					<a href="http://changyan.kuaizhan.com/" class="J_menuItem"><i class="fa fa-commenting-o"></i> <span class="nav-label">评论模块</span></a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/admin/pics/pics.jsp" class="J_menuItem"><i class="fa fa-picture-o"></i> <span class="nav-label">本地图库</span></a>
@@ -249,35 +244,5 @@
 <script src="${pageContext.request.contextPath}/js/hplus.js"></script>
 <script src="${pageContext.request.contextPath}/js/contabs.js"></script>
 <script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
-<script>
-    $(document).ready(function() {
-        initNoApplyLinksCount()  //初始化未处理链接消息数
-    });
-    //初始化未处理链接消息数
-    var initNoApplyLinksCount=function(){
-        $.ajax({
-            url : 'admin/selectNoApplyLinksCount',
-            type : 'post',
-            data:'',
-            dataType : 'json',
-            success : function(data) {
-                var count='';
-                var isApplyLinks='';
-                if(data.status==200){
-                    count='<span class="label label-danger pull-right">'+data.count+'</span>';
-                    isApplyLinks='<span class="label label-danger pull-right">'+data.count+'</span>';
-                }else{
-                    count='<span class="fa arrow"></span>';
-                }
-                $(".links").append(count);
-                $(".isApplyLinks").find('a').append(isApplyLinks);
-            },
-            error : function() {
-            }
-        });
-    }
-
-</script>
-
 </body>
 </html>

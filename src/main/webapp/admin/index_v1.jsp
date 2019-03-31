@@ -13,9 +13,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="renderer" content="webkit">
-	<title>活动管理系统后台 - 主页</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<title>Activity sharing - 后台</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/font-awesome.min.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/animate.css" rel="stylesheet">
@@ -84,20 +83,6 @@
 							class="nowVisitorsPercent stat-percent font-bold text-success">
 						0%</div>
 					<small>较昨日</small>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-3">
-			<div class="ibox float-e-margins">
-				<div class="ibox-title">
-					<span class="label label-success pull-right">总数</span>
-					<h5>资源</h5>
-				</div>
-				<div class="ibox-content">
-					<h1 class="resource no-margins" style="text-align: center;">0</h1>
-					<div class="resourcePercent stat-percent font-bold text-navy">
-						0%</div>
-					<small>已发布</small>
 				</div>
 			</div>
 		</div>
@@ -232,4 +217,3 @@
 <script src="${pageContext.request.contextPath}/js/admin/index_v1.js"></script>
 </body>
 </html>
-

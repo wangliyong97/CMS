@@ -11,9 +11,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>添加活动</title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 	<link href="${pageContext.request.contextPath}/css/github-gist.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/base.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
@@ -227,34 +225,34 @@
 	</div>
 </div>
 
-	<!-- 全局js -->
-	<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad();</script>
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-	<!-- 自定义js -->
-	<script src="${pageContext.request.contextPath}/js/content.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
-	<!-- Web Uploader -->
-	<script type="text/javascript">
-		// 添加全局站点信息
-		var BASE_URL = '${pageContext.request.contextPath}/js/plugins/webuploader';
-	</script>
-	<script src="${pageContext.request.contextPath}/js/plugins/webuploader/webuploader.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/webuploader/webuploader-demo2.js"></script>
+<!-- 全局js -->
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<!-- 自定义js -->
+<script src="${pageContext.request.contextPath}/js/content.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/sweetalert/sweetalert.min.js"></script>
+<!-- Web Uploader -->
+<script type="text/javascript">
+	// 添加全局站点信息
+	var BASE_URL = '${pageContext.request.contextPath}/js/plugins/webuploader';
+</script>
+<script src="${pageContext.request.contextPath}/js/plugins/webuploader/webuploader.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/webuploader/webuploader-demo2.js"></script>
 
-	<!-- jQuery Validation plugin javascript-->
-	<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/validate/messages_zh.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/validate/form-validate-demo.js"></script>
+<!-- jQuery Validation plugin javascript-->
+<script src="${pageContext.request.contextPath}/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/messages_zh.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/validate/form-validate-demo.js"></script>
 
-	<!-- iCheck -->
-	<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
+<!-- iCheck -->
+<script src="${pageContext.request.contextPath}/js/plugins/iCheck/icheck.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/fakeLoader.min.js"></script>
 
-	<!-- SUMMERNOTE -->
-	<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote-zh-CN.js"></script>
-	<script src="${pageContext.request.contextPath}/js/admin/activity/addActivity.js"></script>
+<!-- SUMMERNOTE -->
+<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/plugins/summernote/summernote-zh-CN.js"></script>
+<script src="${pageContext.request.contextPath}/js/admin/activity/addActivity.js"></script>
 </body>
 </html>

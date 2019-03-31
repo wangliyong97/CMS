@@ -1,9 +1,6 @@
 /**
  * Created by wangliyong on 2019/3/29.
  */
-/**
- * Created by wangliyong on 2019/3/27.
- */
 var globalCount = 0;
 $(".top").click(function() {
     $('body,html').animate({
@@ -28,6 +25,13 @@ var initActivity = function() {
 }
 
 $(document).ready(function() {
+    if (typeof(userId) == "undefined" ||userId == null || userId == 'null'){
+        $("#dates").append('<li><a href="#2019">2019</a></li>');
+        $("#issues").append('<li id="2019">\n' +
+            '\t\t\t\t\t<h1>活动分享系统</h1>\n' +
+            '\t\t\t\t\t<p>活动分享系统主要实现用户在线参与活动，主要为了解决传统线下预约麻烦的问题。<br>参与者也可以线上组织活动</p>\n' +
+            '\t\t\t\t</li>');
+    }
     initActivityListByPage(pageNext, "none", null);
 });
 

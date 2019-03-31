@@ -65,7 +65,7 @@
     height: 40px;
     font-size: 18px;
     ;
-    border-bottom: #000 2px solid;
+    border-bottom: #ababab 2px solid;
     position: relative;
 }
 
@@ -284,7 +284,7 @@ h3.blogtitle {
 
 .cloud_hometitle {
     font-size: 16px;
-    color: #282828;
+    color: #ababab;
     text-transform: uppercase;
     padding-bottom: 5px;
     margin-bottom: 10px;
@@ -386,13 +386,13 @@ h3.blogtitle {
 .cloud,
 .dianji,
 .guanzhu {
-    border-radius: 3 px;
-    padding: 10 px 15 px;
-    margin-bottom: 20 px;
+    border-radius: 3px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
     background: #FFF;
-    -webkit-box-shadow: 0 2 px 5 px 0 rgba (146, 146, 146, .1);
-    -moz-box-shadow: 0 2 px 5 px 0 rgba (146, 146, 146, .1);
-    box-shadow: 0 2 px 5 px 0 rgba (146, 146, 146, .1);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1);
+    -moz-box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1);
+    box-shadow: 0 2px 5px 0 rgba(146, 146, 146, .1);
 }
 
 .fenlei ul {
@@ -516,77 +516,6 @@ h3.blogtitle {
 
 .sidenews li:hover {
     background: #f6f6f6;
-}
-
-.guanzhu .qq {
-    border: #ec3d51 1px solid;
-    background: url(../images/gzbg.jpg) no-repeat 0 -98px;
-}
-
-.guanzhu .email {
-    border: #12aae8 1px solid;
-    background: url(../images/gzbg.jpg) no-repeat 0 -150px;
-}
-
-.guanzhu .wxgzh {
-    border: #199872 1px solid;
-    background: url(../images/gzbg.jpg) no-repeat 0 -200px;
-}
-
-.guanzhu .wx {
-    overflow: hidden;
-    padding: 0;
-}
-
-.guanzhu ul li {
-    font-size: 12px;
-    margin-bottom: 10px;
-    background: #fff;
-    color: #525252;
-    line-height: 40px;
-    padding: 0 0 0 34px;
-    border: 1px solid #DDD;
-    border-radius: 2px;
-    position: relative;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.guanzhu .qq span {
-    background: #ec3d51;
-}
-
-.guanzhu ul li span {
-    float: right;
-    text-align: center;
-    width: 100px;
-    -moz-transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    -ms-transition: all .5s ease;
-    -o-transition: all .5s ease;
-    transition: all .5s ease;
-    transition: all 0.5s;
-}
-
-.guanzhu a span {
-    color: #FFF;
-}
-
-.guanzhu .email span {
-    background: #12aae8;
-}
-
-.guanzhu .wxgzh span {
-    background: #199872;
-}
-
-.guanzhu .wx img {
-    width: 100%;
-}
-
-.guanzhu ul li:hover span {
-    width: 120px;
 }
 
 .gd {
@@ -1335,7 +1264,7 @@ h3.blogtitle {
 }
 
 .pagelist a {
-    margin: 0x;
+    margin: 0px;
     border: 0;
     padding: 5px 0px;
 }
@@ -1346,7 +1275,4 @@ h3.blogtitle {
 
 .news_infos img {
     width: 100%
-}
-
-
 }

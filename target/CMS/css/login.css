@@ -14,8 +14,12 @@ body.signin {
 }
 
 .signinpanel {
-  width: 750px;
+  width: 65%;
   margin: 10% auto 0 auto;
+}
+
+.logopanel.m-b {
+  font-size: 40px;
 }
 
 .signinpanel .logopanel {
@@ -44,6 +48,7 @@ body.signin {
 .signinpanel .pword {
   background: #fff url(../images/locked.png) no-repeat 95% center;
   color: #333;
+  border-radius: 5px;
 }
 
 .signinpanel .btn {
@@ -58,14 +63,8 @@ body.signin {
   box-shadow: 0 3px 0 rgba(12, 12, 12, 0.03);
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: 10px;
   padding: 30px;
-}
-
-.signup-footer {
-  border-top: solid 1px rgba(255, 255, 255, .3);
-  margin: 20px 0;
-  padding-top: 15px;
 }
 
 @media screen and (max-width: 768px) {
@@ -97,4 +96,12 @@ body.signin {
     margin: 0 20px;
     width: auto;
   }
+}
+
+.col-sm-5 {
+  padding-top: 78px;
+}
+
+li {
+  padding: 8px;
 }
