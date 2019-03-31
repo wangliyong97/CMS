@@ -105,11 +105,11 @@ public class VisitManagerController {
         if(visit.getCity()!=null&&visit.getCity()!=""){
             map.put("city", visit.getCity());
         }
-        if(visit.getPlatformtype()!=null&&visit.getPlatformtype()!=""){
-            map.put("platformType", visit.getPlatformtype());
+        if(visit.getPlatformType()!=null&&visit.getPlatformType()!=""){
+            map.put("platformType", visit.getPlatformType());
         }
-        if(visit.getBrowsertype()!=null&&visit.getBrowsertype()!=""){
-            map.put("browserType", visit.getBrowsertype());
+        if(visit.getBrowserType()!=null&&visit.getBrowserType()!=""){
+            map.put("browserType", visit.getBrowserType());
         }
         //分页显示：第1页开始，每页显示9条记录
         PageHelper.startPage(page, pageSize);
@@ -153,11 +153,11 @@ public class VisitManagerController {
         if(visit.getCity()!=null&&visit.getCity()!=""){
             map.put("city", visit.getCity());
         }
-        if(visit.getPlatformtype()!=null&&visit.getPlatformtype()!=""){
-            map.put("platformType", visit.getPlatformtype());
+        if(visit.getPlatformType()!=null&&visit.getPlatformType()!=""){
+            map.put("platformType", visit.getPlatformType());
         }
-        if(visit.getBrowsertype()!=null&&visit.getBrowsertype()!=""){
-            map.put("browserType", visit.getBrowsertype());
+        if(visit.getBrowserType()!=null&&visit.getBrowserType()!=""){
+            map.put("browserType", visit.getBrowserType());
         }
         //分页显示：第1页开始，每页显示9条记录
         PageHelper.startPage(page, pageSize);

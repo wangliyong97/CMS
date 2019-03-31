@@ -54,11 +54,11 @@ public class Visit {
         this.ip = ip == null ? null : ip.trim();
     }
 
-    public String getUseragent() {
+    public String getUserAgent() {
         return useragent;
     }
 
-    public void setUseragent(String useragent) {
+    public void setUserAgent(String useragent) {
         this.useragent = useragent == null ? null : useragent.trim();
     }
 
@@ -78,19 +78,19 @@ public class Visit {
         this.url = url == null ? null : url.trim();
     }
 
-    public String getBrowsertype() {
+    public String getBrowserType() {
         return browsertype;
     }
 
-    public void setBrowsertype(String browsertype) {
+    public void setBrowserType(String browsertype) {
         this.browsertype = browsertype == null ? null : browsertype.trim();
     }
 
-    public String getPlatformtype() {
+    public String getPlatformType() {
         return platformtype;
     }
 
-    public void setPlatformtype(String platformtype) {
+    public void setPlatformType(String platformtype) {
         this.platformtype = platformtype == null ? null : platformtype.trim();
     }
 

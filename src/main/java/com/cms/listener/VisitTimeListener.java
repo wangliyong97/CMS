@@ -8,6 +8,7 @@ import com.cms.util.UserIpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -37,20 +38,20 @@ public class VisitTimeListener implements ServletRequestListener {
         try {
             visitServiceImpl = (VisitService) applicationContext.getBean("visitServiceImpl");
             if (session.isNew()) {
-                log.debug("-------applicationContext--------");
-                log.debug("begin- " + applicationContext + " -end");
-                log.debug("-----begin-----");
-                log.debug(applicationContext.getBean("visitServiceImpl"));
+//                log.debug("-------applicationContext--------");
+//                log.debug("begin- " + applicationContext + " -end");
+//                log.debug("-----begin-----");
+//                log.debug(applicationContext.getBean("visitServiceImpl"));
                 // 先判断当前ip当天是否已经访问过,如果没有则保存当前访问记录
                 visit = new Visit();
                 visit.setIp(UserIpUtil.getIp(request));
                 visit.setTime(new Date());
                 String userAgent = request.getHeader("user-agent");
-                visit.setUseragent(userAgent);
+                visit.setUserAgent(userAgent);
                 synchronized (this) {
                     if (visitServiceImpl.findVisitTimes(visit) == 0) {
-                        visit.setPlatformtype(UserAgentUtil.getUserAgent(userAgent).getPlatformtype());
-                        visit.setBrowsertype(UserAgentUtil.getUserAgent(userAgent).getBrowsertype());
+                        visit.setPlatformType(UserAgentUtil.getUserAgent(userAgent).getPlatformType());
+                        visit.setBrowserType(UserAgentUtil.getUserAgent(userAgent).getBrowserType());
                         visit.setUrl(request.getRequestURL().toString());
                         visit.setCity(new AddressUtil().getAddresses("ip=" + visit.getIp(), "utf-8"));
                         visitServiceImpl.insert(visit);
