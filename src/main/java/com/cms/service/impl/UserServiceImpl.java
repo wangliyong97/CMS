@@ -110,6 +110,14 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
+    @Override
+    public boolean sendEmailHtmlContent(String email, String code) {
+        if(sendEmailHtml(email,code)){
+            return true;
+        }
+        return false;
+    }
+
     public boolean sendEmail(String address, String code){
         boolean flag = true;
         try {
@@ -121,6 +129,25 @@ public class UserServiceImpl implements UserService {
             email.setAuthentication("18260095973@163.com","Gn270588");
             email.setSubject("Activity sharing 验证码");
             email.setMsg("尊敬的用户您好,您本次所需验证码是:" + code);
+            email.send();
+        } catch (EmailException e) {
+            e.printStackTrace();
+            flag = false;
+        }
+        return flag;
+    }
+
+    public boolean sendEmailHtml(String address, String html){
+        boolean flag = true;
+        try {
+            HtmlEmail email = new HtmlEmail();
+            email.setHostName("smtp.163.com");
+            email.setCharset("UTF-8");
+            email.addTo(address);
+            email.setFrom("18260095973@163.com","Activity sharing");
+            email.setAuthentication("18260095973@163.com","Gn270588");
+            email.setSubject("Activity sharing 预约提醒！");
+            email.setHtmlMsg(html);
             email.send();
         } catch (EmailException e) {
             e.printStackTrace();

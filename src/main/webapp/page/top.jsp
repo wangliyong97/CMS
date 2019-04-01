@@ -36,7 +36,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav_item">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/index">首页 <span class="sr-only">(current)</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/list">活动列表</a></li>
@@ -129,7 +129,7 @@
 <script type="text/javascript" color="255,140,0" opacity='0.7' zIndex="-1" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 <script type="text/javascript">
     var pn = location.pathname;
-    var item = document.getElementById('navbarNav_item').getElementsByTagName('a'),find=false;
+    var item = document.getElementById('navbarNav').getElementsByTagName('a'),find=false;
     for (var i = 0 , j = item.length ; i<j ; i++){
         if(item[i].href.indexOf(pn) != -1){
             item[i].className = 'nav-link active';

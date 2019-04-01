@@ -164,9 +164,7 @@
 						<div class="newsview" style="padding-top:0px;">
 							<h3 class="news_title"></h3>
 							<div class="news_author">
-								<span class="au01">管理员</span><span class="au02"></span><span
-									class="au03">共<b></b>人围观
-									</span>
+								<span class="au03">共<b></b>人围观</span>
 							</div>
 							<div class="tags"></div>
 							<div class="news_about">
@@ -176,7 +174,6 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<span class="update"></span>
 						<button type="button" class="btn btn-primary"
 								data-dismiss="modal">关闭</button>
 					</div>

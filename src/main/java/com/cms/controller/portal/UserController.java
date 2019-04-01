@@ -3,6 +3,7 @@ import com.cms.annotation.SystemLog;
 import com.cms.pojo.User;
 import com.cms.service.UserService;
 import com.cms.util.CipherUtil;
+import com.cms.util.ConstantUtil;
 import com.cms.util.StringUtil;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +36,6 @@ import java.util.*;
 @Controller
 @RequestMapping("/user/")
 public class UserController {
-
     @Autowired
     private UserService userService;
 
@@ -44,6 +44,7 @@ public class UserController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.LOGIN_IN,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> login(String username,String password,HttpSession session,Model model) {
         Map<String, Object> map = new HashMap<String, Object>();
         //取密码，并用MD5加密
@@ -80,6 +81,7 @@ public class UserController {
      */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.REGISTER,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> register(HttpServletRequest request,
                                         @RequestParam("username") String username,
                                         @RequestParam("password") String password,
@@ -106,6 +108,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("logout")
+    @ResponseBody
+    @SystemLog(description = ConstantUtil.LOGIN_OUT,userType=ConstantUtil.USERTYPE_USER)
     public String logout(){
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
@@ -117,6 +121,7 @@ public class UserController {
      */
     @RequestMapping(value = "/item=name", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.MODIFYUSERNAME,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> modifyUsername(HttpServletRequest request,
                                      @RequestParam(value = "userId") Integer userId,
                                      @RequestParam(value = "username") String newUserName) {
@@ -139,6 +144,7 @@ public class UserController {
      */
     @RequestMapping(value = "/item=email", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.MODIFYEMAIL,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> modifyEmail(HttpServletRequest request,
                                               @RequestParam(value = "userId") Integer userId,
                                               @RequestParam(value = "email") String newEmail) {
@@ -161,6 +167,7 @@ public class UserController {
      */
     @RequestMapping(value = "/item=nickname", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.MODIFYNICKNAME,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> modifyNickname(HttpServletRequest request,
                                            @RequestParam(value = "userId") Integer userId,
                                            @RequestParam(value = "nickname") String newNickname) {
@@ -184,6 +191,7 @@ public class UserController {
      */
     @RequestMapping(value = "/changeAvatar", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.MODIFYAVATAR,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> iconImageUpload(String image,@RequestParam(value = "userId") Integer userId , HttpSession session) throws IOException{
         Map<String, Object> map = new HashMap<String, Object>();
         String filePath = "d:\\upload\\avatar\\";
@@ -268,6 +276,7 @@ public class UserController {
      */
     @RequestMapping(value = "/item=password", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.MODIFYPASSWORD,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> modifyPassword(@RequestParam(value = "userId") Integer userId, @RequestParam(value = "newPwd") String newPassword) {
         Map<String, Object> map = new HashMap<String, Object>();
         int result = userService.updateAccountPasswordById(userId, newPassword);

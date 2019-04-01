@@ -236,6 +236,7 @@ public class ActivityController {
      */
     @RequestMapping(value = "/user/uploadActivityImages", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.UPLOAD_ACTIVITYIMAGES, userType = ConstantUtil.USERTYPE_USER)
     public Map<String, Object> uploadActivityImages(String prarm, HttpServletRequest request) throws Exception {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         Map<String, Object> map = new HashMap<String, Object>();
@@ -322,7 +323,7 @@ public class ActivityController {
      */
     @RequestMapping(value = "/user/addActivity", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(description = ConstantUtil.ACTIVITY_ADD, userType = ConstantUtil.USERTYPE_ADMIN)
+    @SystemLog(description = ConstantUtil.ACTIVITY_ADD, userType = ConstantUtil.USERTYPE_USER)
     public Map<String, Object> addActivity(String prarm, Activity activity) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         // 将中文的分号转换成英文的分号
@@ -348,7 +349,7 @@ public class ActivityController {
      */
     @RequestMapping(value = "/uploadBg", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(description = ConstantUtil.UPLOAD_IMAGES, userType = ConstantUtil.USERTYPE_ADMIN)
+    @SystemLog(description = ConstantUtil.UPLOAD_IMAGES, userType = ConstantUtil.USERTYPE_USER)
     public Map<String, Object> uploadBg(String prarm, HttpServletRequest request) throws Exception {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
         Map<String, Object> map = new HashMap<String, Object>();
@@ -382,5 +383,4 @@ public class ActivityController {
         }
         return map;
     }
-
 }

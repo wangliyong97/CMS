@@ -1,9 +1,11 @@
 package com.cms.controller.portal;
 
+import com.cms.annotation.SystemLog;
 import com.cms.pojo.Activity;
 import com.cms.service.ActivityService;
 import com.cms.service.SubscribeService;
 import com.cms.service.UserService;
+import com.cms.util.ConstantUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,14 +27,11 @@ import java.util.Map;
 @Slf4j
 public class SubscribeController {
     @Autowired
-    private ActivityService activityService;
-    @Autowired
-    private UserService userService;
-    @Autowired
     private SubscribeService subscribeService;
 
     @RequestMapping(value = "/saveSubscribeInformation", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(description = ConstantUtil.SUBSCRIBE_ACTIVITY,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> saveSubscribeInformation(Integer userId , Integer activityId , String reminder_time) throws Exception{
         Map<String, Object> map=new HashMap<String, Object>();
         Date date = null;

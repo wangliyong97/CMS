@@ -31,4 +31,6 @@ public interface UserService {
     User selectUserById(Integer id);
 
     boolean sendEmailCode(String email, String code);
+
+    boolean sendEmailHtmlContent(String email, String code);
 }

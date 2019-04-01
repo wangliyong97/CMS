@@ -110,21 +110,25 @@
     <include refid="Base_Column_List" />
     from subscribe
     where user_id = #{user_id,jdbcType=INTEGER} and
-    activity_id = #{activity_id,jdbcType=INTEGER} and
-    status = 1
+    activity_id = #{activity_id,jdbcType=INTEGER}
   </select>
   <delete id="cancelSubscribe" parameterType="java.lang.Integer" >
     delete from subscribe
     where user_id = #{user_id,jdbcType=INTEGER} and
-    activity_id = #{activity_id,jdbcType=INTEGER} and
-    status = 1
+    activity_id = #{activity_id,jdbcType=INTEGER}
   </delete>
   <select id="selectSubscribeActivityList" resultMap="BaseResultMap" parameterType="Integer" >
     select
     <include refid="Base_Column_List" />
     from subscribe
-    where user_id = #{user_id,jdbcType=INTEGER} and
-    status = 1
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </select>
+  <select id="selectSubscribeActivityListByDate" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from subscribe
+    where status = 1 and
+    reminder_time = current_date ;
   </select>
   <select id="selectSubscribeFutureActivityList" resultMap="BaseResultMap" parameterType="Integer" >
     select

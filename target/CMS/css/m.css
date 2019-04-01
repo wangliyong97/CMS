@@ -1,8 +1,5 @@
 @charset "utf-8";
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
-    /*.navbox { width: 96% }*/
-    /*#starlist li a { padding: 0 10px; }*/
-    /*#starlist li.menu:before { right: 0 }*/
     .zhuanti li { width: 27% }
     .searchbox { width: 96% }
     .box, article { width: 96% }

@@ -61,28 +61,16 @@
 						<button id="reset" onclick="reset()"
 								class="btn-sm btn-outline btn-white pull-right"
 								style="margin-top:-15px" type="button">重置</button>
-						<h5>快捷查询-用户</h5>
+						<h5>快捷查询</h5>
 						<ul class="folder-list m-b-md" style="padding: 0">
 
-							<li><a href="javascript:void(0)" onclick="fastToSearch('普通用户')"><i class="fa fa-user-plus"></i>普通用户</a>
-							</li>
-							<li><a href="javascript:void(0)" onclick="fastToSearch('浏览活动')"><i class="fa fa-tag"></i> 浏览活动</a>
+							<li><a href="javascript:void(0)" onclick="fastToSearch('订阅活动')"><i class="fa fa-tag"></i>订阅活动</a>
 							</li>
 							<li><a href="javascript:void(0)" onclick="fastToSearch('关键字查询活动')"><i class="fa fa-tag"></i> 关键字查询活动</a>
 							</li>
-							<li><a href="javascript:void(0)" onclick="fastToSearch('关键字查询资源')"><i class="fa fa-tag"></i> 搜索资源</a>
-							</li>
-
-						</ul>
-						<h5>快捷查询-管理员</h5>
-						<ul class="folder-list m-b-md" style="padding: 0">
-							<li><a href="javascript:void(0)" onclick="fastToSearch('管理员')"><i class="fa fa-user"></i> 管理员</a>
-							</li>
 							<li><a href="javascript:void(0)" onclick="fastToSearch('更新活动')"><i class="fa fa-tag"></i> 活动(增/删/改)</a>
 							</li>
-							<li><a href="javascript:void(0)" onclick="fastToSearch('修改活动地址')"><i class="fa fa-tag"></i> 活动地址(增/删/改)</a>
-							</li>
-							<li><a href="javascript:void(0)" onclick="fastToSearch('资源')"><i class="fa fa-tag"></i> 资源(增/删/改)</a>
+							<li><a href="javascript:void(0)" onclick="fastToSearch('活动类别')"><i class="fa fa-tag"></i> 活动类别(增/删/改)</a>
 							</li>
 							<li><a href="javascript:void(0)" onclick="fastToSearch('黑名单')"><i class="fa fa-tag"></i> 黑名单(增/删)</a>
 							</li>
@@ -130,9 +118,7 @@
 				<div class="newsview" style="padding-top:0px;">
 					<h3 class="news_title"></h3>
 					<div class="news_author">
-						<span class="au01">罗廷方</span><span class="au02"></span><span
-							class="au03">共<b></b>人围观
-										</span>
+						<span class="au03">共<b></b>人浏览</span>
 					</div>
 					<div class="tags">
 

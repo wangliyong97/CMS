@@ -4,7 +4,7 @@ var globalCount = 0;
 $("#fakeloader").fakeLoader({
 	timeToHide : 10000, //Time in milliseconds for fakeLoader disappear
 	zIndex : 999, // Default zIndex
-	spinner : "spinner6", //Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+	spinner : "spinner6", //Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
 	bgColor : "#fff", //Hex, RGB or RGBA colors
 });
 setTimeout(function() {
@@ -265,14 +265,14 @@ function Format(datetime, fmt) {
 	}
 	datetime = new Date(datetime);
 	var o = {
-		"M+" : datetime.getMonth() + 1, //月份   
-		"d+" : datetime.getDate(), //日   
-		"h+" : datetime.getHours(), //小时   
-		"m+" : datetime.getMinutes(), //分   
-		"s+" : datetime.getSeconds(), //秒   
-		"q+" : Math.floor((datetime.getMonth() + 3) / 3), //季度   
+		"M+" : datetime.getMonth() + 1, //月份
+		"d+" : datetime.getDate(), //日
+		"h+" : datetime.getHours(), //小时
+		"m+" : datetime.getMinutes(), //分
+		"s+" : datetime.getSeconds(), //秒
+		"q+" : Math.floor((datetime.getMonth() + 3) / 3), //季度
 		"S" : datetime.getMilliseconds()
-	//毫秒   
+		//毫秒
 	};
 	if (/(y+)/.test(fmt))
 		fmt = fmt.replace(RegExp.$1, (datetime.getFullYear() + "")

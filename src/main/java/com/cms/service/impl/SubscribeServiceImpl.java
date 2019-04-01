@@ -53,7 +53,17 @@ public class SubscribeServiceImpl implements SubscribeService{
     }
 
     @Override
+    public List<Subscribe> selectSubscribeActivityListByDate() {
+        return subscribeMapper.selectSubscribeActivityListByDate();
+    }
+
+    @Override
     public List<Subscribe> selectSubscribeFutureActivityList(Integer userId) {
         return subscribeMapper.selectSubscribeFutureActivityList(userId);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(Subscribe record) {
+        return subscribeMapper.updateByPrimaryKeySelective(record);
     }
 }

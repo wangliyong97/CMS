@@ -352,7 +352,7 @@ public class ActivityManagerController {
      */
     @RequestMapping(value = "/updateActivityType", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(description = ConstantUtil.ActivityType_UPDATE, userType = ConstantUtil.USERTYPE_ADMIN)
+    @SystemLog(description = ConstantUtil.ACTIVITYTYPE_UPDATE, userType = ConstantUtil.USERTYPE_ADMIN)
     public Map<String, Object> updateActivityType(String prarm, HttpSession session, ActivityType activityType) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String) session.getAttribute("username");
@@ -386,7 +386,7 @@ public class ActivityManagerController {
      */
     @RequestMapping(value = "/deleteActivityType", method = RequestMethod.POST)
     @ResponseBody
-    @SystemLog(description = ConstantUtil.ActivityType_DELETE, userType = ConstantUtil.USERTYPE_ADMIN)
+    @SystemLog(description = ConstantUtil.ACTIVITYTYPE_DELETE, userType = ConstantUtil.USERTYPE_ADMIN)
     public Map<String, Object> deleteActivityType(String prarm, HttpSession session, ActivityType ActivityType) throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();
         String username = (String) session.getAttribute("username");

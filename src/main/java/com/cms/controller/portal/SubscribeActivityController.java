@@ -13,6 +13,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.net.ntp.TimeStamp;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,7 +86,7 @@ public class SubscribeActivityController {
     @RequestMapping(value = "/selectSubscribeFutureActivityList")
     @ResponseBody
     @AccessLimit(seconds=1,maxCount=10)
-    @SystemLog(description = ConstantUtil.ACTIVITY_SUBSCRIBE,userType=ConstantUtil.USERTYPE_USER)
+    @SystemLog(description = ConstantUtil.ACTIVITY_FUTURESUBSCRIBE,userType=ConstantUtil.USERTYPE_USER)
     public Map<String, Object> selectSubscribeFutureActivityList(Integer userId, @RequestParam(value="page", required=true,defaultValue="1") Integer page, @RequestParam(value="pageSize", required=true,defaultValue="10") Integer pageSize) throws Exception {
         Map<String, Object> returnMap=new HashMap<String, Object>();
         List<SubscribeActivityVo> subscribeActivityVos = new ArrayList<>();

@@ -17,5 +17,9 @@ public interface SubscribeService {
 
     List<Subscribe> selectSubscribeActivityList(Integer userId);
 
+    List<Subscribe> selectSubscribeActivityListByDate();
+
     List<Subscribe> selectSubscribeFutureActivityList(Integer userId);
+
+    int updateByPrimaryKeySelective(Subscribe record);
 }
